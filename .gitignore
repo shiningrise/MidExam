@@ -37,3 +37,4 @@ src/MidExam.Website/tmp/
 !src/MidExam.Website/tmp/placeholder.txt
 Release*.zip
 Setup*.zip
+!*\placeholder.txt
