@@ -5,6 +5,7 @@ using System.Text;
 
 using Leafing.Data;
 using Leafing.Data.Definition;
+using Newtonsoft.Json;
 
 namespace MidExam.DAL
 {
@@ -531,6 +532,16 @@ namespace MidExam.DAL
                 , riqi.Substring(4, 2), riqi.Substring(6, 2));
             DateTime tmp = new DateTime();
             return DateTime.TryParse(riqi, out tmp);
+        }
+
+        public string Json()
+        {
+            return JsonConvert.SerializeObject(this);
+        }
+
+        public Bmk Json(string jsonString)
+        {
+            return JsonConvert.DeserializeObject<Bmk>(jsonString);
         }
 
         #endregion
