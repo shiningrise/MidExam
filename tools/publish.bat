@@ -1,8 +1,16 @@
 echo off
+cd ..\Release
 set fileName=Release%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%.zip
-zip -r ../%fileName% ../Release/* -x ./%fileName%
+..\tools\zip -r %fileName% * -x ./%fileName%
+move %fileName% ..\
 
-set fileName=Setup%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%.zip
-zip -r ../%fileName% ../Setup/* -x ./%fileName%
+::cd ..\Setup
+::set fileName=Setup%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%.zip
+::..\tools\zip -r %fileName% Setup/* -x ./%fileName%
+::move %fileName% ..\
+
+::del /q/a/f/s Release*.zip
+
+cd ..\tools
 pause
 
