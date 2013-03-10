@@ -388,25 +388,34 @@ public partial class frmStudent : PageBase
                 JsUtil.MessageBox(this, "您没有改动任何数据!提示:" + errMsg.ToString());
             }
             else
-            { 
-                if (this.CurBmk.RecordGuid == Guid.Empty)
+            {
+                ValidateHandler vh = new ValidateHandler(true);
+                if (vh.ValidateObject(this.CurBmk))
                 {
-                    this.CurBmk.RecordGuid = Guid.NewGuid();
-                }
-                if (this.CurBmk.PreHistoryGuid == Guid.Empty)
-                {
-                    this.CurBmk.CurHistoryGuid = Guid.NewGuid();
+                    if (this.CurBmk.RecordGuid == Guid.Empty)
+                    {
+                        this.CurBmk.RecordGuid = Guid.NewGuid();
+                    }
+                    if (this.CurBmk.PreHistoryGuid == Guid.Empty)
+                    {
+                        this.CurBmk.CurHistoryGuid = Guid.NewGuid();
+                    }
+                    else
+                    {
+                        this.CurBmk.PreHistoryGuid = this.CurBmk.CurHistoryGuid;
+                    }
+                    this.CurBmk.Save();
+                    this.Save2File(this.CurBmk);
+                    JsUtil.MessageBox(this, "数据保存成功!提示:" + errMsg.ToString());
+
+                    BindData();
                 }
                 else
                 {
-                    this.CurBmk.PreHistoryGuid = this.CurBmk.CurHistoryGuid;
+                    JsUtil.MessageBox(this, "数据保存失败!提示:" + vh.ErrorMessages + errMsg.ToString());
                 }
-                this.CurBmk.Save();
-                this.Save2File(this.CurBmk);
-                JsUtil.MessageBox(this, "数据保存成功!提示:" + errMsg.ToString());
             }
             
-            BindData();
         }
         else
         {
