@@ -10,6 +10,7 @@ using MidExam.DAL;
 using System.Configuration;
 using System.Text;
 using MidExam.DAL.Util;
+using System.IO;
 
 public partial class frmStudent : PageBase
 {
@@ -252,6 +253,7 @@ public partial class frmStudent : PageBase
         StringBuilder errMsg = new StringBuilder();
         if (this.CurBmk != null)
         {
+            string oldBmkJson = this.CurBmk.Json();
             this.CurBmk.bj = this.txtBj.Text.Trim();
             this.CurBmk.xh = this.txtBnbh.Text.Trim();
             if (IDCardChecker.CheckIDCard(this.txtsfzh.Text))
@@ -380,13 +382,51 @@ public partial class frmStudent : PageBase
                 this.CurBmk.tcxm = "";
             }
 
-            this.CurBmk.Save();
-            JsUtil.MessageBox(this, "数据保存成功!" + errMsg.ToString());
+            string newBmkJson = this.CurBmk.Json();
+            if (newBmkJson == oldBmkJson)
+            {
+                JsUtil.MessageBox(this, "您没有改动任何数据!提示:" + errMsg.ToString());
+            }
+            else
+            { 
+                if (this.CurBmk.RecordGuid == Guid.Empty)
+                {
+                    this.CurBmk.RecordGuid = Guid.NewGuid();
+                }
+                if (this.CurBmk.PreHistoryGuid == Guid.Empty)
+                {
+                    this.CurBmk.CurHistoryGuid = Guid.NewGuid();
+                }
+                else
+                {
+                    this.CurBmk.PreHistoryGuid = this.CurBmk.CurHistoryGuid;
+                }
+                this.CurBmk.Save();
+                this.Save2File(this.CurBmk);
+                JsUtil.MessageBox(this, "数据保存成功!提示:" + errMsg.ToString());
+            }
+            
             BindData();
         }
         else
         {
             throw new Exception("学生信息不存在!");
         }
+    }
+
+    /// <summary>
+    /// 保存数据到文件
+    /// </summary>
+    /// <param name="bmk"></param>
+    private void Save2File(Bmk bmk)
+    {
+        string filepath = "~/Data/BmkHistory/" + bmk.RecordGuid.ToString();
+        filepath = Server.MapPath(filepath);
+        if (!Directory.Exists(filepath))
+            Directory.CreateDirectory(filepath);
+        filepath = Path.Combine(filepath, string.Format("{0}.txt",bmk.CurHistoryGuid));
+        if(!File.Exists(filepath))
+            FileHelper.CreateFile(filepath);
+        FileHelper.WriteLine(filepath,bmk.Json());
     }
 }
