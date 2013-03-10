@@ -1,7 +1,6 @@
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
-*.exe
 *.obj
 *.pdb
 *.user
@@ -36,3 +35,5 @@ src/MidExam.Website/App_Data
 Setup
 src/MidExam.Website/tmp/
 !src/MidExam.Website/tmp/placeholder.txt
+Release*.zip
+Setup*.zip
