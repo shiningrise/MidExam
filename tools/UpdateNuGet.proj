@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="UpdateNuGet" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LibFolder>$(MSBuildProjectDirectory)</LibFolder>
+    <OnlineSource>$(MSBuildProjectDirectory)\..\src</OnlineSource>
+    <NuGetRepositoryPath>$(OnlineSource)\packages</NuGetRepositoryPath>
+	<NuGetRepositoryConfig>$(NuGetRepositoryPath)\repositories.config</NuGetRepositoryConfig>
+	<NuGetSources>http://go.microsoft.com/fwlink/?LinkId=206669</NuGetSources>
+  </PropertyGroup>
+  <Import Project="$(LibFolder)\msbuild\MSBuild.Community.Tasks.Targets" />
+  <Import Project="$(LibFolder)\NuGet\NuGet.targets" />
+	<Target Name="UpdateNuGet">
+	    <XmlRead XPath="//@path" XmlFileName="$(NuGetRepositoryConfig)">
+	      <Output TaskParameter="Value" PropertyName="NuGetPackageFiles" />
+	    </XmlRead>
+		<ItemGroup>
+		    <_NuGetPackages Include="$(NuGetPackageFiles.Split(';'))" />
+		</ItemGroup>
+		<NuGetFetch PackageDir="$(NuGetRepositoryPath)"
+		PackageConfigFile="$([System.IO.Path]::GetFullPath($([System.IO.Path]::Combine($(NuGetRepositoryPath),%(_NuGetPackages.Identity)))))" 
+		Sources="$(NuGetSources)"/>
+	</Target>
+</Project>

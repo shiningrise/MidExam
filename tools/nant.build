@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="gb2312"?>
+
+<project name="Test" default="run" basedir=".">
+	<property name="sln.dir" value=".\"/>
+     <property name="sln.name" value="SpNhi.sln"/>
+     <property name="sln.Configuration" value="DEBUG"/>
+     <property name="Build1.OutputFolder" value="build"/>
+ 
+     <target name="run">
+		<call target="build2"/>
+     </target>
+
+     <target name="build1">
+		<exec program="cmd" commandline="%SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe ${sln.dir}\${sln.name} /t:Rebuild /p:Configuration=${sln.Configuration} /l:FileLogger,Microsoft.Build.Engine;logfile=Build.log"/>
+     </target>
+
+     <target name="build2">
+		<echo message="开始还原nuget包"/>
+		<exec program="UpdateNuGet.bat" />
+		<echo message="nuget包还原完毕"/>
+		<echo message="开始编译解决方案"/>
+		<exec program="build.bat" />
+		<echo message="解决方案编译完毕"/>
+		<echo message="任务完成"/>
+     </target>
+
+     <target name="build">
+         <mkdir dir="build"/>
+         <csc target="exe" output="bin/HelloWorld.exe">
+              <sources>
+                   <includes name="HelloWorld.cs"/>
+              </sources>        
+         </csc>
+     </target>
+
+     <target name="implement" depends="build">
+         <exec program="bin/helloWorld.exe"/>
+     </target>
+
+     <target name="clean">
+         <delete dir="bin" failonerror="false"/>
+     </target>
+
+     <target name="HelloNant">
+         <echo message="Hello Nant"/>
+	</target>
+
+     <target name="start">
+         <echo message="start"/>
+     </target>
+	<target name="end">
+         <echo message="OK"/>
+     </target>
+
+</project>
