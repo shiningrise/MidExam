@@ -1,11 +1,11 @@
-echo off
+echo on
 cd ..\Release
-set fileName=Release%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%.zip
+set fileName=Release%date:~0,4%%date:~5,2%%date:~8,2%.zip
 ..\tools\zip -r %fileName% * -x ./%fileName%
 move %fileName% ..\
 
 ::cd ..\Setup
-::set fileName=Setup%date:~0,4%%date:~5,2%%date:~8,2%%time:~0,2%%time:~3,2%.zip
+::set fileName=Setup%date:~0,4%%date:~5,2%%date:~8,2%.zip
 ::..\tools\zip -r %fileName% Setup/* -x ./%fileName%
 ::move %fileName% ..\
 
