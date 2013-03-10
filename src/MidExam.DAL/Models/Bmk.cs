@@ -311,6 +311,12 @@ namespace MidExam.DAL
         /// </summary>
         public Guid PreHistoryGuid { get; set; }
 
+        /// <summary>
+        /// 最后编辑时间
+        /// </summary>
+        [Description("最后编辑时间")]
+        public DateTime? LastEditTime { get; set; }
+
         #endregion
 
         #region 业务属性
@@ -547,6 +553,18 @@ namespace MidExam.DAL
         #endregion
 
         #region 重载方法
+
+        protected override void OnInserting()
+        {
+            this.LastEditTime = DateTime.Now;
+            base.OnInserting();
+        }
+
+        protected override void OnUpdating()
+        {
+            this.LastEditTime = DateTime.Now;
+            base.OnUpdating();
+        }
 
         #endregion
     }
