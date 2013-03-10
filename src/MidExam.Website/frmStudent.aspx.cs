@@ -256,8 +256,12 @@ public partial class frmStudent : PageBase
             string oldBmkJson = this.CurBmk.Json();
             this.CurBmk.bj = this.txtBj.Text.Trim();
             this.CurBmk.xh = this.txtBnbh.Text.Trim();
-            if (IDCardChecker.CheckIDCard(this.txtsfzh.Text))
+            if (IDCardChecker.CheckIDCard(this.txtsfzh.Text) && this.txtsfzh.Text != null)
             {
+                if (this.txtsfzh.Text.Substring(6, 8) != this.txtCsny.Text)
+                {
+                    errMsg.Append("身份证号码中的出生年月日与你所填写的出生年月日不一致!");
+                }
                 this.CurBmk.sfzh = this.txtsfzh.Text.Trim();
             }
             else
@@ -282,7 +286,7 @@ public partial class frmStudent : PageBase
             }
             else
             {
-                errMsg.Append("出生年月日有误!必须是8位数字，如：1990805");
+                errMsg.Append("出生年月日有误!必须是8位数字(如：19910805),");
             }
 
             if (this.ddlTy.SelectedIndex > 0)
@@ -429,11 +433,8 @@ public partial class frmStudent : PageBase
     /// <param name="bmk"></param>
     private void Save2File(Bmk bmk)
     {
-        string filepath = "~/Data/BmkHistory/" + bmk.RecordGuid.ToString();
+        string filepath = "~/Data/BmkHistory/" + bmk.RecordGuid.ToString() + ".txt";
         filepath = Server.MapPath(filepath);
-        if (!Directory.Exists(filepath))
-            Directory.CreateDirectory(filepath);
-        filepath = Path.Combine(filepath, string.Format("{0}.txt",bmk.CurHistoryGuid));
         if(!File.Exists(filepath))
             FileHelper.CreateFile(filepath);
         FileHelper.WriteLine(filepath,bmk.Json());
