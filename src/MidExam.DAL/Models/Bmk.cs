@@ -10,6 +10,8 @@ namespace MidExam.DAL
 {
     public class Bmk : DbObjectModel<Bmk>
     {
+        #region 报表表数据库字段
+        
         [AllowNull]
         [Length(9)]
         [Description("报名序号")]
@@ -279,6 +281,8 @@ namespace MidExam.DAL
         [AllowNull]
         public string Bm { get; set; }
 
+        
+
         [Length(128)]
         [Description("密码")]
         [AllowNull]
@@ -305,6 +309,10 @@ namespace MidExam.DAL
         /// 前记录日志GUID
         /// </summary>
         public Guid PreHistoryGuid { get; set; }
+
+        #endregion
+
+        #region 业务属性
 
         [Exclude]
         public string Zy11FullName
@@ -400,6 +408,9 @@ namespace MidExam.DAL
             }
         }
 
+        #endregion
+
+        #region 方法
 
         public string GetSchooNameByNum(object objSchoolNum)
         {
@@ -463,10 +474,6 @@ namespace MidExam.DAL
             return strRtn;
         }
 
-
-
-        /* 方法 */
-
         public static string GetXb(object dm)
         {
             if (dm == null)
@@ -476,6 +483,7 @@ namespace MidExam.DAL
             else
                 return "女";
         }
+
 
         /// <summary>
         /// 班级数量
@@ -524,8 +532,12 @@ namespace MidExam.DAL
             DateTime tmp = new DateTime();
             return DateTime.TryParse(riqi, out tmp);
         }
+
+        #endregion
+
+        #region 重载方法
+
+        #endregion
     }
-
-
 
 }
