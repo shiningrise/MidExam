@@ -106,7 +106,7 @@
                     </td>
                     <td class="style11">
                         <asp:DropDownList ID="ddlHk" runat="server">
-                            <asp:ListItem Value="0">请选择</asp:ListItem>
+                            <asp:ListItem Value="">请选择</asp:ListItem>
                             <asp:ListItem Value="25">鹿城区</asp:ListItem>
                             <asp:ListItem Value="26">龙湾区</asp:ListItem>
                             <asp:ListItem Value="27">瓯海区</asp:ListItem>
@@ -118,7 +118,9 @@
                             <asp:ListItem Value="33">苍南县</asp:ListItem>
                             <asp:ListItem Value="34">文成县</asp:ListItem>
                             <asp:ListItem Value="35">泰顺县</asp:ListItem>
-                            <asp:ListItem Value="99">外市</asp:ListItem>
+                            <asp:ListItem Value="36">开发区</asp:ListItem>
+                            <asp:ListItem Value="88">省内市外</asp:ListItem>
+                            <asp:ListItem Value="99">浙江省外</asp:ListItem>
                         </asp:DropDownList>
                     </td>
                     <td class="style11">
