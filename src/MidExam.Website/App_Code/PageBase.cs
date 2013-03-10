@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MidExam.DAL;
 
 /// <summary>
 ///PageBase 的摘要说明
@@ -21,6 +22,11 @@ public class PageBase : System.Web.UI.Page
         if (permite == false)
         {
             HttpContext.Current.Response.Redirect("~/Default.aspx");
+        }
+
+        if (this.PermitRoles.Contains("Students") && Bmk.GetCount(p => p.xstbh == this.User.Identity.Name) == 0)
+        {
+            throw new Exception("中考报名库中没有你的名字，若你是初三学生，请尽快联系教务处解决此问题");
         }
 	}
 
