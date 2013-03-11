@@ -14,7 +14,7 @@ public partial class frmStudentPwd : PageBase
     protected override void AddPermitRoles()
     {
         //this.AddPermitRole("Teachers");
-        //this.AddPermitRole("Students");
+        
         base.AddPermitRoles();
     }
 

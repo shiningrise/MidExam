@@ -317,6 +317,9 @@ namespace MidExam.DAL
         [Description("最后编辑时间")]
         public DateTime? LastEditTime { get; set; }
 
+        [Description("记录状态")]
+        public DateTime? Status { get; set; }
+
         #endregion
 
         #region 业务属性

@@ -13,7 +13,7 @@ public partial class frmInputTcxm : PageBase
     protected override void AddPermitRoles()
     {
         this.AddPermitRole("Teachers");
-        //this.AddPermitRole("Students");
+        
         base.AddPermitRoles();
     }
 

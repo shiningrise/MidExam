@@ -12,7 +12,7 @@ public partial class frmZhiyuanListPrint : PageBase
     protected override void AddPermitRoles()
     {
         this.AddPermitRole("Teachers");
-        //this.AddPermitRole("Students");
+        
         base.AddPermitRoles();
     }
 

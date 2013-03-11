@@ -12,7 +12,7 @@ public partial class frmPwd : PageBase
     protected override void AddPermitRoles()
     {
         //this.AddPermitRole("Teachers");
-        //this.AddPermitRole("Students");
+        
         base.AddPermitRoles();
     }
 

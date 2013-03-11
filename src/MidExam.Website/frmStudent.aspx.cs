@@ -16,6 +16,10 @@ public partial class frmStudent : PageBase
 {
     protected override void AddPermitRoles()
     {
+        if (User.IsInRole("Students") && Bmk.GetCount(p => p.xstbh == this.User.Identity.Name) == 0)
+        {
+            throw new Exception("中考报名库中没有你的名字，若你是初三学生，请尽快联系教务处解决此问题");
+        }
         this.AddPermitRole("Teachers");
         this.AddPermitRole("Students");
         base.AddPermitRoles();
