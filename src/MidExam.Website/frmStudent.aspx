@@ -24,7 +24,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <div align="center">
         <p align="center">
-            2011年温州市局直属高中段学校招生报名登记表
+            2013年温州市局直属高中段学校招生报名登记表
             <br />
 <%--            学校：<asp:DropDownList ID="ddlBmxx" runat="server">
                 <asp:ListItem Value="2516">鹿城实验中学</asp:ListItem>
