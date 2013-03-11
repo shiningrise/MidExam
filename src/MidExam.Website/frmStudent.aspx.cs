@@ -404,13 +404,14 @@ public partial class frmStudent : PageBase
                     {
                         this.CurBmk.RecordGuid = Guid.NewGuid();
                     }
-                    if (this.CurBmk.PreHistoryGuid == Guid.Empty)
+                    if (this.CurBmk.CurHistoryGuid == Guid.Empty)
                     {
                         this.CurBmk.CurHistoryGuid = Guid.NewGuid();
                     }
                     else
                     {
                         this.CurBmk.PreHistoryGuid = this.CurBmk.CurHistoryGuid;
+                        this.CurBmk.CurHistoryGuid = Guid.NewGuid();
                     }
                     this.CurBmk.Save();
                     this.Save2File(this.CurBmk);
