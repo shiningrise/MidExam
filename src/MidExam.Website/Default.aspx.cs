@@ -15,15 +15,24 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (DbEntryMembershipUser.GetCount(Condition.Empty) == 0)
+        if (!IsPostBack)
         {
-            Membership.CreateUser("admin", "admin");
+            if (!Roles.RoleExists("Administrators"))
+                Roles.CreateRole("Administrators");
+            if (!Roles.RoleExists("Teachers"))
+                Roles.CreateRole("Teachers");
+            if (!Roles.RoleExists("Students"))
+                Roles.CreateRole("Students");
+            if( Membership.GetUser("admin") == null)
+            {
+                Membership.CreateUser("admin", "admin");
+            }
+            if (!Roles.IsUserInRole("admin", "Administrators"))
+                Roles.AddUserToRole("admin", "Administrators");
+            if (!Roles.IsUserInRole("admin", "Teachers"))
+                Roles.AddUserToRole("admin", "Teachers");
         }
-        CreateRole("Administrators");
-        CreateRole("Teachers");
-        CreateRole("Students");
-        Roles.AddUserToRoles("admin", new[] { "Administrators", "Teachers" });
-
+        
         if (!Request.IsAuthenticated)
         {
             Response.Redirect("~/Account/Login.aspx");
