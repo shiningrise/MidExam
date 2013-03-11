@@ -15,7 +15,7 @@ namespace MidExam.DAL
         /// </summary>   
         /// <param name="Sqlstr">SQL语句</param>   
         /// <returns></returns>   
-        public static DataTable ExecuteDataTable(string tablePath, string tableName)
+        public static DataTable ToDataTable(string tablePath, string tableName)
         {
             using (OleDbConnection conn = GetOleDbConnection(tablePath, tableName))
             {
