@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbfHelper.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\IDCardChecker.cs" />
     <Compile Include="Models\Bmk.cs" />
