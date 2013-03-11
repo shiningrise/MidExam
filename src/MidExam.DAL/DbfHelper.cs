@@ -5,6 +5,7 @@ using System.Text;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using Leafing.Data.Caching;
 
 namespace MidExam.DAL
 {
@@ -17,6 +18,8 @@ namespace MidExam.DAL
         /// <returns></returns>   
         public static DataTable ToDataTable(string tablePath, string tableName)
         {
+            if (CacheProvider.Instance[tableName] != null)
+                return (DataTable)CacheProvider.Instance[tableName];
             using (OleDbConnection conn = GetOleDbConnection(tablePath, tableName))
             {
                 OleDbDataAdapter da = new OleDbDataAdapter("select * from " + tableName, conn);
@@ -24,6 +27,8 @@ namespace MidExam.DAL
                 conn.Open();
                 da.Fill(dt);
                 conn.Close();
+                if( CacheProvider.Instance[tableName] == null)
+                    CacheProvider.Instance[tableName] = dt;
                 return dt;
             }
         }
