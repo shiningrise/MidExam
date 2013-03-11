@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Text;
 using MidExam.DAL.Util;
 using System.IO;
+using System.Data;
 
 public partial class frmStudent : PageBase
 {
@@ -170,6 +171,16 @@ public partial class frmStudent : PageBase
 
         this.txtBm.Text = this.CurBmk.Bm;//别名
 
+        this.txtByxxdm.Text = this.CurBmk.byxxdm;//毕业学校代码填写毕业学校
+        if (this.CurBmk.byxxmc.IsNullOrEmpty())
+        {
+            this.lblByxxmc.Text = "鹿城实验中学学校代码为2516,若在别校借读，请填写实际就读学校代码";
+        }
+        else
+        {
+            this.lblByxxmc.Text = "毕业学校名称:" + this.CurBmk.byxxmc;
+        }
+
         //体测项目
         if (!string.IsNullOrWhiteSpace(this.CurBmk.tcxm) && this.CurBmk.tcxm.Length == 2)
         {
@@ -266,6 +277,15 @@ public partial class frmStudent : PageBase
                 {
                     errMsg.Append("身份证号码中的出生年月日与你所填写的出生年月日不一致!");
                 }
+                string sexIDCard = this.txtsfzh.Text.Substring(16,1);
+                if ("02468Xx".Contains(sexIDCard) && (this.ddlSex.SelectedValue != "2"))
+                {
+                    errMsg.Append("身份证号码与所选性别不一致!");
+                }
+                else if ("13579".Contains(sexIDCard) && (this.ddlSex.SelectedValue != "1"))
+                {
+                    errMsg.Append("身份证号码与所选性别不一致!");
+                }
                 this.CurBmk.sfzh = this.txtsfzh.Text.Trim();
             }
             else
@@ -328,10 +348,34 @@ public partial class frmStudent : PageBase
             {
                 errMsg.Append("户口未选择,");
             }
+
+            if (this.txtTel.Text.IsNullOrEmpty())
+            {
+                errMsg.Append("联系电话未填写,");
+            }
+            else
+            {
+                this.CurBmk.tel = this.txtTel.Text.Trim();
+            }
+
+            if (this.txtJtzz.Text.IsNullOrEmpty())
+            {
+                errMsg.Append("家庭地址未填写,");
+            }
+            else
+            {
+                this.CurBmk.jtzz = this.txtJtzz.Text.Trim();
+            }
+
+            if (this.txtPost.Text.IsNullOrEmpty())
+            {
+                errMsg.Append("邮政编码未填写,");
+            }
+            else
+            {
+                this.CurBmk.post = this.txtPost.Text.Trim();
+            }
             
-            this.CurBmk.tel = this.txtTel.Text.Trim();
-            this.CurBmk.jtzz = this.txtJtzz.Text.Trim();
-            this.CurBmk.post = this.txtPost.Text.Trim();
 
             if (this.ddlSyqk.SelectedIndex > 0)
             {
@@ -388,6 +432,28 @@ public partial class frmStudent : PageBase
             else
             {
                 this.CurBmk.tcxm = "";
+            }
+
+            string byxxdm = this.txtByxxdm.Text;
+            if (byxxdm.IsNullOrEmpty())
+            {
+                errMsg.Append("毕业学校代码未填写,");
+            }
+            else
+            {
+                string dbfPath = Server.MapPath("~/Data/Dbf/sysdbf/");
+                string dbfTable = "schools.DBF";
+                DataTable dt = DbfHelper.ToDataTable(dbfPath, dbfTable);
+                var rows = dt.Select(string.Format("school = '{0}'",byxxdm));
+                if (rows.Length == 1)
+                {
+                    this.CurBmk.byxxmc = rows[0]["mc"].ToString();
+                    this.CurBmk.byxxdm = byxxdm;
+                }
+                else
+                {
+                    errMsg.Append("你所填写的就读学校代码有误");
+                }
             }
 
             string newBmkJson = this.CurBmk.Json();

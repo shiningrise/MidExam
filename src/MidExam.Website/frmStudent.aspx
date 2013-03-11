@@ -37,16 +37,13 @@
             &nbsp;<table class="style6" border="1" bordercolorlight="#000000">
                 <tr>
                     <td class="style11">
-                        姓名
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;姓名
                     </td>
                     <td class="style11">
-                        <asp:TextBox ID="txtXm" runat="server" Width="70px"></asp:TextBox>
+                        &nbsp;<asp:TextBox ID="txtXm" runat="server" Width="70px"></asp:TextBox>
                     </td>
                     <td class="style11">
-                        别名
-                    </td>
-                    <td class="style11">
-                        <asp:TextBox ID="txtBm" runat="server" Width="70px"></asp:TextBox>
+                        别名<asp:TextBox ID="txtBm" runat="server" Width="70px"></asp:TextBox>
                         &nbsp;
                     </td>
                     <td class="style11">
@@ -65,12 +62,12 @@
                     <td class="style11">
                         <asp:TextBox ID="txtCsny" runat="server" Width="90px"></asp:TextBox>
                     </td>
-                    <td rowspan="6" class="style8">
+                    <td rowspan="7" class="style8">
                         <asp:Image ID="Image1" runat="server" Height="200px" Width="150px" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
+                    <td class="style11">
                         &nbsp; &nbsp; 是否团员
                     </td>
                     <td class="style11">
@@ -101,7 +98,7 @@
                         </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
+                    <td class="style11">
                         &nbsp; &nbsp; 户口(乡县)
                     </td>
                     <td class="style11">
@@ -135,7 +132,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
+                    <td class="style11">
                         家庭地址
                     </td>
                     <td class="style11" colspan="4">
@@ -149,7 +146,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
+                    <td class="style11">
                         生源情况
                     </td>
                     <td class="style11" colspan="5">
@@ -167,7 +164,15 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
+                    <td class="style11" colspan="7">
+                        毕业学校代码
+                        <asp:TextBox ID="txtByxxdm" runat="server" MaxLength="4"></asp:TextBox>
+                        <asp:HyperLink ID="hlSchools" runat="server" NavigateUrl="~/frmSchools.aspx" Target="_blank">查询学校代码</asp:HyperLink>
+                        <asp:Label ID="lblByxxmc" runat="server" Text=""></asp:Label>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="style11">
                         体育选考
                     </td>
                     <td class="style11">
@@ -204,8 +209,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="style11" colspan="2">
-                        初中阶段奖惩情况
+                    <td class="style11">
+                        初中阶段<br />
+                        奖惩情况
                     </td>
                     <td class="style11" colspan="3">
                         <asp:TextBox ID="txtCzhj" runat="server" Height="50px" TextMode="MultiLine" 
