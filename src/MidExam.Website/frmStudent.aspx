@@ -75,7 +75,7 @@
                     </td>
                     <td class="style11">
                         <asp:DropDownList ID="ddlTy" runat="server" RepeatDirection="Horizontal">
-                            <asp:ListItem Value="0">请选择</asp:ListItem>
+                            <asp:ListItem Value="">请选择</asp:ListItem>
                             <asp:ListItem Value="0">否</asp:ListItem>
                             <asp:ListItem Value="1">是</asp:ListItem>
                         </asp:DropDownList>
@@ -85,7 +85,7 @@
                     </td>
                     <td class="style11">
                         <asp:DropDownList ID="ddlMz" runat="server">
-                            <asp:ListItem Value="0">请选择</asp:ListItem>
+                            <asp:ListItem Value="">请选择</asp:ListItem>
                             <asp:ListItem Value="1">汉族</asp:ListItem>
                             <asp:ListItem Value="2">少数民族</asp:ListItem>
                         </asp:DropDownList>
@@ -94,7 +94,7 @@
                         </td>
                         <td class="style11">
                             <asp:DropDownList ID="ddlKslb" runat="server">
-                                <asp:ListItem Value="0">请选择</asp:ListItem>
+                                <asp:ListItem Value="">请选择</asp:ListItem>
                                 <asp:ListItem Value="1">城应</asp:ListItem>
                                 <asp:ListItem Value="2">农应</asp:ListItem>
                             </asp:DropDownList>
