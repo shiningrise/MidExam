@@ -46,9 +46,11 @@
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <AssemblyAttributes Include="AssemblyFileVersion">
       <Value>1.0.0.0</Value>
+      <Value>1.0.2.0</Value>
     </AssemblyAttributes>
     <AssemblyAttributes Include="AssemblyVersion">
       <Value>1.0.0.0</Value>
+      <Value>1.0.2.0</Value>
     </AssemblyAttributes>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
