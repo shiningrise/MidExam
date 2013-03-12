@@ -385,7 +385,18 @@ public partial class frmStudent : PageBase
             {
                 errMsg.Append("生源情况未选择,");
             }
-            
+            if (this.ddlHk.SelectedValue == "25" && this.ddlSyqk.SelectedValue != "0")
+            {
+                errMsg.Append("鹿城户籍学生只能选0,");
+            }
+            else if (this.ddlHk.SelectedValue != "25" && this.ddlSyqk.SelectedValue == "0")
+            {
+                errMsg.Append("非鹿城户籍学生只能选1或7,1表现在鹿城报考,7表示回原籍报考,报考幼师的同学只能回原籍报考,");
+            }
+            else if ("89".Contains(this.ddlSyqk.SelectedValue))
+            {
+                errMsg.Append("我们不能选择8或9,");
+            }
 
             this.CurBmk.czhj = this.txtCzhj.Text.Trim();
             this.CurBmk.xqah = this.txtXqah.Text.Trim();
