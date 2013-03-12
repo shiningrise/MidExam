@@ -40,15 +40,49 @@ public partial class frmShenhe : PageBase
     private void BindData()
     {
         this.GridView1.EnableViewState = false;
-        if (this.ddlBj.SelectedIndex == this.ddlBj.Items.Count - 1)
+        Condition con = null ;
+        string orderStr = "";
+        switch (this.ddlHk.SelectedValue)
         {
-            this.GridView1.DataSource = Bmk.Find(Condition.Empty, "bmxh"); // Bmk.Find(p => p.bj == this.Bj);
+            case "1":
+                con &= CK.K["hk"] == "25";
+                break;
+            case "2":
+                con &= CK.K["hk"] != "25";
+                con &= CK.K["hk"] != "88";
+                con &= CK.K["hk"] != "99";
+                break;
+            case "3":
+                con &= (CK.K["hk"] == "88" | CK.K["hk"] == "99");
+                break;
+            default:
+                break;
         }
-        else
+        if(this.ddlSyqk.SelectedIndex > 0 )
         {
-            this.GridView1.DataSource = Bmk.Find(p => p.bj == this.ddlBj.SelectedValue, "bmxh");
+            con &= CK.K["syqk"] == this.ddlSyqk.SelectedValue;
+        }
+        if (this.ddlBj.SelectedIndex != this.ddlBj.Items.Count - 1)
+        {
+            con &= CK.K["class"] == this.ddlBj.SelectedValue;
+        }
+        switch (this.ddlOrder.SelectedValue)
+        {   
+            case "0":
+                orderStr = "xstbh";
+                break;
+            case "1":
+                orderStr = "bmxh";
+                break;
+            case "2":
+                orderStr = "hk,xstbh";
+                break;
+            default:
+                orderStr = "hk,xstbh";
+                break;
         }
 
+        this.GridView1.DataSource = Bmk.Find(con, orderStr);
         this.GridView1.DataBind();
         lblMsg.Text = string.Format("总共{0}人", this.GridView1.Rows.Count);
     }
@@ -64,11 +98,7 @@ public partial class frmShenhe : PageBase
     /// <param name="e"></param>
     protected void ddlSyqk_SelectedIndexChanged(object sender, EventArgs e)
     {
-        this.GridView1.EnableViewState = false;
-        this.GridView1.DataSource = Bmk.Find(p => p.syqk == this.ddlSyqk.SelectedValue, "bmxh");
-
-        this.GridView1.DataBind();
-        lblMsg.Text = string.Format("总共{0}人", this.GridView1.Rows.Count);
+        this.BindData();
     }
 
     protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -115,7 +145,7 @@ public partial class frmShenhe : PageBase
             {
                 switch (bmk.syqk)
                 {
-                    case "0": litSyqk.Text = "0施教区"; break;
+                    case "0": litSyqk.Text = "0本县"; break;
                     case "1": litSyqk.Text = "1外县"; break;
                     case "7": litSyqk.Text = "7回原籍"; break;
                     default:
@@ -125,5 +155,9 @@ public partial class frmShenhe : PageBase
             }
         }
 
+    }
+    protected void btnShow_Click(object sender, EventArgs e)
+    {
+        this.BindData();
     }
 }
