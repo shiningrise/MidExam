@@ -116,7 +116,7 @@ public partial class frmShenhe : PageBase
                 switch (bmk.syqk)
                 {
                     case "0": litSyqk.Text = "0施教区"; break;
-                    case "1": litSyqk.Text = "1择校生"; break;
+                    case "1": litSyqk.Text = "1外县"; break;
                     case "7": litSyqk.Text = "7回原籍"; break;
                     default:
                         break;

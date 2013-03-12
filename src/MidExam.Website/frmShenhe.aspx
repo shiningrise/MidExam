@@ -26,7 +26,9 @@
                 <asp:BoundField DataField="bmxh" HeaderText="报名序号" />
                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="~/frmStudent.aspx?Id={0}"
                     DataTextField="xm" HeaderText="姓名" Target="_blank" />
-                
+
+                <asp:BoundField DataField="xstbh" HeaderText="学籍辅号" />
+
                 <asp:TemplateField HeaderText="性别">
                     <FooterTemplate>
                         人数
