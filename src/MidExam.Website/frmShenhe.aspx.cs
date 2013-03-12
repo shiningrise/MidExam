@@ -92,7 +92,9 @@ public partial class frmShenhe : PageBase
                     case "33": litHk.Text = "33苍南县"; break;
                     case "34": litHk.Text = "34文成县"; break;
                     case "35": litHk.Text = "35泰顺县"; break;
-                    case "99": litHk.Text = "99外市"; break;
+                    case "36": litHk.Text = "36开发区"; break;    
+                    case "88": litHk.Text = "88省内市外"; break;
+                    case "99": litHk.Text = "99浙江省外"; break;
                     default: litHk.Text = ""; break;
                 }
             }

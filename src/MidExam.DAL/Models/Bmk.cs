@@ -79,9 +79,11 @@ namespace MidExam.DAL
         public string kl { get; set; }
         [AllowNull]
         [Length(50)]
+        [Description("家庭地址")]
         public string jtzz { get; set; }
         [AllowNull]
         [Length(30)]
+        [Description("联系电话")]
         public string tel { get; set; }
         [AllowNull]
         [Length(6)]

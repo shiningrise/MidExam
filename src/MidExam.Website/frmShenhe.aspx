@@ -40,48 +40,7 @@
                         <%# Eval("tcxm") %>
                     </ItemTemplate>
                 </asp:TemplateField>
-  <%--              <asp:TemplateField HeaderText="父亲姓名">
-                    <ItemTemplate>
-                        <%# Eval("Father") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="父亲单位">
-                    <ItemTemplate>
-                        <%# Eval("Fatherdw") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="父亲电话">
-                    <ItemTemplate>
-                        <%# Eval("FatherTel") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="母亲姓名">
-                    <ItemTemplate>
-                        <%# Eval("Mother") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                --%>
-<%--                <asp:TemplateField HeaderText="母亲单位">
-                    <ItemTemplate>
-                        <%# Eval("Motherdw")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="母亲电话">
-                    <ItemTemplate>
-                        <%# Eval("Mothertel")%>
-                    </ItemTemplate>
-                </asp:TemplateField>--%>
-<%--                <asp:TemplateField HeaderText="兴趣爱好">
-                    <ItemTemplate>
-                        <%# Eval("Xqah") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
 
-                <asp:TemplateField HeaderText="初中获奖">
-                    <ItemTemplate>
-                        <%# Eval("czhj") %>
-                    </ItemTemplate>
-                </asp:TemplateField>--%>
                 <asp:BoundField DataField="Bj" HeaderText="班级" />
                 <asp:TemplateField HeaderText="户口">
                     <ItemTemplate>
@@ -94,6 +53,19 @@
                         <asp:Literal ID="litSyqk" runat="server"></asp:Literal>
                     </ItemTemplate>
                 </asp:TemplateField>
+
+                <asp:BoundField DataField="sfzh" HeaderText="学籍主号" />
+                <asp:BoundField DataField="xb" HeaderText="性别" />
+                <asp:BoundField DataField="mz" HeaderText="民族" />
+                <asp:BoundField DataField="csny" HeaderText="出生年月" />
+                
+                <asp:BoundField DataField="xh" HeaderText="班内编号" />
+                <asp:BoundField DataField="bj" HeaderText="班级" />
+                <asp:BoundField DataField="tel" HeaderText="联系电话" />
+                <asp:BoundField DataField="jtzz" HeaderText="家庭地址" />
+
+                <asp:BoundField DataField="byxxdm" HeaderText="毕业学校代码" />
+                <asp:BoundField DataField="byxxmc" HeaderText="毕业学校名称" />
 
                 <asp:TemplateField HeaderText="备注5">
                     <ItemTemplate>
