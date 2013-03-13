@@ -39,3 +39,5 @@ Release*.zip
 Setup*.zip
 !*\placeholder.txt
 src/MidExam.Website/Data/
+midexam.private.example
+dist/

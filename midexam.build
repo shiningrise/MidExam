@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<project default="upload">
+
+  <include buildfile="midexam.private" />
+  <!-- Google Code upload properties that vary from person to person.
+	     These should be set in midexam.private, which is not checked
+	     in to the source code repository.
+	     
+	     The midexam.private.example file provides a template for setting
+	     your own properties.  Make a copy called midexam.private and
+	     edit that. This build script will then pick up those properties,
+	     which will not be committed with the rest of the files (which
+	     means you won't be committing your password into the repository!)depends="dist"
+	  -->
+  
+  <property name="path.lib" value="lib" />
+  <property name="path.src" value="src" />
+  <property name="path.dist" value="dist" />
+  <property name="path.tools" value="tools" />
+  <property name="path.bin" value="Release" />
+  <property name="gcupload.task" value="tools\NantGoogleCode\NantGoogleCode.dll" />
+  <property name="nantcontrib" value="${path.tools}\nantcontrib-0.85\bin\NAnt.Contrib.Tasks.dll" />
+  <property name="version" value="1.0.3.0" />
+
+  <target name="build">
+    <loadtasks assembly="${nantcontrib}"/>
+
+    <msbuild project="${path.src}\MidExam.sln">
+      <arg value="/p:Configuration=Release"/>
+    </msbuild>
+  </target>
+
+  <target name="upload"   description="Uploads assembly to google code downloads page">
+    <loadtasks assembly="${gcupload.task}" />
+
+    <gcupload username="${gc.username}" password="${gc.password}" verbose="true" projectname="midexam"
+          filename="${path.dist}\midexam_${version}.zip" targetfilename="midexam_${version}.zip" summary="midexam ${version} Binaries" />
+<!--
+    <gcupload username="${gc.username}" password="${gc.password}" verbose="true" projectname="midexam"
+			  filename="${path.dist}\midexam_${version}-source.zip" targetfilename="midexam_${version}-source.zip" summary="midexam ${version} Source" />
+			  -->
+  </target>
+
+  <target name="update-assemblyinfo">
+    <asminfo output="${path.src}\MidExam.Website_deploy\AssemblyInfo\Release\AssemblyInfo.cs" language="CSharp">
+      <imports>
+        <import namespace="System.Reflection" />
+        <import namespace="System.Runtime.CompilerServices" />
+        <import namespace="System.Runtime.InteropServices" />
+      </imports>
+      <attributes>
+        <attribute type="AssemblyTitleAttribute" value="midexam" />
+        <attribute type="AssemblyProductAttribute" value="midexam" />
+    <!--    <attribute type="InternalsVisibleToAttribute" value="DynamicProxyGenAssembly2" />
+        <attribute type="ComVisibleAttribute" value="false" />
+
+        <attribute type="GuidAttribute" value="644357b8-0a95-4479-a51e-bec7830eda75" />		-->
+        <attribute type="AssemblyVersionAttribute" value="${version}" />
+        <attribute type="AssemblyFileVersionAttribute" value="${version}" />
+      </attributes>
+      <references>
+	  <!--
+        <include name="System.EnterpriseServices.dll" />
+		-->
+      </references>
+    </asminfo>
+  </target>
+
+  <target name="dist" depends="clean, update-assemblyinfo, build"> 
+    <mkdir dir="${path.dist}" />
+    <!--
+	<zip zipfile="${path.dist}\midexam_${version}.zip">
+      <fileset basedir="." prefix="source">
+        <include name="**" />
+        <exclude name="**/*.suo" />
+        <exclude name="**/*.resharper" />
+        <exclude name="**/*.user" />
+        <exclude name="**/obj/**" />
+        <exclude name="**/bin/**" />
+		<exclude name="*.private" />
+      </fileset>
+      <fileset basedir="${path.bin}" prefix="bin">
+        <include name="*.dll" />
+      </fileset>
+    </zip>-->
+    <zip zipfile="${path.dist}\midexam_${version}.zip">
+      <fileset basedir="${path.bin}" > 
+        <include name="**" />  <!-- prefix="bin" -->
+		<exclude name="Data\bmk.db" />
+		<exclude name="Data\BmkHistory\*" />
+		<exclude name="web.config" />
+		<exclude name="Data" />
+      </fileset>
+    </zip>
+  </target>
+
+  <target name="clean">
+    <foreach item="Folder" property="foldername">
+      <in>
+        <items basedir="src">
+          <include name="*"></include>
+          <exclude name="."></exclude>
+        </items>
+      </in>
+      <do>
+        <delete dir="${foldername}\bin" />
+        <delete dir="${foldername}\obj" />
+		<delete dir="${foldername}\bin" />
+      </do>
+    </foreach>
+	<delete dir="${path.dist}" />
+	<delete dir="${path.src}\PrecompiledWeb" />
+	<delete dir="Release" />
+	
+  </target>
+
+</project>
