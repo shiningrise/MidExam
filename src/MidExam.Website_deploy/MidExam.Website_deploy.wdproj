@@ -58,9 +58,11 @@
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <AssemblyAttributes Include="AssemblyFileVersion">
       <Value>1.0.0.0</Value>
+      <Value>1.0.3.0</Value>
     </AssemblyAttributes>
     <AssemblyAttributes Include="AssemblyVersion">
       <Value>1.0.0.0</Value>
+      <Value>1.0.3.0</Value>
     </AssemblyAttributes>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v10.0\Microsoft.WebDeployment.targets" />
