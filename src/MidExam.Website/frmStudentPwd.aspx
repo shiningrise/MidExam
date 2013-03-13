@@ -7,10 +7,11 @@
     <div align="center">
         班级：<asp:DropDownList ID="ddlBj" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlBj_SelectedIndexChanged">
         </asp:DropDownList>
-        <asp:Button ID="btnPwd" runat="server" Text="重置所有学生密码" onclick="btnPwd_Click" />
+        <asp:Button ID="btnPwd" runat="server" Text="重置所有学生密码" onclick="btnPwd_Click" Visible="false" />
         <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
         <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" RowHeaderColumn="xm"
-            DataKeyNames="Id" ShowFooter="True" OnRowCommand="GridView1_RowCommand">
+            DataKeyNames="Id" ShowFooter="True" OnRowCommand="GridView1_RowCommand" 
+            onrowdeleting="GridView1_RowDeleting">
             <Columns>
                 <asp:BoundField DataField="bmxh" HeaderText="报名序号" />
                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="~/frmStudent.aspx?Id={0}"
@@ -40,42 +41,16 @@
                         <%# Eval("Password")%>
                     </ItemTemplate>
                 </asp:TemplateField>
+                <asp:BoundField DataField="sfzh" HeaderText="学籍主号" />
+                <asp:BoundField DataField="xb" HeaderText="性别" />
+                <asp:BoundField DataField="mz" HeaderText="民族" />
+                <asp:BoundField DataField="csny" HeaderText="出生年月" />
                 
-                <asp:TemplateField HeaderText="父亲姓名">
-                    <ItemTemplate>
-                        <%# Eval("Father") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="父亲单位">
-                    <ItemTemplate>
-                        <%# Eval("Fatherdw") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="父亲电话">
-                    <ItemTemplate>
-                        <%# Eval("FatherTel") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="母亲姓名">
-                    <ItemTemplate>
-                        <%# Eval("Mother") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="生源">
-                    <ItemTemplate>
-                        <%# Eval("syqk")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="备注5">
-                    <ItemTemplate>
-                        <%# Eval("bz5") %>
-                    </ItemTemplate>
-                </asp:TemplateField>
-                <asp:TemplateField HeaderText="备注6">
-                    <ItemTemplate>
-                        <%# Eval("bz6")%>
-                    </ItemTemplate>
-                </asp:TemplateField>
+                <asp:BoundField DataField="xh" HeaderText="班内编号" />
+                <asp:BoundField DataField="bj" HeaderText="班级" />
+                <asp:BoundField DataField="tel" HeaderText="联系电话" />
+                <asp:BoundField DataField="jtzz" HeaderText="家庭地址" />
+                <asp:CommandField ShowDeleteButton="True" />
             </Columns>
         </asp:GridView>
     </div>

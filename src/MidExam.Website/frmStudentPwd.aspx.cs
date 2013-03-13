@@ -131,4 +131,15 @@ public partial class frmStudentPwd : PageBase
         }
         this.BindData();
     }
+    protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        long id = (long)this.GridView1.DataKeys[e.RowIndex].Value;
+        Bmk stu = Bmk.FindById(id);
+        if (stu != null)
+        {
+            Leafing.Core.Logging.Logger.Default.Info(string.Format("{0}删除了报考学生信息{1}", this.User.Identity, stu.Json()));
+            stu.Delete();
+        }
+        this.BindData();
+    }
 }
