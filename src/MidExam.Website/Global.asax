@@ -2,6 +2,7 @@
 
 <script runat="server">
 
+
     void Application_Start(object sender, EventArgs e) 
     {
         // 在应用程序启动时运行的代码
@@ -17,7 +18,10 @@
     void Application_Error(object sender, EventArgs e) 
     { 
         // 在出现未处理的错误时运行的代码
-
+        // 在出现未处理的错误时运行的代码
+        Exception ex = Server.GetLastError().GetBaseException();
+        Leafing.Core.Logging.Logger.System.Error(string.Format("{0},{1},{2},{3}", this.User.Identity.Name, HttpContext.Current.Request.UserAgent, HttpContext.Current.Request.UserHostAddress, HttpContext.Current.Request.RawUrl), ex);
+        
     }
 
     void Session_Start(object sender, EventArgs e) 
@@ -34,5 +38,19 @@
         // 或 SQLServer，则不会引发该事件。
 
     }
-       
+
+    /// <summary>
+    /// 
+    /// </summary>
+    //private void StopFileChangesMonitor()
+    //{
+    //    PropertyInfo p = typeof(System.Web.HttpRuntime).GetProperty("FileChangesMonitor", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Static);
+    //    object o = p.GetValue(null, null);
+    //    FieldInfo f = o.GetType().GetField("_dirMonSubdirs", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.IgnoreCase);
+    //    object monitor = f.GetValue(o);
+    //    MethodInfo m = monitor.GetType().GetMethod("StopMonitoring", BindingFlags.Instance | BindingFlags.NonPublic);
+    //    m.Invoke(monitor, new object[] { });
+
+    //}
+    
 </script>
