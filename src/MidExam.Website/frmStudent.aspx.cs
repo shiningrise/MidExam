@@ -272,7 +272,7 @@ public partial class frmStudent : PageBase
             this.CurBmk.bj = this.txtBj.Text.Trim();
             this.CurBmk.xh = this.txtBnbh.Text.Trim();
             if (IDCardChecker.CheckIDCard(this.txtsfzh.Text) && this.txtsfzh.Text != null)
-            {
+            {  
                 if (this.txtsfzh.Text.Substring(6, 8) != this.txtCsny.Text)
                 {
                     errMsg.Append("身份证号码中的出生年月日与你所填写的出生年月日不一致!");
@@ -290,7 +290,8 @@ public partial class frmStudent : PageBase
             }
             else
             {
-                errMsg.Append("身份证号码有误!");
+                this.CurBmk.sfzh = this.txtsfzh.Text.Trim();//身份证错误也允许录入
+                errMsg.Append("身份证号码已经保存但有错误!");
             }
             this.CurBmk.xstbh = this.txtXstbh.Text.Trim();
             this.CurBmk.xm = this.txtXm.Text.Trim();
