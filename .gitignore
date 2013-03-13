@@ -35,9 +35,10 @@ src/MidExam.Website/App_Data
 Setup
 src/MidExam.Website/tmp/
 !src/MidExam.Website/tmp/placeholder.txt
+!src/MidExam.Website/Data/Logs/placeholder.txt
 Release*.zip
 Setup*.zip
-!*\placeholder.txt
+!*/placeholder.txt
 src/MidExam.Website/Data/
 midexam.private.example
 dist/
