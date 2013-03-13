@@ -4,6 +4,8 @@ cd Data
 del Bmk.db
 cd BmkHistory
 del /q/a/f/s *.*
+cd ..\Logs
+del /q/a/f/s *.*
 cd ..\..\
 cd tmp
 del /q/a/f/s *.*
