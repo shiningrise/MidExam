@@ -82,8 +82,18 @@
                 <asp:BoundField DataField="ty" HeaderText="团员?" />
                 <asp:BoundField DataField="post" HeaderText="邮编" />
 
-                <asp:BoundField DataField="tel" HeaderText="联系电话" />
-                <asp:BoundField DataField="jtzz" HeaderText="家庭地址" />
+                <asp:TemplateField HeaderText="联系电话">
+                    <ItemTemplate>
+                        <asp:Literal ID="litTel" runat="server"  Text='<%# Eval("tel") %>'></asp:Literal>
+                    </ItemTemplate>
+                    <HeaderStyle Width="50px" />
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="家庭地址">
+                    <ItemTemplate>
+                        <asp:Literal ID="litJtzz" runat="server"  Text='<%# Eval("jtzz") %>'></asp:Literal>
+                    </ItemTemplate>
+                    <HeaderStyle Width="150px" />
+                </asp:TemplateField>
 
                 <asp:BoundField DataField="byxxdm" HeaderText="毕业学校代码" />
                 <asp:BoundField DataField="byxxmc" HeaderText="毕业学校名称" />
@@ -94,13 +104,16 @@
                     <ItemTemplate>
                         <%# Eval("bz5") %>
                     </ItemTemplate>
+                    <HeaderStyle Width="50px" />
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="备注6">
                     <ItemTemplate>
                         <%# Eval("bz6")%>
                     </ItemTemplate>
+                    <HeaderStyle Width="50px" />
                 </asp:TemplateField>
             </Columns>
+            <RowStyle Height="50px" />
         </asp:GridView>
         
     </div>
