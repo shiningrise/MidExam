@@ -79,13 +79,16 @@
                 <asp:BoundField DataField="mz" HeaderText="民族" />
                 <asp:BoundField DataField="csny" HeaderText="出生年月" />
                 
-                
-                
+                <asp:BoundField DataField="ty" HeaderText="团员?" />
+                <asp:BoundField DataField="post" HeaderText="邮编" />
+
                 <asp:BoundField DataField="tel" HeaderText="联系电话" />
                 <asp:BoundField DataField="jtzz" HeaderText="家庭地址" />
 
                 <asp:BoundField DataField="byxxdm" HeaderText="毕业学校代码" />
                 <asp:BoundField DataField="byxxmc" HeaderText="毕业学校名称" />
+
+                
 
                 <asp:TemplateField HeaderText="备注5">
                     <ItemTemplate>
