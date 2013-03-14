@@ -44,7 +44,8 @@
                 <asp:BoundField DataField="bmxh" HeaderText="报名序号" />
                 <asp:HyperLinkField DataNavigateUrlFields="Id" DataNavigateUrlFormatString="~/frmStudent.aspx?Id={0}"
                     DataTextField="xm" HeaderText="姓名" Target="_blank" />
-
+                <asp:BoundField DataField="bj" HeaderText="班级" />
+                <asp:BoundField DataField="xh" HeaderText="班内编号" />
                 <asp:BoundField DataField="xstbh" HeaderText="学籍辅号" />
 
                 <asp:TemplateField HeaderText="性别">
@@ -61,7 +62,6 @@
                     </ItemTemplate>
                 </asp:TemplateField>
 
-                <asp:BoundField DataField="Bj" HeaderText="班级" />
                 <asp:TemplateField HeaderText="户口">
                     <ItemTemplate>
                         <asp:Literal ID="litHk" runat="server"></asp:Literal>
@@ -79,8 +79,8 @@
                 <asp:BoundField DataField="mz" HeaderText="民族" />
                 <asp:BoundField DataField="csny" HeaderText="出生年月" />
                 
-                <asp:BoundField DataField="xh" HeaderText="班内编号" />
-                <asp:BoundField DataField="bj" HeaderText="班级" />
+                
+                
                 <asp:BoundField DataField="tel" HeaderText="联系电话" />
                 <asp:BoundField DataField="jtzz" HeaderText="家庭地址" />
 
