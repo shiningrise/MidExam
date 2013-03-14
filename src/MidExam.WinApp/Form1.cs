@@ -441,6 +441,8 @@ namespace MidExam.WinApp
         {
             ArrayList al = new ArrayList();
 
+            //报名序号
+            al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
             al.Add(OleDbHelper.CreateInParam("xm", OleDbType.Char, 8, bmk.xm));
             al.Add(OleDbHelper.CreateInParam("sfzh", OleDbType.Char, 18, bmk.sfzh));
             al.Add(OleDbHelper.CreateInParam("xb", OleDbType.Char, 1, bmk.xb));
@@ -458,14 +460,14 @@ namespace MidExam.WinApp
             al.Add(OleDbHelper.CreateInParam("jtzz", OleDbType.Char, 50, bmk.jtzz));
             al.Add(OleDbHelper.CreateInParam("tel", OleDbType.Char, 30, bmk.tel));
             al.Add(OleDbHelper.CreateInParam("post", OleDbType.Char, 6, bmk.post));
+            al.Add(OleDbHelper.CreateInParam("ty", OleDbType.Char, 1, bmk.ty ));
+            al.Add(OleDbHelper.CreateInParam("bz1", OleDbType.Char, 2, bmk.bz1));
 
-
-            //报名序号
-            //al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
+            
             al.Add(OleDbHelper.CreateInParam("xstbh", OleDbType.Char, 9, bmk.xstbh));
 
-            string strSql = @"update bmk  ";
-            strSql += " set xm = ? , sfzh = ? , xb = ? ,mz = ? , csny = ?, hk = ? ,syqk= ? , kslb = ? , byxxdm = ?, byxxmc = ?, xh = ? , class = ? , jtzz = ? , tel = ?  , post = ? ";
+            string strSql = @"update bmk  ";//
+            strSql += " set bmxh = ? , xm = ? , sfzh = ? , xb = ? ,mz = ? , csny = ?, hk = ? ,syqk= ? , kslb = ? , byxxdm = ?, byxxmc = ?, xh = ? , class = ? , jtzz = ? , tel = ?  , post = ? ,ty = ? ,bz1 = ? ";
             strSql += " where xstbh = ? ";
             return OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
 
