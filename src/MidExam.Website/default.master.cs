@@ -46,6 +46,7 @@ public partial class _default : System.Web.UI.MasterPage
             item.ChildItems.Add(CreateMenuItem("录入密码", "~/frmPwd.aspx"));
             item.ChildItems.Add(CreateMenuItem("学生账号", "~/frmStudentPwd.aspx"));
             item.ChildItems.Add(CreateMenuItem("学生导入", "~/frmStudentImport.aspx"));
+            item.ChildItems.Add(CreateMenuItem("批量设置", "~/frmBatchSeting.aspx"));
         }
         if (this.Page.User.IsInRole("Administrators") || this.Page.User.IsInRole("Teachers"))
         {

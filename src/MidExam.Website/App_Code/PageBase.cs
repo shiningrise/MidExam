@@ -49,5 +49,12 @@ public class PageBase : System.Web.UI.Page
         return false;
     }
 
-
+    /// <summary>
+    /// 显示信息框
+    /// </summary>
+    /// <param name="msg"></param>
+    protected void MessageBox(string msg)
+    {
+        JsUtil.MessageBox(this, msg);
+    }
 }
