@@ -13,16 +13,63 @@ using System.Data.OleDb;
 using System.Collections;
 
 using MidExam.DAL;
+using RestSharp;
+using System.Diagnostics;
+using Newtonsoft.Json;
+using System.IO;
+using System.Configuration;
 
 namespace MidExam.WinApp
 {
     public partial class Form1 : Form
     {
         private DataTable TempDataTable;
+        private List<Bmk> _BmkList;
+        private string _VfpConnection;
+
+        public string VfpConnection
+        {
+            get {
+                string connStr = "Provider=VFPOLEDB.1;Data Source='{0}\\userdbfs\\bmk.dbf';Collating Sequence=MACHINE;";
+                var appRootPath = System.AppDomain.CurrentDomain.BaseDirectory.ToString();
+                WriteLog(appRootPath);
+                if (appRootPath.EndsWith("\\"))
+                    appRootPath = appRootPath.TrimEnd('\\');
+                WriteLog(appRootPath);
+                appRootPath = appRootPath.Substring(0,appRootPath.LastIndexOf('\\'));
+                WriteLog(appRootPath);
+                _VfpConnection = string.Format(connStr, appRootPath);
+                //connectionString = Path.Combine(connectionString, ConfigurationManager.ConnectionStrings["VfpConnectionString"].ToString());
+                WriteLog(_VfpConnection);
+                return _VfpConnection; 
+            }
+        }
+
+        public List<Bmk> BmkList
+        {
+            get {
+                if (_BmkList == null)
+                {
+                    var client = new RestClient(ConfigurationManager.AppSettings["RestClient"].ToString());
+                    var request = new RestRequest(ConfigurationManager.AppSettings["RestRequest"].ToString(), Method.GET);
+                    IRestResponse response = client.Execute(request);
+                    var content = response.Content;
+
+                    if (!content.IsNullOrEmpty())
+                    {
+                        _BmkList = JsonConvert.DeserializeObject<List<Bmk>>(content);
+                    }
+                    else
+                    {
+                        _BmkList = new List<Bmk>();
+                    }
+                }
+                return _BmkList;
+            }
+        }
 
         public Form1()
         {
-
             TempDataTable = new DataTable();
             InitializeComponent();
 
@@ -40,7 +87,7 @@ namespace MidExam.WinApp
         /// </summary>
         private void ShowData()
         {
-            this.bindingSource1.DataSource = Bmk.Find(Condition.Empty);
+            this.bindingSource1.DataSource = BmkList.OrderBy(p => p.xstbh); ;
             this.dataGridView1.DataSource = bindingSource1;
         }
 
@@ -161,18 +208,18 @@ namespace MidExam.WinApp
         private void miUpdateTo_Click(object sender, EventArgs e)
         {
             int i = 0;
-            foreach (var bmk in Bmk.Find(Condition.Empty))
+            foreach (var bmk in this.BmkList)
             {
 
                 OleDbParameter[] param = new OleDbParameter[2];
                 param[0] = OleDbHelper.CreateInParam("tcxm", OleDbType.Char, 2, bmk.tcxm);
                 param[1] = OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh);
                 string strSql = @"update bmk set tcxm = ? where bmxh = ? ";
-                OleDbHelper.ExcuteSQL(Conn.VfpConnection, strSql, param);
+                OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, param);
 
                 //string strSql = string.Format("update bmk set tcxm = '{0}' where bmxh = '{1}' ",
                 //    bmk.tcxm, bmk.bmxh);
-                //OleDbHelper.ExcuteSQL(Conn.VfpConnection, strSql);
+                //OleDbHelper.ExcuteSQL(this.VfpConnection, strSql);
 
                 i++;
                 //if (i > 10)
@@ -194,34 +241,35 @@ namespace MidExam.WinApp
         private void miUpdateToSuzhi_Click(object sender, EventArgs e)
         {
 
-            foreach (var bmk in Bmk.Find(Condition.Empty))
+            foreach (var bmk in this.BmkList)
             {
-                    ArrayList al = new ArrayList();
+                ArrayList al = new ArrayList();
 
-                    //素科成绩
-                    //al.Add(OleDbHelper.CreateInParam("km61", OleDbType.Decimal, 2, bmk.km61));
-                    //al.Add(OleDbHelper.CreateInParam("km62", OleDbType.Decimal, 2, bmk.km62));
-                    //al.Add(OleDbHelper.CreateInParam("km63", OleDbType.Decimal, 2, bmk.km63));
-                    //al.Add(OleDbHelper.CreateInParam("km6", OleDbType.Decimal, 2, bmk.km6));
+                //素科成绩
+                //al.Add(OleDbHelper.CreateInParam("km61", OleDbType.Decimal, 2, bmk.km61));
+                //al.Add(OleDbHelper.CreateInParam("km62", OleDbType.Decimal, 2, bmk.km62));
+                //al.Add(OleDbHelper.CreateInParam("km63", OleDbType.Decimal, 2, bmk.km63));
+                //al.Add(OleDbHelper.CreateInParam("km6", OleDbType.Decimal, 2, bmk.km6));
 
-                    //测评等第
-                    al.Add(OleDbHelper.CreateInParam("km71", OleDbType.Char, 1, bmk.km71));
-                    al.Add(OleDbHelper.CreateInParam("km72", OleDbType.Char, 1, bmk.km72));
-                    al.Add(OleDbHelper.CreateInParam("km73", OleDbType.Char, 1, bmk.km73));
-                    al.Add(OleDbHelper.CreateInParam("km74", OleDbType.Char, 1, bmk.km74));
+                //测评等第
+                al.Add(OleDbHelper.CreateInParam("km71", OleDbType.Char, 1, bmk.km71));
+                al.Add(OleDbHelper.CreateInParam("km72", OleDbType.Char, 1, bmk.km72));
+                al.Add(OleDbHelper.CreateInParam("km73", OleDbType.Char, 1, bmk.km73));
+                al.Add(OleDbHelper.CreateInParam("km74", OleDbType.Char, 1, bmk.km74));
 
-                    //综合表现评定
-                    al.Add(OleDbHelper.CreateInParam("km8", OleDbType.LongVarChar, 1024, bmk.km8));
-                    al.Add(OleDbHelper.CreateInParam("km81", OleDbType.Char, 10, bmk.km81));
+                //综合表现评定
+                al.Add(OleDbHelper.CreateInParam("km8", OleDbType.LongVarChar, 1024, bmk.km8));
+                al.Add(OleDbHelper.CreateInParam("km81", OleDbType.Char, 10, bmk.km81));
 
-                    //报名序号
-                    al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
+                //报名序号
+                al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
 
-                    string strSql = @"update bmk  ";
-                    strSql += " set km71 = ? , km72 = ? ,km73 = ? , km74 = ?  ";
-                    strSql += " ,km8 = ? , km81 = ? ";
-                    strSql += " where bmxh = ? ";
-                    OleDbHelper.ExcuteSQL(Conn.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+                string strSql = @"update bmk  ";
+                strSql += " set km71 = ? , km72 = ? ,km73 = ? , km74 = ?  ";
+                strSql += " ,km8 = ? , km81 = ? ";
+                strSql += " where bmxh = ? ";
+
+                //OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
             }
             MessageBox.Show("OK!");
         }
@@ -303,7 +351,7 @@ namespace MidExam.WinApp
 
         private void 更新志愿信息到中考系统报名点版ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (var bmk in Bmk.Find(Condition.Empty))
+            foreach (var bmk in this.BmkList)
             {
                 ArrayList al = new ArrayList();
 
@@ -325,45 +373,107 @@ namespace MidExam.WinApp
                 string strSql = @"update bmk  ";
                 strSql += " set zy11 = ? , zy12 = ? ,zy21 = ? , zy22 = ?,zy31 = ? , zy32 = ?, zy33 = ? , jb = ? , fc = ?  ";
                 strSql += " where bmxh = ? ";
-                OleDbHelper.ExcuteSQL(Conn.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+                OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
             }
             MessageBox.Show("OK!");
         }
 
         private void 更新报名表信息到中考系统报名点版ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            foreach (var bmk in Bmk.Find(Condition.Empty))
+            int insertCount = 0;
+            int updateCount = 0;
+            foreach (var bmk in this.BmkList)
             {
-                ArrayList al = new ArrayList();
-
-                //测评等第
-                al.Add(OleDbHelper.CreateInParam("sfzh", OleDbType.Char,18, bmk.sfzh));
-                al.Add(OleDbHelper.CreateInParam("xb", OleDbType.Char, 1, bmk.xb));
-                al.Add(OleDbHelper.CreateInParam("mz", OleDbType.Char, 1, bmk.mz));
-                al.Add(OleDbHelper.CreateInParam("csny", OleDbType.Char, 8, bmk.csny));
-                al.Add(OleDbHelper.CreateInParam("hk", OleDbType.Char, 2, bmk.hk));
-                al.Add(OleDbHelper.CreateInParam("syqk", OleDbType.Char, 1, bmk.syqk));
-
-                al.Add(OleDbHelper.CreateInParam("kslb", OleDbType.Char, 1, bmk.kslb));
-                al.Add(OleDbHelper.CreateInParam("byxxdm", OleDbType.Char, 4, bmk.byxxdm));
-                al.Add(OleDbHelper.CreateInParam("byxxmc", OleDbType.Char, 16, bmk.byxxmc));
-                al.Add(OleDbHelper.CreateInParam("xh", OleDbType.Char, 2, bmk.xh));
-                al.Add(OleDbHelper.CreateInParam("class", OleDbType.Char, 2, bmk.bj));
-
-                al.Add(OleDbHelper.CreateInParam("jtzz", OleDbType.Char, 50, bmk.jtzz));
-                al.Add(OleDbHelper.CreateInParam("tel", OleDbType.Char, 30, bmk.tel));
-                al.Add(OleDbHelper.CreateInParam("post", OleDbType.Char, 6, bmk.post));
-
-
-                //报名序号
-                al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
-
-                string strSql = @"update bmk  ";
-                strSql += " set sfzh = ? , xb = ? ,mz = ? , csny = ?, hk = ? ,syqk= ? , kslb = ? , byxxdm = ?, byxxmc = ?, xh = ? , class = ? , jtzz = ? , tel = ?  , post = ? ";
-                strSql += " where bmxh = ? ";
-                OleDbHelper.ExcuteSQL(Conn.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+                if (UpdateBmkBase(bmk) <= 0)
+                {
+                //    insertCount += InsertBmkBase(bmk);
+                    continue;
+                }
+                updateCount += 1;
             }
-            MessageBox.Show("OK!");
+            MessageBox.Show(string.Format("插入记录{0}条,更新记录{1}条", insertCount, updateCount));
+        }
+
+        /// <summary>
+        /// 插入报名信息表
+        /// </summary>
+        /// <param name="bmk"></param>
+        /// <returns></returns>
+        private int InsertBmkBase(Bmk bmk)
+        {
+            ArrayList al = new ArrayList();
+            //报名序号
+            al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh ?? ""));
+            al.Add(OleDbHelper.CreateInParam("xstbh", OleDbType.Char, 9, bmk.xstbh));
+            al.Add(OleDbHelper.CreateInParam("sfzh", OleDbType.Char, 18, bmk.sfzh));
+            
+            al.Add(OleDbHelper.CreateInParam("xb", OleDbType.Char, 1, bmk.xb));
+            al.Add(OleDbHelper.CreateInParam("mz", OleDbType.Char, 1, bmk.mz));
+            al.Add(OleDbHelper.CreateInParam("csny", OleDbType.Char, 8, bmk.csny));
+            al.Add(OleDbHelper.CreateInParam("hk", OleDbType.Char, 2, bmk.hk));
+            al.Add(OleDbHelper.CreateInParam("syqk", OleDbType.Char, 1, bmk.syqk));
+
+            al.Add(OleDbHelper.CreateInParam("kslb", OleDbType.Char, 1, bmk.kslb));
+            al.Add(OleDbHelper.CreateInParam("byxxdm", OleDbType.Char, 4, bmk.byxxdm));
+            al.Add(OleDbHelper.CreateInParam("byxxmc", OleDbType.Char, 16, bmk.byxxmc));
+            al.Add(OleDbHelper.CreateInParam("xh", OleDbType.Char, 2, bmk.xh));
+            al.Add(OleDbHelper.CreateInParam("class", OleDbType.Char, 2, bmk.bj));
+
+            al.Add(OleDbHelper.CreateInParam("jtzz", OleDbType.Char, 50, bmk.jtzz));
+            al.Add(OleDbHelper.CreateInParam("tel", OleDbType.Char, 30, bmk.tel));
+            al.Add(OleDbHelper.CreateInParam("post", OleDbType.Char, 6, bmk.post));
+            al.Add(OleDbHelper.CreateInParam("zkzh", OleDbType.Char, 11, bmk.zkzh));
+
+            string strSql = @"insert into bmk (bmxh,xstbh,sfzh,  
+                    xb,mz,csny,hk,syqk,  kslb,byxxdm,byxxmc,xh,class,   
+                    jtzz,tel,post)";
+            strSql += " values (?,?,?,  ?,?,?,?,?,  ?,?,?,?,?,  ?,?,?) ";
+            Debug.Write(strSql);
+            return OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+        //    return 1;
+        }
+
+        /// <summary>
+        /// 更新数据到报名
+        /// </summary>
+        /// <param name="bmk"></param>
+        private int UpdateBmkBase(Bmk bmk)
+        {
+            ArrayList al = new ArrayList();
+
+            al.Add(OleDbHelper.CreateInParam("xm", OleDbType.Char, 8, bmk.xm));
+            al.Add(OleDbHelper.CreateInParam("sfzh", OleDbType.Char, 18, bmk.sfzh));
+            al.Add(OleDbHelper.CreateInParam("xb", OleDbType.Char, 1, bmk.xb));
+            al.Add(OleDbHelper.CreateInParam("mz", OleDbType.Char, 1, bmk.mz));
+            al.Add(OleDbHelper.CreateInParam("csny", OleDbType.Char, 8, bmk.csny));
+            al.Add(OleDbHelper.CreateInParam("hk", OleDbType.Char, 2, bmk.hk));
+            al.Add(OleDbHelper.CreateInParam("syqk", OleDbType.Char, 1, bmk.syqk));
+
+            al.Add(OleDbHelper.CreateInParam("kslb", OleDbType.Char, 1, bmk.kslb));
+            al.Add(OleDbHelper.CreateInParam("byxxdm", OleDbType.Char, 4, bmk.byxxdm));
+            al.Add(OleDbHelper.CreateInParam("byxxmc", OleDbType.Char, 16, bmk.byxxmc));
+            al.Add(OleDbHelper.CreateInParam("xh", OleDbType.Char, 2, bmk.xh));
+            al.Add(OleDbHelper.CreateInParam("class", OleDbType.Char, 2, bmk.bj));
+
+            al.Add(OleDbHelper.CreateInParam("jtzz", OleDbType.Char, 50, bmk.jtzz));
+            al.Add(OleDbHelper.CreateInParam("tel", OleDbType.Char, 30, bmk.tel));
+            al.Add(OleDbHelper.CreateInParam("post", OleDbType.Char, 6, bmk.post));
+
+
+            //报名序号
+            //al.Add(OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh));
+            al.Add(OleDbHelper.CreateInParam("xstbh", OleDbType.Char, 9, bmk.xstbh));
+
+            string strSql = @"update bmk  ";
+            strSql += " set xm = ? , sfzh = ? , xb = ? ,mz = ? , csny = ?, hk = ? ,syqk= ? , kslb = ? , byxxdm = ?, byxxmc = ?, xh = ? , class = ? , jtzz = ? , tel = ?  , post = ? ";
+            strSql += " where xstbh = ? ";
+            return OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
         }
 
     }

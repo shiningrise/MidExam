@@ -200,7 +200,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:中考报名系统"
         "ProductCode" = "8:{06A41967-E8B8-4418-80A5-F25ED696687F}"
-        "PackageCode" = "8:{4892C4A9-35A5-4FE7-8DFC-F0EF174519F1}"
+        "PackageCode" = "8:{414C117E-2D4D-4278-985C-948DC80E030F}"
         "UpgradeCode" = "8:{A27ED1D6-AF56-413B-AB2F-E5468A8926A5}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:TRUE"

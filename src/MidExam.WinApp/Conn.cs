@@ -12,7 +12,7 @@ namespace MidExam.WinApp
          public static String VfpConnection = 
              ConfigurationManager.ConnectionStrings["VfpConnectionString"].ToString();
         //Provider=Microsoft.Jet.OLEDB.4.0; Data Source=
-         public static String AccessConnection =
-             ConfigurationManager.ConnectionStrings["AccessConnectionString"].ToString();
+         //public static String AccessConnection =
+         //    ConfigurationManager.ConnectionStrings["AccessConnectionString"].ToString();
     }
 }

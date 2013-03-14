@@ -84,8 +84,9 @@ namespace MidExam.DAL
         /// 执行SQL语句
         /// </summary>
         /// <param name="cmdText"></param>
-        public static void ExcuteSQL(string oleDbConnectionString, string cmdText)
+        public static int ExcuteSQL(string oleDbConnectionString, string cmdText)
         {
+            int succeed = -1;
             using (OleDbConnection conn = GetOleDbConnection(oleDbConnectionString))
             {
                 OleDbCommand cmd = CreateOleDbCommand(conn, cmdText, null);
@@ -93,7 +94,7 @@ namespace MidExam.DAL
                 {
                     conn.Open();
                     ///执行SQL语句
-                    cmd.ExecuteNonQuery();
+                    succeed = cmd.ExecuteNonQuery();
                     ///关闭数据库的连接
                     Close(conn);
                 }
@@ -103,6 +104,7 @@ namespace MidExam.DAL
                     CreateErrorLog(ex);
                 }
             }
+            return succeed;
         }
 
         /// <summary>
@@ -111,15 +113,16 @@ namespace MidExam.DAL
         /// <param name="cmdText">SQL语句</param>
         /// <param name="prams">SQL语句所需参数</param>
         /// <returns>返回值</returns>
-        public static void ExcuteSQL(string oleDbConnectionString, string cmdText, OleDbParameter[] prams)
+        public static int ExcuteSQL(string oleDbConnectionString, string cmdText, OleDbParameter[] prams)
         {
+            int succeed = -1;
             OleDbConnection conn = GetOleDbConnection(oleDbConnectionString);
             OleDbCommand cmd = CreateOleDbCommand(conn, cmdText, prams);
             try
             {
                 conn.Open();
                 ///执行SQL语句
-                cmd.ExecuteNonQuery();
+                succeed = cmd.ExecuteNonQuery();
                 ///关闭数据库的连接
                 Close(conn);
             }
@@ -128,6 +131,7 @@ namespace MidExam.DAL
                 ///记录错误日志
                 CreateErrorLog(ex);
             }
+            return succeed;
         }
 
         /// <summary>
