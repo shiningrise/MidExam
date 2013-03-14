@@ -102,7 +102,7 @@ public partial class frmBatchSeting : PageBase
         var list = Bmk.Find(Condition.Empty);
         foreach (var item in list)
         {
-            if (item.post.IsNullOrEmpty())
+            if (item.post.Length != 6)
             {
                 item.post = this.txtPost.Text;
                 item.post = this.txtPost.Text;

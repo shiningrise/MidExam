@@ -29,7 +29,7 @@
     <asp:Button ID="btnTy" runat="server" Text="团员字段为空设为-否" onclick="btnTy_Click" />
     <hr />
     请输入邮政编码:<asp:TextBox ID="txtPost" runat="server"></asp:TextBox>
-    <asp:Button ID="btnPost" runat="server" Text="邮政编码为空设置" 
+    <asp:Button ID="btnPost" runat="server" Text="邮政编码为空或错误批量设置" 
         onclick="btnPost_Click" />
 </asp:Content>
 
