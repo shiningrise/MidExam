@@ -12,13 +12,22 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 报名点学校
     /// </summary>
-    public class Bmdxx
+    public class Bmdxx : DbObjectModel<Bmdxx>
     {
+        /// <summary>
+        /// 学校管理员用户名
+        /// </summary>
+        [Length(40)]
+        [Description("学校管理员用户名")]
+        [AllowNull]
+        public string UserName { get; set; }
+
         /// <summary>
         /// 报名学校代码
         /// </summary>
         [Length(4)]
         [Description("报名学校代码")]
+        [AllowNull]
         public string bmxxdm { get; set; }
 
         /// <summary>
@@ -26,6 +35,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Length(30)]
         [Description("报名学校名称")]
+        [AllowNull]
         public string bmxxmc { get; set; }
 
         /// <summary>
@@ -41,10 +51,10 @@ namespace MidExam.DAL.Models
         public long wap_rs { get; set; }
 
         [Description("人数")]
-        public string bmxhq { get; set; }
+        public long bmxhq { get; set; }
 
         [Description("人数")]
-        public string bmxhz { get; set; }
+        public long bmxhz { get; set; }
 
         #region 权限控制
 
@@ -53,6 +63,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Description("直接A")]
         [Length(100)]
+        [AllowNull]
         public string FastA { get; set; }
 
         /// <summary>
@@ -60,6 +71,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Description("加分")]
         [Length(100)]
+        [AllowNull]
         public string Jiafen { get; set; }
 
         /// <summary>
@@ -67,6 +79,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Description("体育")]
         [Length(100)]
+        [AllowNull]
         public string Tiyu { get; set; }
 
         /// <summary>
@@ -74,14 +87,17 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Description("照顾")]
         [Length(100)]
+        [AllowNull]
         public string Zhaogu { get; set; }
 
         #endregion
 
-        [Description("公开内容")]
+        [Description("首页公告")]
+        [AllowNull]
         public string Wiki1 { get; set; }
 
-        [Description("内部公开内容")]
+        [Description("内部公告")]
+        [AllowNull]
         public string Wiki2 { get; set; }
     }
 }

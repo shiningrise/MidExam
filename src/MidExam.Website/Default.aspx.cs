@@ -17,30 +17,18 @@ public partial class _Default : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            if (!Roles.RoleExists("Administrators"))
-                Roles.CreateRole("Administrators");
-            if (!Roles.RoleExists("Teachers"))
-                Roles.CreateRole("Teachers");
-            if (!Roles.RoleExists("Students"))
-                Roles.CreateRole("Students");
-            if( Membership.GetUser("admin") == null)
-            {
-                Membership.CreateUser("admin", "admin");
-            }
-            if (!Roles.IsUserInRole("admin", "Administrators"))
-                Roles.AddUserToRole("admin", "Administrators");
-            if (!Roles.IsUserInRole("admin", "Teachers"))
-                Roles.AddUserToRole("admin", "Teachers");
+            SystemInit();
+
+            var markdown = new MarkdownSharp.Markdown();
+
+            //var html = markdown.Transform(entry.Markdown);
         }
         
         if (!Request.IsAuthenticated)
         {
             Response.Redirect("~/Account/Login.aspx");
         }
-        
 
-        Bmk.GetCount(Condition.Empty);
-        Debug.Write(User.IsInRole("Administrators").ToString());
         //if (Request.IsAuthenticated && !User.IsInRole("Administrators"))
         //{
         //    if (User.IsInRole("Students"))
@@ -59,6 +47,27 @@ public partial class _Default : System.Web.UI.Page
             this.Login1.Visible = false;
         }
 
+    }
+
+    private static void SystemInit()
+    {
+
+        Bmk.GetCount(Condition.Empty);
+
+        if (!Roles.RoleExists("Administrators"))
+            Roles.CreateRole("Administrators");
+        if (!Roles.RoleExists("Teachers"))
+            Roles.CreateRole("Teachers");
+        if (!Roles.RoleExists("Students"))
+            Roles.CreateRole("Students");
+        if (Membership.GetUser("admin") == null)
+        {
+            Membership.CreateUser("admin", "admin");
+        }
+        if (!Roles.IsUserInRole("admin", "Administrators"))
+            Roles.AddUserToRole("admin", "Administrators");
+        if (!Roles.IsUserInRole("admin", "Teachers"))
+            Roles.AddUserToRole("admin", "Teachers");
     }
 
     private static void CreateRole(string roleName)

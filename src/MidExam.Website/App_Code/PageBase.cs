@@ -57,4 +57,36 @@ public class PageBase : System.Web.UI.Page
     {
         JsUtil.MessageBox(this, msg);
     }
+
+
+    protected void Save<T>(T dbEntityModel)
+        where T : global::Leafing.Data.Definition.DbObjectModel<T, long>, new()
+    {
+        Leafing.Data.ValidateHandler vh = new Leafing.Data.ValidateHandler();
+        if (vh.ValidateObject(dbEntityModel))
+        {
+            dbEntityModel.Save();
+            Succeed();
+        }
+        else
+        {
+            string strMsg = string.Empty;
+            Fail(vh, strMsg);
+        }
+    }
+
+    protected void Succeed()
+    {
+        this.MessageBox("操作成功");
+    }
+
+    protected void Fail(Leafing.Data.ValidateHandler vh, string strMsg)
+    {
+        foreach (var item in vh.ErrorMessages)
+        {
+            strMsg += item.Value + "\n\b";
+        }
+        this.MessageBox(strMsg);
+    }
+
 }

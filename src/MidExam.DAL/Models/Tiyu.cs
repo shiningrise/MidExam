@@ -12,7 +12,7 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 体育免考缓考登记
     /// </summary>
-    public class Tiyu
+    public class Tiyu : DbObjectModel<Tiyu>
     {
         #region 记录索引
 

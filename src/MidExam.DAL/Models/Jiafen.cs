@@ -12,7 +12,7 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 特长加分
     /// </summary>
-    public class Jiafen
+    public class Jiafen : DbObjectModel<Jiafen>
     {
         #region 记录索引
 

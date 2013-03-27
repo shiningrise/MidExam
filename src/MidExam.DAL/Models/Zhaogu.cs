@@ -12,7 +12,7 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 政策照顾
     /// </summary>
-    public class Zhaogu
+    public class Zhaogu : DbObjectModel<Zhaogu>
     {
         #region 记录索引
 

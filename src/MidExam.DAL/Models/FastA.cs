@@ -12,7 +12,7 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 直接认定A等
     /// </summary>
-    public class FastA
+    public class FastA : DbObjectModel<FastA>
     {
         #region 记录索引
 
