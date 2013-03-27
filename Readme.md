@@ -6,5 +6,5 @@ To Do List
 
 To Do List1
 ------------
-  #1 task1
-  #2 task2
+  1 task1
+  2 task2
