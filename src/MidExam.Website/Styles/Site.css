@@ -291,6 +291,6 @@ div.accountInfo
 
 .submitButton
 {
-    text-align: right;
-    padding-right: 10px;
+    /*text-align: right;*/
+    padding-left: 150px;
 }

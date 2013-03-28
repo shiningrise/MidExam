@@ -67,6 +67,7 @@ public partial class _default : System.Web.UI.MasterPage
         {
             menu.Items.Add(CreateMenuItem("中考报名", "~/frmStudent.aspx"));
             menu.Items.Add(CreateMenuItem("填报志愿", "~/frmZhiyuanEdit.aspx"));
+            menu.Items.Add(CreateMenuItem("直接A等", "~/frmFastA.aspx"));
         }
         if(this.Request.IsAuthenticated)
         {

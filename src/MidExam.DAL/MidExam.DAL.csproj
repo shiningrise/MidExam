@@ -68,6 +68,7 @@
     <Compile Include="Models\Zhaogu.cs" />
     <Compile Include="Models\FastA.cs" />
     <Compile Include="Models\Jiafen.cs" />
+    <Compile Include="Models\Youshi.cs" />
     <Compile Include="Utils\FileHelper.cs" />
     <Compile Include="Utils\IDCardChecker.cs" />
     <Compile Include="Models\Bmk.cs" />

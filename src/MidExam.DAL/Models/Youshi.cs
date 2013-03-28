@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 namespace MidExam.DAL.Models
 {
     /// <summary>
-    /// 直接认定A等
+    /// 政策照顾
     /// </summary>
-    public class FastA : DbObjectModel<FastA>
+    public class Youshi : DbObjectModel<Youshi>
     {
         #region 记录索引
 
@@ -44,23 +44,7 @@ namespace MidExam.DAL.Models
         [Length(8)]
         [Description("姓名")]
         public string xm { get; set; }
-
-        /// <summary>
-        /// 类别(测试项目) 劳动与技能，运动与健康，审美与艺术
-        /// </summary>
-        [AllowNull]
-        [Length(100)]
-        [Description("类别")]
-        public string Leibie { get; set; }
-
-        /// <summary>
-        /// 凭据
-        /// </summary>
-        [AllowNull]
-        [Length(100)]
-        [Description("凭据")]
-        public string Pingju { get; set; }
-
+        
         #endregion
         
         #region 审核与备注
@@ -116,11 +100,6 @@ namespace MidExam.DAL.Models
         public string Beizhu3 { get; set; }
 
         #endregion
-
-        /// <summary>
-        /// 软件删除
-        /// </summary>
-        public bool IsDelete { get; set; }
 
         /// <summary>
         /// 未启用，录入，核对,确认
