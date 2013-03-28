@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace MidExam.DAL.Models
 {
     /// <summary>
-    /// 报名点学校
+    /// 报名点信息表
     /// </summary>
     public class Bmdxx : DbObjectModel<Bmdxx>
     {
@@ -58,21 +58,6 @@ namespace MidExam.DAL.Models
 
         #region 权限控制
 
-        /// <summary>
-        /// 直接A 0:未启用 1：录入 2核对 3确认
-        /// </summary>
-        [Description("直接A")]
-        [Length(100)]
-        [AllowNull]
-        public string FastA { get; set; }
-
-        /// <summary>
-        /// 加分  0:未启用 1：录入 2核对 3确认
-        /// </summary>
-        [Description("加分")]
-        [Length(100)]
-        [AllowNull]
-        public string Jiafen { get; set; }
 
         /// <summary>
         /// 体育 0:未启用 1：录入 2核对 3确认
@@ -82,13 +67,57 @@ namespace MidExam.DAL.Models
         [AllowNull]
         public string Tiyu { get; set; }
 
+        [Description("体育说明")]
+        [AllowNull]
+        public string TiyuWiki { get; set; }
+
+        [Description("体育加分")]
+        public bool TiyuEnable { get; set; }
+
         /// <summary>
-        /// 照顾 0:未启用 1：录入 2核对 3确认
+        /// 直接A 0:未启用 1：录入 2核对 3确认
         /// </summary>
-        [Description("照顾")]
+        [Description("直接A")]
+        [Length(100)]
+        [AllowNull]
+        public string FastA { get; set; }
+
+        [Description("直接A说明")]
+        [AllowNull]
+        public string FastAWiki { get; set; }
+
+        [Description("启用直接A")]
+        public bool FastAEnable { get; set; }
+
+        /// <summary>
+        /// 加分  0:未启用 1：录入 2核对 3确认
+        /// </summary>
+        [Description("政策照顾")]
         [Length(100)]
         [AllowNull]
         public string Zhaogu { get; set; }
+
+        [Description("政策照顾说明")]
+        [AllowNull]
+        public string ZhaoguWiki { get; set; }
+
+        [Description("启用政策照顾")]
+        public bool ZhaoguEnable { get; set; }
+
+        /// <summary>
+        /// 加分  0:未启用 1：录入 2核对 3确认
+        /// </summary>
+        [Description("加分")]
+        [Length(100)]
+        [AllowNull]
+        public string Jiafen { get; set; }
+
+        [Description("加分说明")]
+        [AllowNull]
+        public string JiafenWiki { get; set; }
+
+        [Description("启用加分")]
+        public bool JiafenEnable { get; set; }
 
         /// <summary>
         /// 照顾 0:未启用 1：录入 2核对 3确认
@@ -97,6 +126,13 @@ namespace MidExam.DAL.Models
         [Length(100)]
         [AllowNull]
         public string Youshi { get; set; }
+
+        [Description("幼师说明")]
+        [AllowNull]
+        public string YoushiWiki { get; set; }
+
+        [Description("幼师加分")]
+        public bool YoushiEnable { get; set; }
 
         #endregion
 
