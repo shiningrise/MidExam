@@ -10,6 +10,7 @@ using MidExam.DAL;
 using DbEntryMembership;
 using System.Web.Security;
 using System.Diagnostics;
+using MidExam.DAL.Models;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -20,8 +21,16 @@ public partial class _Default : System.Web.UI.Page
             SystemInit();
 
             var markdown = new MarkdownSharp.Markdown();
+            Bmdxx bmd = Bmdxx.FindOne(Condition.Empty);
+            if (bmd != null)
+            {
+                var html = markdown.Transform(bmd.Wiki1);
+                this.ed_Wiki1.Text = html;
 
-            //var html = markdown.Transform(entry.Markdown);
+                html = markdown.Transform(bmd.Wiki2);
+                this.ed_Wiki2.Text = html;
+            }
+            
         }
         
         if (!Request.IsAuthenticated)

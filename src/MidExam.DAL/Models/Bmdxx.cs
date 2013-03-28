@@ -90,6 +90,14 @@ namespace MidExam.DAL.Models
         [AllowNull]
         public string Zhaogu { get; set; }
 
+        /// <summary>
+        /// 照顾 0:未启用 1：录入 2核对 3确认
+        /// </summary>
+        [Description("幼师")]
+        [Length(100)]
+        [AllowNull]
+        public string Youshi { get; set; }
+
         #endregion
 
         [Description("首页公告")]

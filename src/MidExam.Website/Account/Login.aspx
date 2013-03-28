@@ -37,9 +37,10 @@
                     </p>
                 </fieldset>
                 <p class="submitButton">
-                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="登录" ValidationGroup="LoginUserValidationGroup"/>
+                    <asp:Button ID="LoginButton" CssClass="btn" runat="server" CommandName="Login" Text="登录" ValidationGroup="LoginUserValidationGroup"/>
                 </p>
             </div>
         </LayoutTemplate>
     </asp:Login>
+    <asp:Literal ID="ed_Wiki1" runat="server"></asp:Literal>
 </asp:Content>
