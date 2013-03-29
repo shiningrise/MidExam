@@ -39,7 +39,7 @@ public partial class frmSuzi : StudentPageBase
         {
             this.MessageBox("请选择类别");
         }
-        Suzi fa = Suzi.FindOne(p => p.BmkGuid == bmkGuid && p.Xiangmu == this.ed_Xiangmu.SelectedValue);
+        Suzhi fa = Suzhi.FindOne(p => p.BmkGuid == bmkGuid && p.Xiangmu == this.ed_Xiangmu.SelectedValue);
         if (fa != null)
         {
             //this.ed_Pingju.Text = this.ed_Leibie.SelectedValue

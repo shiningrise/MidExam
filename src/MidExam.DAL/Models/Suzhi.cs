@@ -13,7 +13,7 @@ namespace MidExam.DAL.Models
     /// <summary>
     /// 直接认定A等
     /// </summary>
-    public class Suzi : DbObjectModel<Suzi>
+    public class Suzhi : DbObjectModel<Suzhi>
     {
         #region 记录索引
 
