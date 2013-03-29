@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 namespace MidExam.DAL.Models
 {
-    
     /// <summary>
     /// 直接认定A等
     /// </summary>
@@ -54,10 +53,30 @@ namespace MidExam.DAL.Models
         [Description("测评项目")]
         public string Xiangmu { get; set; }
 
+        /// <summary>
+        /// 认定方式
+        /// </summary>
         [AllowNull]
         [Length(100)]
         [Description("认定方式")]
         public string Fangshi { get; set; }
+
+        /// <summary>
+        /// 申请等第
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("申请等第")]
+        public string Dengdi { get; set; }
+
+        /// <summary>
+        /// 认定等第
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("认定等第")]
+        [Exclude]
+        public string DengdiRending { get; set; }
 
         /// <summary>
         /// 所获奖项
