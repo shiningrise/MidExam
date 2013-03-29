@@ -8,6 +8,10 @@ using MidExam.DAL.Util;
 using System.Data;
 using System.IO;
 using MidExam.DAL;
+using System.Configuration;
+using Newtonsoft.Json;
+using RestSharp;
+using MidExam.DAL.Utils;
 
 public partial class frmStudentImport : PageBase
 {
@@ -19,7 +23,11 @@ public partial class frmStudentImport : PageBase
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (!IsPostBack)
+        {
+            this.ed_RestClient.Text = ConfigurationManager.AppSettings["RestClient"].ToString();
+            this.ed_RestRequest.Text = ConfigurationManager.AppSettings["RestRequest"].ToString();
+        }
     }
     protected void btnImport_Click(object sender, EventArgs e)
     {
@@ -41,6 +49,15 @@ public partial class frmStudentImport : PageBase
         }
         string filepath = Path.Combine(Server.MapPath("~/tmp/"), System.DateTime.Now.ToString("yyyyMMdd") + fileExt);
         fileUpload.SaveAs(filepath);
+        ImportFromExcel(filepath);
+    }
+
+    /// <summary>
+    /// 从excel文件导入
+    /// </summary>
+    /// <param name="filepath"></param>
+    private void ImportFromExcel(string filepath)
+    {
         var list = ExcelHelper.GetSheetNameList(filepath);
         string sheetName = "Sheet1";
         if (list.Count == 0)
@@ -99,7 +116,48 @@ public partial class frmStudentImport : PageBase
         {
             JsUtil.MessageBox(this, "学籍辅号 姓名 班级 这3列必须存在");
         }
-
     }
 
+    public List<Bmk> BmkList
+    {
+        get
+        {
+            if ( ViewState["BmkList"] == null)
+            {
+                var client = new RestClient(ConfigurationManager.AppSettings["RestClient"].ToString());
+                var request = new RestRequest(ConfigurationManager.AppSettings["RestRequest"].ToString(), Method.GET);
+                IRestResponse response = client.Execute(request);
+                var content = response.Content;
+                ViewState["BmkList"] = content;
+            }
+            string str = ViewState["BmkList"].ToString();
+            List<Bmk> list = null;
+            if (!str.IsNullOrEmpty())
+                {
+                    list = JsonConvert.DeserializeObject<List<Bmk>>(str);
+                }
+                else
+                {
+                    list = new List<Bmk>();
+                }
+
+            return list;
+        }
+    }
+
+    protected void btnRemoteImport_Click(object sender, EventArgs e)
+    {
+        var list = this.BmkList.OrderBy(p=>p.bmxh);
+        foreach (var item in list)
+        {
+            var bmk = Bmk.FindOne(p => p.RecordGuid == item.RecordGuid);
+            if (bmk == null)
+            {
+                bmk = new Bmk();
+            }
+            ModelCopier.CopyModel(item, bmk, new[] { "Id" });
+            bmk.Save();
+        }
+        this.Succeed();
+    }
 }

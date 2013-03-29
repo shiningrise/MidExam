@@ -87,7 +87,7 @@ namespace MidExam.WinApp
         /// </summary>
         private void ShowData()
         {
-            this.bindingSource1.DataSource = BmkList.OrderBy(p => p.xstbh); ;
+            this.bindingSource1.DataSource = BmkList;//.OrderBy(p => p.xstbh);
             this.dataGridView1.DataSource = bindingSource1;
         }
 
