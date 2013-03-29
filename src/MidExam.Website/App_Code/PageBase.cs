@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MidExam.DAL;
+using System.IO;
 
 /// <summary>
 ///PageBase 的摘要说明
@@ -87,6 +88,45 @@ public class PageBase : System.Web.UI.Page
             strMsg += item.Value + "\n\b";
         }
         this.MessageBox(strMsg);
+    }
+
+    /// <summary>
+    /// 文件下载
+    /// </summary>
+    /// <param name="filePath">文件在服务器的绝对路径</param>
+    public void DownLoadFile(string filePath)
+    {
+        DownLoadFile(filePath, System.IO.Path.GetFileName(filePath));
+    }
+
+    /// <summary>
+    /// 文件下载
+    /// </summary>
+    /// <param name="filePath">文件在服务器的绝对路径</param>
+    public void DownLoadFile(string filePath, string saveAsFileName)
+    {
+        //string filePath = Server.MapPath(".") + "\\" + filePath;
+        string UserAgent = Request.ServerVariables["http_user_agent"].ToLower();
+        if (UserAgent.IndexOf("firefox") == -1)
+            saveAsFileName = HttpUtility.UrlEncode(saveAsFileName, System.Text.Encoding.UTF8);
+        if (File.Exists(filePath))
+        {
+            FileInfo file = new FileInfo(filePath);
+            Response.Clear();
+            Response.ClearHeaders();
+            Response.Buffer = false;
+            Response.ContentEncoding = System.Text.Encoding.GetEncoding("UTF-8"); //解决中文乱码
+            Response.AddHeader("Content-Disposition", "attachment; filename=" + saveAsFileName); //解决中文文件名乱码    
+            Response.AddHeader("Content-length", file.Length.ToString());
+            Response.ContentType = "appliction/octet-stream";
+            Response.WriteFile(file.FullName);
+            Response.Flush();
+            Response.End();
+        }
+        else
+        {
+            Response.Write("文件不存在");
+        }
     }
 
 }

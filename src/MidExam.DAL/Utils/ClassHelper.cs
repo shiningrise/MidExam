@@ -5,6 +5,8 @@ using System.Text;
 using System.Reflection;
 using System.Linq.Expressions;
 
+namespace MidExam.DAL.Util
+{
     public static class ClassHelper
     {
         public static readonly BindingFlags AllFlag = BindingFlags.Public | BindingFlags.Static | BindingFlags.Instance | BindingFlags.NonPublic;
@@ -372,4 +374,4 @@ using System.Linq.Expressions;
             return tc.IsSubclassOf(tf);
         }
     }
-
+}
