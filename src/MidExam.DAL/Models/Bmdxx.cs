@@ -75,19 +75,19 @@ namespace MidExam.DAL.Models
         public bool TiyuEnable { get; set; }
 
         /// <summary>
-        /// 直接A 0:未启用 1：录入 2核对 3确认
+        /// 等第申请 0:未启用 1：录入 2核对 3确认
         /// </summary>
-        [Description("直接A")]
+        [Description("等第申请")]
         [Length(100)]
         [AllowNull]
-        public string FastA { get; set; }
+        public string Suzi { get; set; }
 
-        [Description("直接A说明")]
+        [Description("等第申请说明")]
         [AllowNull]
-        public string FastAWiki { get; set; }
+        public string SuziWiki { get; set; }
 
-        [Description("启用直接A")]
-        public bool FastAEnable { get; set; }
+        [Description("启用等第申请")]
+        public bool SuziEnable { get; set; }
 
         /// <summary>
         /// 加分  0:未启用 1：录入 2核对 3确认

@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 using MidExam.DAL;
 using MidExam.DAL.Models;
 
-public partial class frmFastA : StudentPageBase
+public partial class frmSuzi : StudentPageBase
 {
     
     protected void Page_Load(object sender, EventArgs e)
@@ -35,11 +35,11 @@ public partial class frmFastA : StudentPageBase
         this.lblXM.Text = this.CurBmk.xm;
 
         Guid bmkGuid = CurBmk.RecordGuid;
-        if (this.ed_Leibie.SelectedIndex == 0)
+        if (this.ed_Xiangmu.SelectedIndex == 0)
         {
             this.MessageBox("请选择类别");
         }
-        FastA fa = FastA.FindOne( p=> p.BmkGuid == bmkGuid && p.Leibie == this.ed_Leibie.SelectedValue );
+        Suzi fa = Suzi.FindOne(p => p.BmkGuid == bmkGuid && p.Xiangmu == this.ed_Xiangmu.SelectedValue);
         if (fa != null)
         {
             //this.ed_Pingju.Text = this.ed_Leibie.SelectedValue

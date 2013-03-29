@@ -12,10 +12,6 @@ public partial class _default : System.Web.UI.MasterPage
         this.BuildMenu(this.NavigationMenu);
         if (!IsPostBack)
         { 
-            if (!this.Page.User.IsInRole("Students"))
-            {
-
-            }
             
         }
     }
@@ -67,7 +63,7 @@ public partial class _default : System.Web.UI.MasterPage
         {
             menu.Items.Add(CreateMenuItem("中考报名", "~/frmStudent.aspx"));
             menu.Items.Add(CreateMenuItem("填报志愿", "~/frmZhiyuanEdit.aspx"));
-            menu.Items.Add(CreateMenuItem("直接A等", "~/frmFastA.aspx"));
+            menu.Items.Add(CreateMenuItem("综合素质评价", "~/frmSuzhiEdit"));
         }
         if(this.Request.IsAuthenticated)
         {

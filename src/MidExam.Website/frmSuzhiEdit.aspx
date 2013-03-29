@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/default.master" AutoEventWireup="true"
-    CodeFile="frmFastA.aspx.cs" Inherits="frmFastA" %>
+    CodeFile="frmSuzhiEdit.aspx.cs" Inherits="frmSuzi" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
@@ -9,12 +9,13 @@
         姓名：<asp:Label ID="lblXM" runat="server" Text=""></asp:Label>
     </p>
     <p>
-        类别
-        <asp:DropDownList ID="ed_Leibie" runat="server">
+        项目
+        <asp:DropDownList ID="ed_Xiangmu" runat="server">
             <asp:ListItem Text="请选择" Value=""></asp:ListItem>
-            <asp:ListItem Text="劳动与技能" Value="劳动与技能"></asp:ListItem>
-            <asp:ListItem Text="运动与健康" Value="运动与健康"></asp:ListItem>
             <asp:ListItem Text="审美与艺术" Value="审美与艺术"></asp:ListItem>
+            <asp:ListItem Text="运动与健康" Value="运动与健康"></asp:ListItem>
+            <asp:ListItem Text="探究与实践" Value="探究与实践"></asp:ListItem>
+            <asp:ListItem Text="劳动与技能" Value="劳动与技能"></asp:ListItem>
         </asp:DropDownList>
     </p>
     <p>

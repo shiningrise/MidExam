@@ -9,10 +9,11 @@ using Newtonsoft.Json;
 
 namespace MidExam.DAL.Models
 {
+    
     /// <summary>
     /// 直接认定A等
     /// </summary>
-    public class FastA : DbObjectModel<FastA>
+    public class Suzi : DbObjectModel<Suzi>
     {
         #region 记录索引
 
@@ -46,20 +47,49 @@ namespace MidExam.DAL.Models
         public string xm { get; set; }
 
         /// <summary>
-        /// 类别(测试项目) 劳动与技能，运动与健康，审美与艺术
+        /// 测评项目 劳动与技能，运动与健康，审美与艺术
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("类别")]
-        public string Leibie { get; set; }
+        [Description("测评项目")]
+        public string Xiangmu { get; set; }
+
+        [AllowNull]
+        [Length(100)]
+        [Description("认定方式")]
+        public string Fangshi { get; set; }
 
         /// <summary>
-        /// 凭据
+        /// 所获奖项
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("凭据")]
-        public string Pingju { get; set; }
+        [Description("所获奖项")]
+        public string Jiangxiang { get; set; }
+
+        /// <summary>
+        /// 颁奖单位
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("颁奖单位")]
+        public string Danwei { get; set; }
+
+        /// <summary>
+        /// 颁奖时间
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("颁奖时间")]
+        public string Shijian { get; set; }
+
+        /// <summary>
+        /// 历年等弟
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("历年等弟")]
+        public string Chegnji { get; set; }
 
         #endregion
         
@@ -128,5 +158,20 @@ namespace MidExam.DAL.Models
         [Description("记录状态")]
         [Length(100)]
         public string Status { get; set; }
+
+        /// <summary>
+        /// 认定方式:直接认定 普通认定
+        /// </summary>
+        public static class PARAMETER
+        {
+            public static string FANGSHI_ZHIJIE = "直接认定";
+            public static string FANGSHI_PUTONG = "普通认定";
+
+            public static string XIANGMU_YISHU = "审美与艺术";
+            public static string XIANGMU_YUNDONG = "运动与健康";
+            public static string XIANGMU_YANJIU = "探究与实践";
+            public static string XIANGMU_LAOJI = "劳动与技能";
+        }
+
     }
 }
