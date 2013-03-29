@@ -220,8 +220,6 @@ public partial class frmStudent : PageBase
 
             this.txtBmxh.Enabled = false;
             this.txtBmxh.ToolTip = "由学校教务处统一编排";
-            this.txtsfzh.Enabled = true;
-            this.txtsfzh.ToolTip = "18位身份证号码，要与身份证上一致";
             this.txtXstbh.Enabled = false;
             this.txtXm.Enabled = false;
             this.txtXm.ToolTip = "姓名不能有错，若有误请及时联系学校进行改正";
@@ -230,7 +228,9 @@ public partial class frmStudent : PageBase
             //this.txtsfzh.Enabled = flagBase;
             //this.txtXstbh.Enabled = flagBase;
             //this.txtXm.Enabled = flagBase;
-
+            this.txtsfzh.Enabled = flagBase;
+            this.txtsfzh.ToolTip = "18位身份证号码，要与身份证上一致";
+            this.txtByxxdm.Enabled = flagBase;
             this.txtBm.Enabled = flagBase;
             this.ddlSex.Enabled = flagBase;
             this.txtCsny.Enabled = flagBase;
