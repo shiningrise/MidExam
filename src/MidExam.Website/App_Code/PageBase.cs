@@ -81,6 +81,11 @@ public class PageBase : System.Web.UI.Page
         this.MessageBox("操作成功");
     }
 
+    protected void Fail(string strMsg)
+    {
+        this.MessageBox("操作失败:" + strMsg);
+    }
+
     protected void Fail(Leafing.Data.ValidateHandler vh, string strMsg)
     {
         foreach (var item in vh.ErrorMessages)

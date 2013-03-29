@@ -6,8 +6,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <asp:Label ID="msg" runat="server" Text=""></asp:Label>
     <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/down/student.xls">点击此处下载导入模板(Excel2003格式)</asp:HyperLink>
+    <hr />
+    请选择指定格式的Excel文件，或json格式文本文件
     <br />
-    <asp:FileUpload ID="fileUpload" runat="server" Width="400px" />
+    <asp:FileUpload ID="fileUpload" runat="server" Width="250px" />
     <asp:Button ID="btnImport" runat="server" Text="导入" onclick="btnImport_Click" CssClass="btn" />
     <hr />
     远程地址：<asp:TextBox ID="ed_RestClient" runat="server"></asp:TextBox>

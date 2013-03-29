@@ -33,24 +33,44 @@ public partial class frmStudentImport : PageBase
     {
         if (!fileUpload.HasFile)
         {
-            JsUtil.MessageBox(this, "请选择用于导入的excel文件");
+            JsUtil.MessageBox(this, "请选择指定格式的Excel文件，或json格式文本文件");
             return;
         }
         if (fileUpload.FileContent.Length == 0)
         {
-            JsUtil.MessageBox(this, "Excel文件的内容为空");
+            JsUtil.MessageBox(this, "文件的内容为空");
             return;
         }
         string fileExt = Path.GetExtension(fileUpload.FileName);
-        if (!".xls;.xlsx".Contains(fileExt))
+        fileExt = fileExt.ToLower();
+        string[] fileExtAllow = new[]{".xls;",".xlsx",".txt"};
+        if (!fileExtAllow.Contains(fileExt))
         {
-            JsUtil.MessageBox(this, "只能上传excel文件");
+            JsUtil.MessageBox(this, "只能上传指定格式文件");
             return;
         }
         string filepath = Path.Combine(Server.MapPath("~/tmp/"), System.DateTime.Now.ToString("yyyyMMdd") + fileExt);
-        fileUpload.SaveAs(filepath);
-        ImportFromExcel(filepath);
+        try
+        {
+            fileUpload.SaveAs(filepath);
+            if (fileExt == ".txt")
+            {
+                string strContent = File.ReadAllText(filepath);
+                ImportFromJson(strContent);
+            }
+            else
+            {
+                ImportFromExcel(filepath);
+            }
+            this.Succeed();
+        }
+        catch (Exception ex)
+        {
+            Fail(ex.Message);
+        }
+        
     }
+
 
     /// <summary>
     /// 从excel文件导入
@@ -118,36 +138,19 @@ public partial class frmStudentImport : PageBase
         }
     }
 
-    public List<Bmk> BmkList
-    {
-        get
-        {
-            if ( ViewState["BmkList"] == null)
-            {
-                var client = new RestClient(ConfigurationManager.AppSettings["RestClient"].ToString());
-                var request = new RestRequest(ConfigurationManager.AppSettings["RestRequest"].ToString(), Method.GET);
-                IRestResponse response = client.Execute(request);
-                var content = response.Content;
-                ViewState["BmkList"] = content;
-            }
-            string str = ViewState["BmkList"].ToString();
-            List<Bmk> list = null;
-            if (!str.IsNullOrEmpty())
-                {
-                    list = JsonConvert.DeserializeObject<List<Bmk>>(str);
-                }
-                else
-                {
-                    list = new List<Bmk>();
-                }
-
-            return list;
-        }
-    }
-
     protected void btnRemoteImport_Click(object sender, EventArgs e)
     {
-        var list = this.BmkList.OrderBy(p=>p.bmxh);
+        var client = new RestClient(ConfigurationManager.AppSettings["RestClient"].ToString());
+        var request = new RestRequest(ConfigurationManager.AppSettings["RestRequest"].ToString(), Method.GET);
+        IRestResponse response = client.Execute(request);
+        var content = response.Content;
+        ImportFromJson(content);
+        this.Succeed();
+    }
+
+    private static void ImportFromJson(string jsonContent)
+    {
+        var list = JsonConvert.DeserializeObject<List<Bmk>>(jsonContent);
         foreach (var item in list)
         {
             var bmk = Bmk.FindOne(p => p.RecordGuid == item.RecordGuid);
@@ -158,6 +161,5 @@ public partial class frmStudentImport : PageBase
             ModelCopier.CopyModel(item, bmk, new[] { "Id" });
             bmk.Save();
         }
-        this.Succeed();
     }
 }
