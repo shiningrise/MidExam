@@ -45,6 +45,7 @@ public partial class _default : System.Web.UI.MasterPage
             item.ChildItems.Add(CreateMenuItem("数据导出", "~/frmStudentExport.aspx"));
             item.ChildItems.Add(CreateMenuItem("批量设置", "~/frmBatchSeting.aspx"));
             item.ChildItems.Add(CreateMenuItem("报名点设置", "~/frmBmdxx.aspx"));
+            item.ChildItems.Add(CreateMenuItem("系统管理", "~/frmSystem.aspx"));
         }
         if (this.Page.User.IsInRole("Administrators") || this.Page.User.IsInRole("Teachers"))
         {
