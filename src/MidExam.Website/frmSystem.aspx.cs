@@ -8,6 +8,7 @@ using Leafing.Data;
 using DbEntryMembership;
 using System.Web.Security;
 using MidExam.DAL.Util;
+using MidExam.DAL.Models;
 
 public partial class frmSystem : PageBase
 {
@@ -17,18 +18,21 @@ public partial class frmSystem : PageBase
     }
     protected void btnTableReCreate_Click(object sender, EventArgs e)
     {
-        if (!Membership.ValidateUser(this.User.Identity.Name, this.ed_Passwrod.Text))
+        if (Membership.ValidateUser(this.User.Identity.Name, this.ed_Passwrod.Text))
         {
-            try
+            switch (this.ed_TableName.Text)
             {
-                DbEntry.DropAndCreate(Type.GetType(this.ed_TableName.Text));
-                Succeed();
+                case "Suzhi":
+                    DbEntry.DropAndCreate(typeof(Suzhi));
+                    break;
+                default:
+                    break;
             }
-            catch (Exception ex)
-            {
-                Fail(ex.Message);
-            }
+            Succeed();
         }
-
+        else
+        {
+            Fail("密码错");
+        }
     }
 }

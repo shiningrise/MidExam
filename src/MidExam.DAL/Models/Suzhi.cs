@@ -50,7 +50,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("测评项目")]
+        [Description("测评项目|DropDownList")]
         public string Xiangmu { get; set; }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("认定方式")]
+        [Description("认定方式|DropDownList")]
         public string Fangshi { get; set; }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("申请等第")]
+        [Description("申请等第|DropDownList")]
         public string Dengdi { get; set; }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MidExam.DAL.Models
         /// </summary>
         [AllowNull]
         [Length(100)]
-        [Description("认定等第")]
+        [Description("认定等第|DropDownList")]
         [Exclude]
         public string DengdiRending { get; set; }
 
@@ -117,19 +117,19 @@ namespace MidExam.DAL.Models
         /// <summary>
         /// 班级审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
-        [Description("班级审核")]
+        [Description("班级审核|DropDownList")]
         public int Shenhe1 { get; set; }
 
         /// <summary>
         /// 学校审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
-        [Description("学校审核")]
+        [Description("学校审核|DropDownList")]
         public int Shenhe2 { get; set; }
 
         /// <summary>
         /// 学校审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
-        [Description("学校审核")]
+        [Description("学校审核|DropDownList")]
         public int Shenhe3 { get; set; }
 
         /// <summary>
@@ -174,7 +174,7 @@ namespace MidExam.DAL.Models
         /// <summary>
         /// 未启用，录入，核对,确认
         /// </summary>
-        [Description("记录状态")]
+        [Description("记录状态|DropDownList")]
         [Length(100)]
         public string Status { get; set; }
 

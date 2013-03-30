@@ -4,8 +4,9 @@ using System.Reflection;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
-using MidExam.DAL.Utils;
 using System.IO;
+using System.ComponentModel.DataAnnotations;
+using MidExam.DAL.Utils;
 
 namespace MidExam.DAL.Util
 {
@@ -60,14 +61,20 @@ namespace MidExam.DAL.Util
         }
         */
 
-        private static WebControl GetWebControl(Page p, string entityPropertyName, string name)
+        public static WebControl GetWebControl(Page p, string ctlName)
         {
-            string cid = string.Format("{0}_{1}", entityPropertyName, name);
+            var c = ClassHelper.GetValue(p, ctlName) as WebControl;
+            return c;
+        }
+
+        public static WebControl GetWebControl(Page p, string ctlPrefix, string ctlName)
+        {
+            string cid = string.Format("{0}_{1}", ctlPrefix, ctlName);
             var c = ClassHelper.GetValue(p, cid) as WebControl;
             return c;
         }
 
-        private static string GetValue(WebControl c)
+        public static string GetValue(this WebControl c)
         {
             if (c is TextBox)
             {
@@ -88,7 +95,7 @@ namespace MidExam.DAL.Util
             return GetPropertyInfo(c).GetValue(c, null).ToString();
         }
 
-        private static PropertyInfo GetPropertyInfo(object c)
+        public static PropertyInfo GetPropertyInfo(object c)
         {
             var attr = c.GetType().GetAttribute<DefaultPropertyAttribute>(false);
             if (attr != null)
@@ -102,7 +109,7 @@ namespace MidExam.DAL.Util
             throw new NotSupportedException();
         }
 
-        private static void SetValue(WebControl c, object v)
+        public static void SetValue(this WebControl c, object v)
         {
             if (c is TextBox)
             {
@@ -124,18 +131,29 @@ namespace MidExam.DAL.Util
             else GetPropertyInfo(c).SetValue(c, v, null);
         }
 
-        //private static ListItem[] GetItems(Type enumType)
-        //{
-        //    if (!enumType.IsEnum) throw new ArgumentOutOfRangeException();
+        private static ListItem[] GetItems(Type enumType)
+        {
+            if (!enumType.IsEnum) throw new ArgumentOutOfRangeException();
 
-        //    var ret = new List<ListItem>();
-        //    foreach (string v in Enum.GetNames(enumType))
-        //    {
-        //        string n = StringHelper.EnumToString(enumType, v);
-        //        var li = new ListItem(n, v);
-        //        ret.Add(li);
-        //    }
-        //    return ret.ToArray();
-        //}
+            var ret = new List<ListItem>();
+            foreach (string v in Enum.GetNames(enumType))
+            {
+                string n = EnumToString(enumType, v);
+                var li = new ListItem(n, v);
+                ret.Add(li);
+            }
+            return ret.ToArray();
+        }
+
+        public static string EnumToString(Type enumType, string name)
+        {
+            var os = (DisplayAttribute[])enumType.GetField(name)
+                .GetCustomAttributes(typeof(DisplayAttribute), false);
+            if (os.Length == 1)
+            {
+                return os[0].Name;
+            }
+            return name;
+        }
     }
 }

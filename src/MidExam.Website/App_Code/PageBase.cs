@@ -6,17 +6,20 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MidExam.DAL;
 using System.IO;
+using System.ComponentModel;
+using MidExam.DAL.Util;
+using Leafing.Data.Definition;
 
 /// <summary>
 ///PageBase 的摘要说明
 /// </summary>
-public class PageBase : System.Web.UI.Page
+public class PageBase : Leafing.Web.SmartPageBase
 {
-	public PageBase()
-	{
-		//
-		//TODO: 在此处添加构造函数逻辑
-		//
+    public PageBase()
+    {
+        //
+        //TODO: 在此处添加构造函数逻辑
+        //
 
         AddPermitRoles();
         bool permite = this.CheckPermiteRoles();
@@ -24,7 +27,7 @@ public class PageBase : System.Web.UI.Page
         {
             HttpContext.Current.Response.Redirect("~/Default.aspx");
         }
-	}
+    }
 
     protected virtual void AddPermitRoles()
     {
@@ -36,7 +39,7 @@ public class PageBase : System.Web.UI.Page
         this.PermitRoles.Add(roleName);
     }
 
-    protected List<string> PermitRoles= new List<string>();
+    protected List<string> PermitRoles = new List<string>();
 
     protected bool CheckPermiteRoles()
     {
@@ -95,6 +98,8 @@ public class PageBase : System.Web.UI.Page
         this.MessageBox(strMsg);
     }
 
+    #region 文件下载
+    
     /// <summary>
     /// 文件下载
     /// </summary>
@@ -134,4 +139,72 @@ public class PageBase : System.Web.UI.Page
         }
     }
 
+    protected void Download(string txtContent)
+    {
+        Response.Clear();
+        Response.Buffer = true;
+        Response.Charset = "GB2312";
+        Response.AppendHeader("Content-Disposition", "attachment;filename=bmk2516.txt");
+        Response.ContentEncoding = System.Text.Encoding.UTF8;
+        Response.ContentType = "text/plain"; //设置输出文件类型为txt文件。
+        this.EnableViewState = false;
+        System.Globalization.CultureInfo myCItrad = new System.Globalization.CultureInfo("ZH-CN", true);
+        Response.Write(txtContent);
+        Response.End();
+    }
+
+    #endregion
+
+    #region Page Model
+
+    private string _controlNamePrefix = "ed_";
+    /// <summary>
+    /// 自动绑定的 控件名前缀
+    /// </summary>
+    public virtual string ControlNamePrefix
+    {
+        get { return _controlNamePrefix; }
+        set { _controlNamePrefix = value; }
+    }
+
+    /// <summary>
+    /// 实体Model字段数据自动绑定到Page页面中的控件
+    /// </summary>
+    protected void Model2Page(DbObjectBase model)
+    {
+        PropertyDescriptorCollection modelProperties = TypeDescriptor.GetProperties(model);
+        foreach (PropertyDescriptor pd in modelProperties)
+        {
+            string ctrlName = string.Format("{0}{1}", this.ControlNamePrefix, pd.Name);
+            WebControl ctl = (WebControl)PageHelper.GetWebControl(this.Page, ctrlName);
+            if (ctl != null)
+            {
+                object value = pd.GetValue(model);
+                if (value != null)
+                    ctl.SetValue(value.ToString());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Page页面中的控件 自动绑定到 实体Model字段数据
+    /// </summary>
+    protected void Page2Model(DbObjectBase model)
+    {
+        PropertyDescriptorCollection modelProperties = TypeDescriptor.GetProperties(model);
+
+        //Response.Clear();
+        foreach (PropertyDescriptor pd in modelProperties)
+        {
+            string ctrlName = string.Format("{0}{1}", this.ControlNamePrefix, pd.Name);
+            WebControl ctl = (WebControl)PageHelper.GetWebControl(this.Page, ctrlName);
+            if (ctl != null)
+            {
+                object value = ctl.GetValue();
+                pd.SetValue(model, value);
+            }
+        }
+    }
+
+    #endregion
 }

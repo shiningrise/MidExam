@@ -21,17 +21,4 @@ public partial class frmStudentExport : PageBase
         Download(JsonConvert.SerializeObject(bmkList));
     }
 
-    protected void Download(string txtContent)
-    {
-        Response.Clear();
-        Response.Buffer = true;
-        Response.Charset = "GB2312";
-        Response.AppendHeader("Content-Disposition", "attachment;filename=bmk2516.txt");
-        Response.ContentEncoding = System.Text.Encoding.UTF8;
-        Response.ContentType = "text/plain"; //设置输出文件类型为txt文件。
-        this.EnableViewState = false;
-        System.Globalization.CultureInfo myCItrad = new System.Globalization.CultureInfo("ZH-CN", true);
-        Response.Write(txtContent);
-        Response.End();
-    }
 }
