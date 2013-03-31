@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace MidExam.DAL.Utils
+namespace MidExam.DAL.Util
 {
     public static class ModelCopier
     {

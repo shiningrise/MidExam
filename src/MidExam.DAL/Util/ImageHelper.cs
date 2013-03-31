@@ -15,7 +15,7 @@ using System.Net;
 using System.Xml;
 using System.Web;
 
-namespace MidExam.DAL.Utils
+namespace MidExam.DAL.Util
 {
    public class ImageHelper
     {

@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Text.RegularExpressions;
 
-namespace MidExam.DAL.Utils
+namespace MidExam.DAL.Util
 {
     public class RequestHelper
     {

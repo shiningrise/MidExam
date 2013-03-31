@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/default.master" AutoEventWireup="true"
-    CodeFile="stu_SuzhiEdit.aspx.cs" Inherits="stu_SuzhiEdit" %>
+    CodeFile="stu_Suzhi_Edit.aspx.cs" Inherits="stu_Suzhi_Edit" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="Server">
 </asp:Content>
@@ -78,8 +78,10 @@
         </div>
     </div>
     <div class="form-actions">
-        <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn" />
-        <asp:Button ID="btnSubmit" runat="server" Text="提交" CssClass="btn" />
+        <asp:Button ID="btnSave" runat="server" Text="保存" CssClass="btn" 
+            onclick="btnSave_Click" />
+        <asp:Button ID="btnSubmit" runat="server" Text="提交" CssClass="btn" 
+            onclick="btnSubmit_Click" />
     </div>
     <p>
         审核状态： 班主任审核(  

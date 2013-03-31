@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
-using MidExam.DAL.Utils;
+using MidExam.DAL.Util;
 
 namespace MidExam.DAL.Util
 {
@@ -92,7 +92,8 @@ namespace MidExam.DAL.Util
             {
                 return ((Label)c).Text;
             }
-            return GetPropertyInfo(c).GetValue(c, null).ToString();
+            throw new Exception("GetValue()扩展不存在");
+            //return GetPropertyInfo(c).GetValue(c, null).ToString();
         }
 
         public static PropertyInfo GetPropertyInfo(object c)

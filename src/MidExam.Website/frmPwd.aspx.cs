@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Leafing.Data;
 using MidExam.DAL;
+using MidExam.DAL.Util;
 
 public partial class frmPwd : PageBase
 {

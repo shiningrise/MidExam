@@ -5,7 +5,7 @@ using System.Text;
 
 using System.Text.RegularExpressions;
 
-namespace MidExam.DAL.Utils
+namespace MidExam.DAL.Util
 {
     public class StringHelper
     {

@@ -11,9 +11,9 @@ using System.Net;
 using System.Web;
 using System.Configuration;
 using System.Text.RegularExpressions;
-using MidExam.DAL.Utils;
+using MidExam.DAL.Util;
 
-namespace MidExam.DAL.Utility
+namespace MidExam.DAL.Util
 {
     public class ContentData
     {

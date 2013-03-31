@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace MidExam.DAL
+namespace MidExam.DAL.Util
 {
       public class PasswordGenerator {
             public PasswordGenerator() {

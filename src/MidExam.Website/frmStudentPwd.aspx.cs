@@ -8,6 +8,7 @@ using System.Web.Security;
 
 using Leafing.Data;
 using MidExam.DAL;
+using MidExam.DAL.Util;
 
 public partial class frmStudentPwd : PageBase
 {

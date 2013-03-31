@@ -176,7 +176,10 @@ namespace MidExam.DAL.Models
         /// </summary>
         [Description("记录状态|DropDownList")]
         [Length(100)]
+        [AllowNull]
         public string Status { get; set; }
+
+        #region 参数
 
         /// <summary>
         /// 认定方式:直接认定 普通认定
@@ -187,10 +190,60 @@ namespace MidExam.DAL.Models
             public static string FANGSHI_PUTONG = "普通认定";
 
             public static string XIANGMU_YISHU = "审美与艺术";
-            public static string XIANGMU_YUNDONG = "运动与健康";
+            public static string XIANGMU_TIYU = "运动与健康";
             public static string XIANGMU_YANJIU = "探究与实践";
             public static string XIANGMU_LAOJI = "劳动与技能";
+            public static string XIANGMU_ZHONGHE = "综合表现等弟";
+
+            public static string DENGDI_A = "A";
+            public static string DENGDI_B = "B";
+            public static string DENGDI_C = "C";
+
+            public static string ZHONGHE_YOULIANG = "优良";
+            public static string ZHONGHE_JIGE = "及格";
+            public static string ZHONGHE_BUJIGE = "不及格";
         }
 
+        /// <summary>
+        /// 列出认定方式
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> ListFangshi()
+        {
+            List<string> list = new List<string>();
+            list.Add(Suzhi.PARAMETER.FANGSHI_PUTONG);
+            list.Add(Suzhi.PARAMETER.FANGSHI_ZHIJIE);
+            return list;
+        }
+
+        /// <summary>
+        /// 项目
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> ListXiangmu()
+        {
+            List<string> list = new List<string>();
+            list.Add(Suzhi.PARAMETER.XIANGMU_YISHU);
+            list.Add(Suzhi.PARAMETER.XIANGMU_TIYU);
+            list.Add(Suzhi.PARAMETER.XIANGMU_YANJIU);
+            list.Add(Suzhi.PARAMETER.XIANGMU_LAOJI);
+            list.Add(Suzhi.PARAMETER.XIANGMU_ZHONGHE);
+            return list;
+        }
+
+        /// <summary>
+        /// 等弟
+        /// </summary>
+        /// <returns></returns>
+        public static List<string> ListDengdi()
+        {
+            List<string> list = new List<string>();
+            list.Add(Suzhi.PARAMETER.DENGDI_A);
+            list.Add(Suzhi.PARAMETER.DENGDI_B);
+            list.Add(Suzhi.PARAMETER.DENGDI_C);
+            return list;
+        }
+
+        #endregion
     }
 }

@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<obj name="" uid="f736e0f2-666f-403b-9059-148b274e1a7f" path="D:\GitHome\MidExam\Doc\dbentry_AspNet_Webform.zeus">
+  <items>
+    <item name="__dbConnectionString" type="System.String" val="Provider=SQLOLEDB.1;Persist Security Info=False;User ID=sa;password=12345;Data Source=server252;Initial Catalog=Bmk2013" />
+    <item name="__dbDriver" type="System.String" val="SQL" />
+    <item name="__dbLanguageMappingFileName" type="System.String" val="C:\Program Files\MyGeneration13\Settings\Languages.xml" />
+    <item name="__dbTarget" type="System.String" val="SqlClient" />
+    <item name="__dbTargetMappingFileName" type="System.String" val="C:\Program Files\MyGeneration13\Settings\DbTargets.xml" />
+    <item name="__defaultOutputPath" type="System.String" val="D:\GitHome\MidExam\Doc" />
+    <item name="__defaultTemplatePath" type="System.String" val="D:\GitHome\MidExam\Doc" />
+    <item name="__domainOverride" type="System.Boolean" val="False" />
+    <item name="__language" type="System.String" val="C#" />
+    <item name="__showDefaultDatabaseOnly" type="System.String" val="True" />
+    <item name="__userMetaDataFileName" type="System.String" val="C:\Program Files\MyGeneration13\Settings\UserMetaData.xml" />
+    <item name="__version" type="System.String" val="1.4.0.1" />
+    <item name="btnPath" type="System.String" val="" />
+    <item name="databaseName" type="System.String" val="Bmk2013" />
+    <item name="dbConnectionString" type="System.Boolean" val="False" />
+    <item name="dbDriver" type="System.String" val="SQL" />
+    <item name="defaultOutputPath" type="System.String" val="D:\GitHome\MidExam\Doc" />
+    <item name="defaultTemplatePath" type="System.String" val="D:\GitHome\MidExam\Doc" />
+    <item name="lstColumns" type="System.Collections.ArrayList" val="System.String|H|bmxh;System.String|H|xm;System.String|H|Xiangmu;System.String|H|Fangshi;System.String|H|Dengdi;System.String|H|Jiangxiang;System.String|H|Danwei;System.String|H|Shijian;System.String|H|Chegnji;System.String|H|Shenhe1;System.String|H|Shenhe2;System.String|H|Status;" />
+    <item name="tableName" type="System.String" val="Suzhi" />
+    <item name="txtNamespace" type="System.String" val="FineSchool.MvcApp.Areas.Admin.Controllers" />
+    <item name="txtPath" type="System.String" val="D:\GitHome\MidExam\Doc" />
+  </items>
+</obj>

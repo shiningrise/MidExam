@@ -1,0 +1,162 @@
+<MyMeta>
+  <Databases>
+    <Database p="ToDoList" n="">
+      <Tables>
+        <Table p="Huodong" n="">
+          <Columns>
+            <Column p="Id" n="">
+              <Properties>
+                <Property k="Id" v="The Name of this Column is Id" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="DepartmentID" n="">
+              <Properties>
+                <Property k="DepartmentID" v="The Name of this Column is DepartmentID" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="CreateUserName" n="">
+              <Properties>
+                <Property k="CreateUserName" v="The Name of this Column is CreateUserName" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="Title" n="">
+              <Properties>
+                <Property k="Title" v="The Name of this Column is Title" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="Content" n="">
+              <Properties>
+                <Property k="Content" v="The Name of this Column is Content" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="NeedIDCard" n="">
+              <Properties>
+                <Property k="NeedIDCard" v="The Name of this Column is NeedIDCard" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="NeedCost" n="">
+              <Properties>
+                <Property k="NeedCost" v="The Name of this Column is NeedCost" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="HaveOtherPeoples" n="">
+              <Properties>
+                <Property k="HaveOtherPeoples" v="The Name of this Column is HaveOtherPeoples" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="SplitChilden" n="">
+              <Properties>
+                <Property k="SplitChilden" v="The Name of this Column is SplitChilden" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="StartDate" n="">
+              <Properties>
+                <Property k="StartDate" v="The Name of this Column is StartDate" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="EndDate" n="">
+              <Properties>
+                <Property k="EndDate" v="The Name of this Column is EndDate" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="IsActive" n="">
+              <Properties>
+                <Property k="IsActive" v="The Name of this Column is IsActive" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="CreatedOn" n="">
+              <Properties>
+                <Property k="CreatedOn" v="The Name of this Column is CreatedOn" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="UpdatedOn" n="">
+              <Properties>
+                <Property k="UpdatedOn" v="The Name of this Column is UpdatedOn" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+            <Column p="IsDeleted" n="">
+              <Properties>
+                <Property k="IsDeleted" v="The Name of this Column is IsDeleted" />
+                <Property k="0" v="This is property 0" />
+                <Property k="1" v="This is property 1" />
+                <Property k="2" v="This is property 2" />
+                <Property k="3" v="This is property 3" />
+                <Property k="4" v="This is property 4" />
+              </Properties>
+            </Column>
+          </Columns>
+        </Table>
+      </Tables>
+    </Database>
+  </Databases>
+</MyMeta>

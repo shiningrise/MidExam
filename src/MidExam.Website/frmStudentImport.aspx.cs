@@ -11,7 +11,7 @@ using MidExam.DAL;
 using System.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
-using MidExam.DAL.Utils;
+using MidExam.DAL.Util;
 
 public partial class frmStudentImport : PageBase
 {

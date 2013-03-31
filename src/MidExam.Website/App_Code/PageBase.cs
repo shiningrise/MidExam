@@ -9,6 +9,7 @@ using System.IO;
 using System.ComponentModel;
 using MidExam.DAL.Util;
 using Leafing.Data.Definition;
+using System.Collections;
 
 /// <summary>
 ///PageBase 的摘要说明
@@ -29,6 +30,7 @@ public class PageBase : Leafing.Web.SmartPageBase
         }
     }
 
+    #region 权限
     protected virtual void AddPermitRoles()
     {
         this.AddPermitRole("Administrators");
@@ -53,16 +55,8 @@ public class PageBase : Leafing.Web.SmartPageBase
         return false;
     }
 
-    /// <summary>
-    /// 显示信息框
-    /// </summary>
-    /// <param name="msg"></param>
-    protected void MessageBox(string msg)
-    {
-        JsUtil.MessageBox(this, msg);
-    }
-
-
+    #endregion
+    
     protected void Save<T>(T dbEntityModel)
         where T : global::Leafing.Data.Definition.DbObjectModel<T, long>, new()
     {
@@ -78,6 +72,8 @@ public class PageBase : Leafing.Web.SmartPageBase
             Fail(vh, strMsg);
         }
     }
+
+    #region 辅助方法
 
     protected void Succeed()
     {
@@ -98,6 +94,41 @@ public class PageBase : Leafing.Web.SmartPageBase
         this.MessageBox(strMsg);
     }
 
+    protected void BindSelectDropDownList(DropDownList dl, IList li, string valueField, string TextField)
+    {
+        dl.DataSource = li;
+        dl.DataValueField = valueField;
+        dl.DataTextField = TextField;
+        dl.DataBind();
+
+        ListItem listItem = new ListItem();
+        listItem.Text = "请选择";
+        listItem.Value = "";
+        dl.Items.Insert(0, listItem);
+    }
+
+    protected void BindSelectDropDownList(DropDownList dl, IList li)
+    {
+        dl.DataSource = li;
+        dl.DataBind();
+
+        ListItem listItem = new ListItem();
+        listItem.Text = "请选择";
+        listItem.Value = "";
+        dl.Items.Insert(0, listItem);
+    }
+    
+    /// <summary>
+    /// 显示信息框
+    /// </summary>
+    /// <param name="msg"></param>
+    protected void MessageBox(string msg)
+    {
+        JsUtil.MessageBox(this, msg);
+    }
+
+    #endregion
+    
     #region 文件下载
     
     /// <summary>
