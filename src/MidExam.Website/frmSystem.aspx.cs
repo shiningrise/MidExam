@@ -24,11 +24,15 @@ public partial class frmSystem : PageBase
             {
                 case "Suzhi":
                     DbEntry.DropAndCreate(typeof(Suzhi));
+                    Succeed("综合素质表Suzhi重建成功");
+                    break;
+                case "Bmdxx":
+                    DbEntry.DropAndCreate(typeof(Bmdxx));
+                    Succeed("报名点信息表Bmdxx表重建成功");
                     break;
                 default:
                     break;
             }
-            Succeed();
         }
         else
         {

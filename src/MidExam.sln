@@ -23,7 +23,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MidExam.Website", "MidExam.
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "27767"
+		VWDPort = "58952"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbEntryMembership", "DbEntryMembership\DbEntryMembership.csproj", "{B98BE9E5-C680-46C5-ABDB-79870448584F}"
@@ -103,7 +103,6 @@ Global
 		{0FCEC21E-7F88-425D-96D0-480E1CB69266}.Release|x86.ActiveCfg = Release|Any CPU
 		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Debug|x86.ActiveCfg = Debug|x86
 		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Debug|x86.Build.0 = Debug|x86
 		{57DF54BC-AC41-44EA-81EC-9A5463469056}.Release|Any CPU.ActiveCfg = Release|x86

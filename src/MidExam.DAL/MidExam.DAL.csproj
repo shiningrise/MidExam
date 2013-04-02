@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="DbfHelper.cs" />
     <Compile Include="Models\Bmdxx.cs" />
+    <Compile Include="Models\RecordState.cs" />
     <Compile Include="Models\Tiyu.cs" />
     <Compile Include="Models\Zhaogu.cs" />
     <Compile Include="Models\Suzhi.cs" />

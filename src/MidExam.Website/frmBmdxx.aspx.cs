@@ -4,7 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MidExam.DAL;
 using MidExam.DAL.Models;
+using MidExam.DAL.Util;
+using Leafing.Web;
 using Leafing.Data;
 
 public partial class frmBmdxx : PageBase
@@ -18,33 +21,78 @@ public partial class frmBmdxx : PageBase
     {
         if (!IsPostBack)
         {
-            Bmdxx bmd = Bmdxx.FindOne(Condition.Empty);
-            if (bmd != null)
-            {
-                this.ed_UserName.Text = bmd.UserName ;
-                this.ed_bmxxdm.Text = bmd.bmxxdm;
-                this.ed_bmxxmc.Text = bmd.bmxxmc;
-                this.ed_wiki1.Text = bmd.Wiki1;
-                this.ed_wiki2.Text = bmd.Wiki2;
-            }
+            this.BindSelectDropDownList(this.ed_TiyuState,PageHelper.GetItems(typeof(RecordState)),"Value","Text");
+            this.BindSelectDropDownList(this.ed_YoushiState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
+            this.BindSelectDropDownList(this.ed_ZhaoguState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
+            this.BindSelectDropDownList(this.ed_SuziState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
+            this.BindSelectDropDownList(this.ed_JiafenState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
+
+            BindData();
         }
+    }
+
+    private void BindData()
+    {
+        Bmdxx model = Bmdxx.FindOne(Condition.Empty);
+        if (model != null)
+        {
+            this.ed_UserName.SetValue(model.UserName);
+            this.ed_bmxxdm.SetValue(model.bmxxdm);
+            this.ed_bmxxmc.SetValue(model.bmxxmc);
+            this.ed_TiyuState.SetValue(model.TiyuState);
+            this.ed_TiyuWiki.SetValue(model.TiyuWiki);
+            this.ed_SuziState.SetValue(model.SuziState);
+            this.ed_SuziWiki.SetValue(model.SuziWiki);
+            this.ed_ZhaoguState.SetValue(model.ZhaoguState);
+            this.ed_ZhaoguWiki.SetValue(model.ZhaoguWiki);
+            this.ed_JiafenState.SetValue(model.JiafenState);
+            this.ed_JiafenWiki.SetValue(model.JiafenWiki);
+            this.ed_YoushiState.SetValue(model.YoushiState);
+            this.ed_YoushiWiki.SetValue(model.YoushiWiki);
+            this.ed_Wiki1.SetValue(model.Wiki1);
+            this.ed_Wiki2.SetValue(model.Wiki2);
+        }
+    }
+
+    private void Save()
+    {
+        Bmdxx model = Bmdxx.FindOne(Condition.Empty); ;
+        if (model == null)
+        {
+            model = new Bmdxx();
+        }
+        try
+        {
+            model.UserName = this.ed_UserName.GetValue();
+            model.bmxxdm = this.ed_bmxxdm.GetValue();
+            model.bmxxmc = this.ed_bmxxmc.GetValue();
+
+            model.TiyuState = this.ed_TiyuState.GetState();
+            model.TiyuWiki = this.ed_TiyuWiki.GetValue();
+            model.SuziState = this.ed_SuziState.GetState();
+            model.SuziWiki = this.ed_SuziWiki.GetValue();
+            model.ZhaoguState = this.ed_ZhaoguState.GetState(); 
+            model.ZhaoguWiki = this.ed_ZhaoguWiki.GetValue();
+            model.JiafenState = this.ed_JiafenState.GetState(); ;
+            model.JiafenWiki = this.ed_JiafenWiki.GetValue();
+            model.YoushiState = this.ed_YoushiState.GetState();
+            model.YoushiWiki = this.ed_YoushiWiki.GetValue();
+            model.Wiki1 = this.ed_Wiki1.GetValue();
+            model.Wiki2 = this.ed_Wiki2.GetValue();
+
+            model.Save();
+            this.Succeed();
+            this.BindData();    
+        }
+        catch(Exception ex)
+        {
+            this.Fail("保存失败!" + ex.Message);
+        }
+        
     }
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        Bmdxx bmd = Bmdxx.FindOne(Condition.Empty);
-        if (bmd == null)
-        {
-            bmd = new Bmdxx();
-        }
-        bmd.UserName = this.ed_UserName.Text;
-        bmd.bmxxdm = this.ed_bmxxdm.Text;
-        bmd.bmxxmc = this.ed_bmxxmc.Text;
-        bmd.Wiki1 = this.ed_wiki1.Text;
-        bmd.Wiki2 = this.ed_wiki2.Text;
-        //bmd.Save();
-        Save(bmd);
-            
+        this.Save();
     }
-
 }

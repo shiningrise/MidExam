@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.ComponentModel.DataAnnotations;
 using MidExam.DAL.Util;
+using MidExam.DAL.Models;
 
 namespace MidExam.DAL.Util
 {
@@ -74,6 +75,16 @@ namespace MidExam.DAL.Util
             return c;
         }
 
+        public static void SetState(this WebControl c,RecordState state)
+        {
+            c.SetValue(state.ToString());
+        }
+
+        public static RecordState GetState(this WebControl c)
+        {
+            return (RecordState)Enum.Parse(typeof(RecordState), c.GetValue());
+        }
+
         public static string GetValue(this WebControl c)
         {
             if (c is TextBox)
@@ -132,7 +143,7 @@ namespace MidExam.DAL.Util
             else GetPropertyInfo(c).SetValue(c, v, null);
         }
 
-        private static ListItem[] GetItems(Type enumType)
+        public static ListItem[] GetItems(Type enumType)
         {
             if (!enumType.IsEnum) throw new ArgumentOutOfRangeException();
 

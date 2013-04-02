@@ -80,6 +80,11 @@ public class PageBase : Leafing.Web.SmartPageBase
         this.MessageBox("操作成功");
     }
 
+    protected void Succeed(string msg)
+    {
+        this.MessageBox("操作成功:" + msg);
+    }
+
     protected void Fail(string strMsg)
     {
         this.MessageBox("操作失败:" + strMsg);
@@ -103,7 +108,7 @@ public class PageBase : Leafing.Web.SmartPageBase
 
         ListItem listItem = new ListItem();
         listItem.Text = "请选择";
-        listItem.Value = "";
+        listItem.Value = "-1";
         dl.Items.Insert(0, listItem);
     }
 
@@ -114,7 +119,7 @@ public class PageBase : Leafing.Web.SmartPageBase
 
         ListItem listItem = new ListItem();
         listItem.Text = "请选择";
-        listItem.Value = "";
+        listItem.Value = "-1";
         dl.Items.Insert(0, listItem);
     }
     
