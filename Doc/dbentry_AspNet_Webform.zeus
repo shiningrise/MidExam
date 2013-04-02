@@ -289,14 +289,22 @@ public class GeneratedGui : DotNetScriptGui
                         sb.AppendLine("            <asp:DropDownList ID=\"ed_" + ColumnToPropertyName(column) + "\" runat=\"server\">");
                         sb.AppendLine("            </asp:DropDownList>");
                     }
+					else if(GetControl(column).ToLower() == "textarea")
+					{
+						sb.AppendLine("            <asp:TextBox ID=\"ed_" + ColumnToPropertyName(column) + "\" runat=\"server\" Rows=\"10\" TextMode=\"MultiLine\" Width=\"800px\"></asp:TextBox>");
+					}
                     else
                     {
-                        sb.AppendLine("            <asp:TextBox ID=\"ed_" + ColumnToPropertyName(column) + "\" runat=\"server\"></asp:TextBox>");
+                        sb.AppendLine("            <asp:TextBox ID=\"ed_" + ColumnToPropertyName(column) + "\" runat=\"server\" ></asp:TextBox>");
                     }
                     sb.AppendLine("        </div>");
                     sb.AppendLine("    </div>");
                 }
             }
+			sb.AppendLine("				   <div class=\"form-actions\">");
+			sb.AppendLine("                    <asp:Button ID=\"btnSave\" runat=\"server\" Text=\"保存\" OnClick=\"btnSave_Click\" CssClass=\"btn\" />");
+			sb.AppendLine("                </div>");
+			sb.AppendLine("");
             sb.AppendLine("    </fieldset>");
             sb.AppendLine("</div>");
             sb.AppendLine("</asp:Content>");
@@ -318,6 +326,7 @@ public class GeneratedGui : DotNetScriptGui
             sb.AppendLine("using System.Web.UI.WebControls;");
             sb.AppendLine("using MidExam.DAL;");
             sb.AppendLine("using MidExam.DAL.Models;");
+			sb.AppendLine("using MidExam.DAL.Util;");
             sb.AppendLine("using Leafing.Web;");
             sb.AppendLine("");
             sb.AppendLine("public partial class stu_" + table.Name + "_Edit : StudentPageBase");
@@ -348,7 +357,7 @@ public class GeneratedGui : DotNetScriptGui
 			sb.AppendLine("        }");
             sb.AppendLine("    }");
             sb.AppendLine("");
-            sb.AppendLine("    private void SaveData()");
+            sb.AppendLine("    private void Save()");
             sb.AppendLine("    {");
             sb.AppendLine("			" + table.Name + " model = " + table.Name + ".FindById(this.Id);");
 			sb.AppendLine("        if (this.Id == 0)");
@@ -358,18 +367,16 @@ public class GeneratedGui : DotNetScriptGui
 			sb.AppendLine("            model.BmkGuid = this.CurBmk.RecordGuid;");
 			sb.AppendLine("            model.bmxxdm = this.CurBmk.bmxh.Substring(0, 4);");
 			sb.AppendLine("            model.Status = \"保存\";");
+			sb.AppendLine("            model.bmxh = this.CurBmk.bmxh;");
+			sb.AppendLine("            model.xm = this.CurBmk.xm;");
 			foreach (IColumn column in table.Columns)
             {
                 if (IsInColumns(column))
                 {
-					sb.AppendLine("            model.bmxh = this.CurBmk.bmxh;");
-					sb.AppendLine("            model.xm = this.CurBmk.xm;");
-					sb.AppendLine("");
 					sb.AppendLine("            model." + ColumnToPropertyName(column) + " = this.ed_" + ColumnToPropertyName(column) + ".GetValue();");
-					sb.AppendLine("");
-					sb.AppendLine("            model.Save();");
 				}
 			}
+			sb.AppendLine("            model.Save();");
 			sb.AppendLine("            this.Succeed();");
 			sb.AppendLine("        }");
 			sb.AppendLine("        else");
@@ -638,12 +645,14 @@ public class GeneratedGui : DotNetScriptGui
 
         private string ColumnToPropertyName(IColumn Column)
         {
-            return ToPascalCase(UniqueColumn(Column));
+        //    return ToPascalCase(UniqueColumn(Column));
+			return UniqueColumn(Column);
         }
 
         private string ColumnToMemberVariable(IColumn Column)
         {
-            return ToCamelCase(UniqueColumn(Column));
+        //    return ToCamelCase(UniqueColumn(Column));
+			return UniqueColumn(Column);
         }
 
         private void GenerateClassTableHeader(IColumns Columns)
