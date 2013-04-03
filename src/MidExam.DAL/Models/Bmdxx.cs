@@ -120,5 +120,8 @@ namespace MidExam.DAL.Models
         [Description("内部公告|textarea")]
         [AllowNull]
         public string Wiki2 { get; set; }
+
+        [Description("系统状态|DropDownList")]
+        public SystemState State { get; set; }
     }
 }
