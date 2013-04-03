@@ -31,6 +31,17 @@ public class PageBase : Leafing.Web.SmartPageBase
         }
     }
 
+    /// <summary>
+    /// 获取绝对URL
+    /// </summary>
+    /// <param name="url"></param>
+    /// <returns></returns>
+    protected string Url(string url)
+    {
+        return ResolveUrl(url);
+    }
+    
+
     #region 权限
     protected virtual void AddPermitRoles()
     {

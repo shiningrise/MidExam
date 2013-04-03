@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MidExam.DAL.Models;
+using Leafing.Data;
 
 public partial class _default : System.Web.UI.MasterPage
 {
@@ -16,6 +18,11 @@ public partial class _default : System.Web.UI.MasterPage
         }
     }
 
+    protected string Url(string url)
+    {
+        return ResolveUrl(url);
+    }
+    
     protected bool IncludeBootstrap
     {
         get
@@ -29,6 +36,7 @@ public partial class _default : System.Web.UI.MasterPage
 
     private void BuildMenu(Menu menu)
     {
+   //     Bmdxx bmdxx = Bmdxx.FindOne(Condition.Empty);
         menu.Items.Clear();
         MenuItem item = null;
 
@@ -47,6 +55,8 @@ public partial class _default : System.Web.UI.MasterPage
             item.ChildItems.Add(CreateMenuItem("报名点设置", "~/frmBmdxx.aspx"));
             item.ChildItems.Add(CreateMenuItem("系统管理", "~/frmSystem.aspx"));
         }
+        //if (bmdxx == null)
+        //    return;
         if (this.Page.User.IsInRole("Administrators") || this.Page.User.IsInRole("Teachers"))
         {
             item = CreateMenuItem("数据录入", "~/InputIndex.aspx");
