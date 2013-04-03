@@ -97,9 +97,7 @@ public class GeneratedGui : DotNetScriptGui
 		// Attach the onchange event to the cmbDatabases control.
 		cmbDatabases.AttachEvent("onchange", "cmbDatabases_onchange");
 		cmbTables.AttachEvent("onchange", "cmbTables_onchange");
-		cmbTables.SelectedValue = "Suzhi";
-		lstColumns.BindData( MyMeta.Databases[cmbDatabases.SelectedValue].Tables[cmbTables.SelectedValue].Columns );
-		
+
 		ui.ShowGui = true;
 	}
 	
