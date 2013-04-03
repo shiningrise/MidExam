@@ -26,7 +26,7 @@ public partial class frmBmdxx : PageBase
             this.BindSelectDropDownList(this.ed_ZhaoguState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
             this.BindSelectDropDownList(this.ed_SuziState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
             this.BindSelectDropDownList(this.ed_JiafenState, PageHelper.GetItems(typeof(RecordState)), "Value", "Text");
-
+            this.BindSelectDropDownList(this.ed_State, PageHelper.GetItems(typeof(SystemState)), "Value", "Text");
             BindData();
         }
     }
@@ -39,6 +39,7 @@ public partial class frmBmdxx : PageBase
             this.ed_UserName.SetValue(model.UserName);
             this.ed_bmxxdm.SetValue(model.bmxxdm);
             this.ed_bmxxmc.SetValue(model.bmxxmc);
+
             this.ed_TiyuState.SetValue(model.TiyuState);
             this.ed_TiyuWiki.SetValue(model.TiyuWiki);
             this.ed_SuziState.SetValue(model.SuziState);
@@ -51,6 +52,7 @@ public partial class frmBmdxx : PageBase
             this.ed_YoushiWiki.SetValue(model.YoushiWiki);
             this.ed_Wiki1.SetValue(model.Wiki1);
             this.ed_Wiki2.SetValue(model.Wiki2);
+            this.ed_State.SetValue(model.State);
         }
     }
 
@@ -79,10 +81,10 @@ public partial class frmBmdxx : PageBase
             model.YoushiWiki = this.ed_YoushiWiki.GetValue();
             model.Wiki1 = this.ed_Wiki1.GetValue();
             model.Wiki2 = this.ed_Wiki2.GetValue();
-
+            model.State = this.ed_State.GetValue<SystemState>();
             model.Save();
             this.Succeed();
-            this.BindData();    
+ 
         }
         catch(Exception ex)
         {
@@ -93,6 +95,7 @@ public partial class frmBmdxx : PageBase
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.Save();
+        //this.Save();
+        //this.BindData();   
     }
 }

@@ -118,6 +118,13 @@
                         <asp:TextBox ID="ed_Wiki2" runat="server" Rows="10" TextMode="MultiLine" Width="800px"></asp:TextBox>
                     </div>
                 </div>
+                <div class="control-group">
+                    <label class="control-label" for="ed_State">系统状态</label>
+                    <div class="controls">
+                        <asp:DropDownList ID="ed_State" runat="server">
+                        </asp:DropDownList>
+                    </div>
+                </div>
                 <div class="form-actions">
                     <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="btn" />
                 </div>
