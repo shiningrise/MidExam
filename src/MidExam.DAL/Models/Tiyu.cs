@@ -6,6 +6,7 @@ using System.Text;
 using Leafing.Data;
 using Leafing.Data.Definition;
 using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
 
 namespace MidExam.DAL.Models
 {
@@ -60,6 +61,14 @@ namespace MidExam.DAL.Models
         [Length(100)]
         [Description("凭据")]
         public string Pingju { get; set; }
+
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [AllowNull]
+        [Length(100)]
+        [Description("备注")]
+        public string Beizhu { get; set; }
 
         #endregion
         
@@ -123,5 +132,16 @@ namespace MidExam.DAL.Models
         [Description("记录状态")]
         [Length(100)]
         public string Status { get; set; }
+    }
+
+    /// <summary>
+    /// 体育 免考 缓考
+    /// </summary>
+    public enum TiyuLeibie
+    {
+        [Display(Name = "免考")]
+        MianKao = 1 ,
+        [Display(Name = "缓考")]
+        Huankao
     }
 }

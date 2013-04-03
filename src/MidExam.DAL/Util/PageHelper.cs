@@ -75,14 +75,14 @@ namespace MidExam.DAL.Util
             return c;
         }
 
-        public static void SetState(this WebControl c,RecordState state)
+        public static void SetValue<Tstate>(this WebControl c, Tstate state)
         {
             c.SetValue(state.ToString());
         }
 
-        public static RecordState GetState(this WebControl c)
+        public static Tstate GetValue<Tstate>(this WebControl c)
         {
-            return (RecordState)Enum.Parse(typeof(RecordState), c.GetValue());
+            return (Tstate)Enum.Parse(typeof(Tstate), c.GetValue());
         }
 
         public static string GetValue(this WebControl c)
