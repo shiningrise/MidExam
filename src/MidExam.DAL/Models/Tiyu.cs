@@ -49,10 +49,8 @@ namespace MidExam.DAL.Models
         /// <summary>
         /// 类别：免考，缓考
         /// </summary>
-        [AllowNull]
-        [Length(100)]
         [Description("类别")]
-        public string Leibie { get; set; }
+        public TiyuLeibie Leibie { get; set; }
 
         /// <summary>
         /// 凭据
@@ -78,19 +76,19 @@ namespace MidExam.DAL.Models
         /// 班级审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
         [Description("班级审核")]
-        public int Shenhe1 { get; set; }
+        public ShenheState Shenhe1 { get; set; }
 
         /// <summary>
         /// 学校审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
         [Description("学校审核")]
-        public int Shenhe2 { get; set; }
+        public ShenheState Shenhe2 { get; set; }
 
         /// <summary>
         /// 学校审核: 0:待审核，1：退回修改，2，审核不通过，3审核通过
         /// </summary>
         [Description("学校审核")]
-        public int Shenhe3 { get; set; }
+        public ShenheState Shenhe3 { get; set; }
 
         /// <summary>
         /// 学生备注

@@ -67,15 +67,15 @@ public partial class frmBmdxx : PageBase
             model.bmxxdm = this.ed_bmxxdm.GetValue();
             model.bmxxmc = this.ed_bmxxmc.GetValue();
 
-            model.TiyuState = this.ed_TiyuState.GetState();
+            model.TiyuState = this.ed_TiyuState.GetValue<RecordState>();
             model.TiyuWiki = this.ed_TiyuWiki.GetValue();
-            model.SuziState = this.ed_SuziState.GetState();
+            model.SuziState = this.ed_SuziState.GetValue<RecordState>();
             model.SuziWiki = this.ed_SuziWiki.GetValue();
-            model.ZhaoguState = this.ed_ZhaoguState.GetState(); 
+            model.ZhaoguState = this.ed_ZhaoguState.GetValue<RecordState>(); 
             model.ZhaoguWiki = this.ed_ZhaoguWiki.GetValue();
-            model.JiafenState = this.ed_JiafenState.GetState(); ;
+            model.JiafenState = this.ed_JiafenState.GetValue<RecordState>(); ;
             model.JiafenWiki = this.ed_JiafenWiki.GetValue();
-            model.YoushiState = this.ed_YoushiState.GetState();
+            model.YoushiState = this.ed_YoushiState.GetValue<RecordState>();
             model.YoushiWiki = this.ed_YoushiWiki.GetValue();
             model.Wiki1 = this.ed_Wiki1.GetValue();
             model.Wiki2 = this.ed_Wiki2.GetValue();
