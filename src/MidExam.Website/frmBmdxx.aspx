@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="btn" />
+                    <asp:Button ID="btnSave" runat="server" Text="保存" OnClick="btnSave_Click" CssClass="btn btn-primary" />
                 </div>
             </fieldset>
         </div>

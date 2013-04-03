@@ -83,8 +83,7 @@ public partial class frmBmdxx : PageBase
             model.Wiki2 = this.ed_Wiki2.GetValue();
             model.State = this.ed_State.GetValue<SystemState>();
             model.Save();
-            this.Succeed();
- 
+            this.Save(model);
         }
         catch(Exception ex)
         {
@@ -95,7 +94,7 @@ public partial class frmBmdxx : PageBase
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        //this.Save();
-        //this.BindData();   
+        this.Save();
+        this.BindData();   
     }
 }
