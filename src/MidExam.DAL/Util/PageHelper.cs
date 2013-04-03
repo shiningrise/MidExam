@@ -75,10 +75,10 @@ namespace MidExam.DAL.Util
             return c;
         }
 
-        public static void SetValue<Tstate>(this WebControl c, Tstate state)
-        {
-            c.SetValue(state.ToString());
-        }
+        //public static void SetValue<Tstate>(this WebControl c, Tstate state)
+        //{
+        //    c.SetValue(state.ToString());
+        //}
 
         public static Tstate GetValue<Tstate>(this WebControl c)
         {
