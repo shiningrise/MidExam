@@ -10,6 +10,7 @@ using System.ComponentModel;
 using MidExam.DAL.Util;
 using Leafing.Data.Definition;
 using System.Collections;
+using System.Text;
 
 /// <summary>
 ///PageBase 的摘要说明
@@ -73,30 +74,79 @@ public class PageBase : Leafing.Web.SmartPageBase
         }
     }
 
+    public enum AlertType
+    {
+        Warning,
+        Info,
+        Error,
+        Danger,
+        Success,
+    }
+
+    protected void Alert(string Content,AlertType alertType)
+    {
+        StringBuilder sb = new StringBuilder();
+        switch (alertType)
+        {
+            case AlertType.Warning:
+                sb.AppendLine("    <div class=\"alert alert-block\">");
+                break;
+            case AlertType.Info:
+                sb.AppendLine("    <div class=\"alert alert-info\">");
+                break;
+            case AlertType.Danger:
+            case AlertType.Error:
+                sb.AppendLine("    <div class=\"alert alert-error\">");
+                break;
+            case AlertType.Success:
+                sb.AppendLine("    <div class=\"alert alert-success\">");
+                break;
+            default:
+                sb.AppendLine("    <div class=\"alert\">");
+                break;
+        }
+        sb.AppendLine(" <button type=\"button\" class=\"close\" data-dismiss=\"alert\">&times;</button>");
+        sb.AppendLine(Content);
+        sb.AppendLine("    </div>");
+        System.Web.UI.WebControls.Literal ErrMsg = (System.Web.UI.WebControls.Literal)this.Page.Form.FindControl("ErrMsg");
+        if (ErrMsg == null)
+        {
+            ErrMsg = new System.Web.UI.WebControls.Literal();
+            this.Page.Form.Controls.AddAt(0, ErrMsg);
+        }
+        ErrMsg.Text = sb.ToString();
+    }
+
     #region 辅助方法
 
     protected void Succeed()
     {
-        this.MessageBox("操作成功");
+        Alert("操作成功.", AlertType.Success);
+        //this.MessageBox("操作成功");
     }
 
     protected void Succeed(string msg)
     {
-        this.MessageBox("操作成功:" + msg);
+        Alert("操作成功." + msg, AlertType.Success);
+        //this.MessageBox("操作成功:" + msg);
     }
 
-    protected void Fail(string strMsg)
+    protected void Fail(string msg)
     {
-        this.MessageBox("操作失败:" + strMsg);
+        Alert("操作失败:" + msg, AlertType.Error);
+        //this.MessageBox("操作失败:" + strMsg);
     }
 
     protected void Fail(Leafing.Data.ValidateHandler vh, string strMsg)
     {
+        StringBuilder sb = new StringBuilder();
+        sb.AppendLine("<ul>");
         foreach (var item in vh.ErrorMessages)
         {
-            strMsg += item.Value + "\n\b";
+            sb.AppendLine("<li>" + item.Value + "</li>");
         }
-        this.MessageBox(strMsg);
+        sb.AppendLine("</ul>");
+        this.MessageBox(sb.ToString());
     }
 
     protected void BindSelectDropDownList(DropDownList dl, IList li, string valueField, string TextField)
