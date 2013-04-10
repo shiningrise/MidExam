@@ -34,7 +34,8 @@
                              ValidationGroup="LoginUserValidationGroup">*</asp:RequiredFieldValidator>
                 </fieldset>
                 <p class="submitButton">
-                    <asp:Button ID="LoginButton" CssClass="btn" runat="server" CommandName="Login" Text="登录" ValidationGroup="LoginUserValidationGroup"/>
+                    <br />
+                    <asp:Button ID="LoginButton" runat="server" CommandName="Login" Text="登录" ValidationGroup="LoginUserValidationGroup"/>
                 </p>
             </div>
         </LayoutTemplate>
