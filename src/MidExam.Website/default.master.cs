@@ -36,7 +36,7 @@ public partial class _default : System.Web.UI.MasterPage
 
     private void BuildMenu(Menu menu)
     {
-   //     Bmdxx bmdxx = Bmdxx.FindOne(Condition.Empty);
+        Bmdxx bmdxx = Bmdxx.FindOne(Condition.Empty);
         menu.Items.Clear();
         MenuItem item = null;
 
@@ -75,7 +75,8 @@ public partial class _default : System.Web.UI.MasterPage
         {
             menu.Items.Add(CreateMenuItem("中考报名", "~/frmStudent.aspx"));
             menu.Items.Add(CreateMenuItem("填报志愿", "~/frmZhiyuanEdit.aspx"));
-            menu.Items.Add(CreateMenuItem("综合素质评价", "~/stu_Suzhi_List.aspx"));
+            if (bmdxx != null && bmdxx.SuziState != RecordState.Disable)
+                menu.Items.Add(CreateMenuItem("综合素质评价", "~/stu_Suzhi_List.aspx"));
         }
         if(this.Request.IsAuthenticated)
         {
