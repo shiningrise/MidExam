@@ -15,7 +15,7 @@ using System.Text;
 /// <summary>
 ///PageBase 的摘要说明
 /// </summary>
-public class PageBase : Leafing.Web.SmartPageBase
+public class PageBase : System.Web.UI.Page
 {
     public PageBase()
     {
@@ -142,6 +142,10 @@ public class PageBase : Leafing.Web.SmartPageBase
         //this.MessageBox("操作成功:" + msg);
     }
 
+    protected void Fail()
+    {
+        Alert("操作失败.", AlertType.Error);
+    }
     protected void Fail(string msg)
     {
         Alert("操作失败:" + msg, AlertType.Error);
