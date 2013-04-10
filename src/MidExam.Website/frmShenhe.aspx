@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="Server">
     <div align="center">
         户口
-        <asp:DropDownList ID="ddlHk" runat="server" >
+        <asp:DropDownList ID="ddlHk" runat="server" Width="80px" >
             <asp:ListItem Value="0">全部</asp:ListItem>
             <asp:ListItem Value="1">施教区</asp:ListItem>
             <asp:ListItem Value="2">市内外县</asp:ListItem>
@@ -14,7 +14,7 @@
         </asp:DropDownList>
         生源情况
         <asp:DropDownList ID="ddlSyqk" runat="server" AutoPostBack="True" 
-            onselectedindexchanged="ddlSyqk_SelectedIndexChanged">
+            onselectedindexchanged="ddlSyqk_SelectedIndexChanged" Width="100px">
             <asp:ListItem Value="0">全部</asp:ListItem>
             <asp:ListItem Value="0">0|本县户籍考生在本县学校就读(考听力、文化、收费)</asp:ListItem>
             <asp:ListItem Value="1">1|外县户籍考生在本县学校就读，并准备在就读县录取(考听力、文化、收费)</asp:ListItem>
@@ -25,11 +25,11 @@
 
     班级：
         <asp:DropDownList ID="ddlBj" runat="server" AutoPostBack="True" 
-            onselectedindexchanged="ddlBj_SelectedIndexChanged">
+            onselectedindexchanged="ddlBj_SelectedIndexChanged" Width="50px">
         </asp:DropDownList>
 
         排序
-        <asp:DropDownList ID="ddlOrder" runat="server">
+        <asp:DropDownList ID="ddlOrder" runat="server" Width="80px">
             <asp:ListItem Value="2">按户口</asp:ListItem>
             <asp:ListItem Value="0">按学籍号</asp:ListItem>
             <asp:ListItem Value="1">按报名序号</asp:ListItem>
