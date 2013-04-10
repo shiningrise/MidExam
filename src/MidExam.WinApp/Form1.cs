@@ -18,6 +18,7 @@ using System.Diagnostics;
 using Newtonsoft.Json;
 using System.IO;
 using System.Configuration;
+using System.Threading;
 
 namespace MidExam.WinApp
 {
@@ -207,23 +208,27 @@ namespace MidExam.WinApp
         /// <param name="e"></param>
         private void miUpdateTo_Click(object sender, EventArgs e)
         {
+            this.toolStripProgressBar1.Maximum = this.BmkList.Count;
+            Thread PullTcxmThread = new Thread(new ThreadStart(this.PullTcxm));
+            PullTcxmThread.Start();  
+        }
+
+        /// <summary>
+        /// 拉取体测项目
+        /// </summary>
+        public void PullTcxm()
+        {
             int i = 0;
             foreach (var bmk in this.BmkList)
             {
-
                 OleDbParameter[] param = new OleDbParameter[2];
                 param[0] = OleDbHelper.CreateInParam("tcxm", OleDbType.Char, 2, bmk.tcxm);
                 param[1] = OleDbHelper.CreateInParam("bmxh", OleDbType.Char, 9, bmk.bmxh);
                 string strSql = @"update bmk set tcxm = ? where bmxh = ? ";
                 OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, param);
-
-                //string strSql = string.Format("update bmk set tcxm = '{0}' where bmxh = '{1}' ",
-                //    bmk.tcxm, bmk.bmxh);
-                //OleDbHelper.ExcuteSQL(this.VfpConnection, strSql);
-
                 i++;
-                //if (i > 10)
-                //    break;
+                this.toolStripProgressBar1.Value = i;
+                this.toolStripStatusLabel1.Text = string.Format("拉取体测项目{0}/{1}", i, this.BmkList.Count);
             }
             MessageBox.Show("OK!");
         }
@@ -351,6 +356,14 @@ namespace MidExam.WinApp
 
         private void 更新志愿信息到中考系统报名点版ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.toolStripProgressBar1.Maximum = this.BmkList.Count;
+            Thread PullZhiyuan = new Thread(new ThreadStart(this.PullZhiyuan));
+            PullZhiyuan.Start();  
+        }
+
+        private void PullZhiyuan()
+        {
+            int i = 0;
             foreach (var bmk in this.BmkList)
             {
                 ArrayList al = new ArrayList();
@@ -374,6 +387,9 @@ namespace MidExam.WinApp
                 strSql += " set zy11 = ? , zy12 = ? ,zy21 = ? , zy22 = ?,zy31 = ? , zy32 = ?, zy33 = ? , jb = ? , fc = ?  ";
                 strSql += " where bmxh = ? ";
                 OleDbHelper.ExcuteSQL(this.VfpConnection, strSql, (OleDbParameter[])al.ToArray(typeof(OleDbParameter)));
+                i++;
+                this.toolStripProgressBar1.Value = i;
+                this.toolStripStatusLabel1.Text = string.Format("拉取志愿信息{0}/{1}", i, this.BmkList.Count);
             }
             MessageBox.Show("OK!");
         }
