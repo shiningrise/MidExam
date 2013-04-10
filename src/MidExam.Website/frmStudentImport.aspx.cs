@@ -140,12 +140,20 @@ public partial class frmStudentImport : PageBase
 
     protected void btnRemoteImport_Click(object sender, EventArgs e)
     {
-        var client = new RestClient(ConfigurationManager.AppSettings["RestClient"].ToString());
-        var request = new RestRequest(ConfigurationManager.AppSettings["RestRequest"].ToString(), Method.GET);
+        var client = new RestClient(this.ed_RestClient.GetValue());
+        var request = new RestRequest(this.ed_RestRequest.GetValue(), Method.GET);
         IRestResponse response = client.Execute(request);
         var content = response.Content;
-        ImportFromJson(content);
-        this.Succeed();
+        if (content.IsNullOrEmpty() == false)
+        {
+            ImportFromJson(content);
+            this.Succeed();
+        }
+        else
+        {
+            this.Fail();
+        }
+        
     }
 
     private static void ImportFromJson(string jsonContent)
