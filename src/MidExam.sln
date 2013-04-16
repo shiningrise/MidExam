@@ -23,7 +23,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "MidExam.Website", "MidExam.
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "58952"
+		VWDPort = "24828"
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbEntryMembership", "DbEntryMembership\DbEntryMembership.csproj", "{B98BE9E5-C680-46C5-ABDB-79870448584F}"
