@@ -95,6 +95,7 @@ public partial class frmStudentPwd : PageBase
             this.BindData();
         }
     }
+
     protected void btnPwd_Click(object sender, EventArgs e)
     {
         PasswordGenerator pg = new PasswordGenerator();
