@@ -61,8 +61,10 @@ public partial class _default : System.Web.UI.MasterPage
         //    return;
         if (this.Page.User.IsInRole("Administrators") || this.Page.User.IsInRole("Teachers"))
         {
-            item = CreateMenuItem("数据录入", "~/InputIndex.aspx");
+            item = CreateMenuItem("数据录入", "");
             menu.Items.Add(item);
+            item.ChildItems.Add(CreateMenuItem("数据录入", "~/InputIndex.aspx"));
+
             item = CreateMenuItem("查询汇总","");
             menu.Items.Add(item);
 
@@ -80,6 +82,17 @@ public partial class _default : System.Web.UI.MasterPage
             if (bmdxx != null && bmdxx.SuziState != RecordState.Disable)
                 menu.Items.Add(CreateMenuItem("综合素质评价", "~/stu_Suzhi_List.aspx"));
         }
+
+        if (this.Page.User.IsInRole("Administrators") || this.Page.User.IsInRole("input"))
+        {
+            item = CreateMenuItem("游泳管理", "");
+            menu.Items.Add(item);
+
+            item.ChildItems.Add(CreateMenuItem("游泳设置", "~/Youyong_Index.aspx"));
+            item.ChildItems.Add(CreateMenuItem("游泳录入", "~/Youyong_Input.aspx"));
+            item.ChildItems.Add(CreateMenuItem("游泳审核", "~/Youyong_Shenhe.aspx"));
+        }
+
         if(this.Request.IsAuthenticated)
         {
             menu.Items.Add(CreateMenuItem("更改密码", "~/Account/ChangePassword.aspx"));
