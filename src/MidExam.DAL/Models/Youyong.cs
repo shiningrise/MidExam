@@ -62,7 +62,7 @@ namespace MidExam.DAL.Models
         public string UserName1 { get; set; }
 
         [Description("1录时间")]
-        public DateTime? DateTime1 { get; set; }
+        public DateTime? InputDateTime1 { get; set; }
 
         #endregion
 
@@ -79,7 +79,7 @@ namespace MidExam.DAL.Models
         public string UserName2 { get; set; }
 
         [Description("2录时间")]
-        public DateTime? DateTime2 { get; set; }
+        public DateTime? InputDateTime2 { get; set; }
 
         #endregion
 
@@ -96,7 +96,7 @@ namespace MidExam.DAL.Models
         public string UserName { get; set; }
 
         [Description("录入时间")]
-        public DateTime? DateTime { get; set; }
+        public DateTime? InputDateTime { get; set; }
 
         #endregion
 

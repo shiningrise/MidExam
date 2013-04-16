@@ -125,10 +125,16 @@ public class PageBase : System.Web.UI.Page
             ErrMsg = new System.Web.UI.WebControls.Literal();
             this.Page.Form.Controls.AddAt(0, ErrMsg);
         }
-        ErrMsg.Text = sb.ToString();
+        ErrMsg.Text += sb.ToString();
     }
 
     #region 辅助方法
+
+    protected void Info(string msg)
+    {
+        Alert("提示:" + msg, AlertType.Info);
+        //this.MessageBox("操作成功");
+    }
 
     protected void Succeed()
     {

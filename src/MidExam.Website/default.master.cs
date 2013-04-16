@@ -16,6 +16,7 @@ public partial class _default : System.Web.UI.MasterPage
         { 
             
         }
+        this.ErrMsg.Text = string.Empty;
     }
 
     protected string Url(string url)
@@ -87,10 +88,17 @@ public partial class _default : System.Web.UI.MasterPage
         {
             item = CreateMenuItem("游泳管理", "");
             menu.Items.Add(item);
-
-            item.ChildItems.Add(CreateMenuItem("游泳设置", "~/Youyong_Index.aspx"));
-            item.ChildItems.Add(CreateMenuItem("游泳录入", "~/Youyong_Input.aspx"));
-            item.ChildItems.Add(CreateMenuItem("游泳审核", "~/Youyong_Shenhe.aspx"));
+            
+            if (this.Page.User.IsInRole("Administrators"))
+            {
+                item.ChildItems.Add(CreateMenuItem("游泳设置", "~/Youyong_Index.aspx"));
+                item.ChildItems.Add(CreateMenuItem("游泳录入", "~/Youyong_Input.aspx"));
+                item.ChildItems.Add(CreateMenuItem("游泳审核", "~/Youyong_Shenhe.aspx"));
+            }
+            else if (this.Page.User.IsInRole("input"))
+            {
+                item.ChildItems.Add(CreateMenuItem("游泳录入", "~/Youyong_Input.aspx"));
+            }
         }
 
         if(this.Request.IsAuthenticated)

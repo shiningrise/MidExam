@@ -12,7 +12,7 @@ public partial class Youyong_Index : PageBase
 {
     protected override void AddPermitRoles()
     {
-        this.AddPermitRole("input");
+        //this.AddPermitRole("input");
 
         base.AddPermitRoles();
     }
