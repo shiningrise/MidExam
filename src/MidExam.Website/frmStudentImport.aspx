@@ -10,10 +10,12 @@
     请选择指定格式的Excel文件，或json格式文本文件
     <br />
     <asp:FileUpload ID="fileUpload" runat="server" Width="250px" />
-    <asp:Button ID="btnImport" runat="server" Text="导入" onclick="btnImport_Click" CssClass="btn" />
+    <asp:Button ID="btnImport" runat="server" Text="导入" OnClick="btnImport_Click" CssClass="btn" />
     <hr />
     远程地址：<asp:TextBox ID="ed_RestClient" runat="server"></asp:TextBox>
     远程路径：<asp:TextBox ID="ed_RestRequest" runat="server"></asp:TextBox>
-    <asp:Button ID="btnRemoteImport" runat="server" Text="远程导入" CssClass="btn" 
-        onclick="btnRemoteImport_Click" />
+    <asp:Button ID="btnRemoteImport" runat="server" Text="远程导入" CssClass="btn" OnClick="btnRemoteImport_Click" />
+    <hr />
+    <asp:Button ID="btnImportFromDatapath" runat="server" 
+        Text="从Data/Dbf/userdbfs/bmk.dbf导入" onclick="btnImportFromDatapath_Click" />
 </asp:Content>

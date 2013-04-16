@@ -43,7 +43,7 @@ public partial class frmStudentImport : PageBase
         }
         string fileExt = Path.GetExtension(fileUpload.FileName);
         fileExt = fileExt.ToLower();
-        string[] fileExtAllow = new[]{".xls;",".xlsx",".txt"};
+        string[] fileExtAllow = new[] { ".xls;", ".xlsx", ".txt" };
         if (!fileExtAllow.Contains(fileExt))
         {
             JsUtil.MessageBox(this, "只能上传指定格式文件");
@@ -68,7 +68,7 @@ public partial class frmStudentImport : PageBase
         {
             Fail(ex.Message);
         }
-        
+
     }
 
 
@@ -153,7 +153,7 @@ public partial class frmStudentImport : PageBase
         {
             this.Fail();
         }
-        
+
     }
 
     private static void ImportFromJson(string jsonContent)
@@ -161,7 +161,15 @@ public partial class frmStudentImport : PageBase
         var list = JsonConvert.DeserializeObject<List<Bmk>>(jsonContent);
         foreach (var item in list)
         {
-            var bmk = Bmk.FindOne(p => p.RecordGuid == item.RecordGuid);
+            Bmk bmk = null;
+            if (item.bmxh.IsNullOrEmpty() == false)
+            {
+                bmk = Bmk.FindOne(p => p.bmxh == item.bmxh);
+            }
+            else
+            {
+                bmk = Bmk.FindOne(p => p.RecordGuid == item.RecordGuid);
+            }
             if (bmk == null)
             {
                 bmk = new Bmk();
@@ -169,5 +177,114 @@ public partial class frmStudentImport : PageBase
             ModelCopier.CopyModel(item, bmk, new[] { "Id" });
             bmk.Save();
         }
+    }
+    /// <summary>
+    /// 从~/Data/Dbf/userdbfs/bmk.dbf导入数据
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void btnImportFromDatapath_Click(object sender, EventArgs e)
+    {
+        string dbfPath = Server.MapPath("~/Data/Dbf/userdbfs/");
+        string dbfTable = "bmk.dbf";
+
+        DataTable dt = DbfHelper.ToDataTable(dbfPath, dbfTable);
+        foreach (DataRow dr in dt.Rows)
+        {
+            string bmxh = dr["bmxh"].ToString();
+            Bmk bmk = Bmk.FindOne(p => p.bmxh == bmxh);
+            if (bmk == null)
+            {
+                bmk = new Bmk();
+                bmk.RecordGuid = Guid.NewGuid();
+                bmk.bmxh = bmxh;
+            }
+            bmk.xm = dr["xm"].ToString();
+            bmk.xb = dr["xb"].ToString();
+            bmk.xstbh = dr["xstbh"].ToString();
+
+            bmk.bmxh = dr["bmxh"].ToString();
+            bmk.zkzh = dr["zkzh"].ToString();
+            bmk.xm = dr["xm"].ToString();
+            bmk.sfzh = dr["sfzh"].ToString();
+            bmk.xb = dr["xb"].ToString();
+            bmk.mz = dr["mz"].ToString();
+            bmk.csny = dr["csny"].ToString();
+            bmk.ty = dr["ty"].ToString();
+            bmk.tcxm = dr["tcxm"].ToString();
+            bmk.hk = dr["hk"].ToString();
+            bmk.xz = dr["xz"].ToString();
+            bmk.kslb = dr["kslb"].ToString();
+            bmk.byxxdm = dr["byxxdm"].ToString();
+            bmk.byxxmc = dr["byxxmc"].ToString();
+            bmk.xh = dr["xh"].ToString();
+            bmk.bj = dr["class"].ToString();
+
+            bmk.kl = dr["kl"].ToString();
+            bmk.jtzz = dr["jtzz"].ToString();
+            bmk.tel = dr["tel"].ToString();
+            bmk.post = dr["post"].ToString();
+            bmk.bz1 = dr["bz1"].ToString();
+            bmk.bz2 = dr["bz2"].ToString();
+            bmk.bz3 = dr["bz3"].ToString();
+            bmk.bz4 = dr["bz4"].ToString();
+            bmk.xstbh = dr["xstbh"].ToString();
+            bmk.kddm = dr["kddm"].ToString();
+            bmk.kdmc = dr["kdmc"].ToString();
+            bmk.scbm = dr["scbm"].ToString();
+            bmk.tbsch = dr["tbsch"].ToString();
+            bmk.zwh = dr["zwh"].ToString();
+            bmk.scmh = dr["scmh"].ToString();
+            //bmk.km1 = dr["km1"].to();
+            //bmk.km2 = dr["km2"].ToString();
+            //bmk.km3 = dr["km3"].ToString();
+            //bmk.km31 = dr["km31"].ToString();
+            //bmk.km32 = dr["km32"].ToString();
+            //bmk.km4 = dr["km4"].ToString();
+            //bmk.km5 = dr["km5"].ToString();
+            //bmk.km51 = dr["km51"].ToString();
+            //bmk.km61 = dr["km61"].ToString();
+            //bmk.km62 = dr["km62"].ToString();
+            //bmk.km621 = dr["km621"].ToString();
+            //bmk.km63 = dr["km63"].ToString();
+            //bmk.km6 = dr["km6"].ToString();
+            bmk.km71 = dr["km71"].ToString();
+            bmk.km72 = dr["km72"].ToString();
+            bmk.km73 = dr["km73"].ToString();
+            bmk.km74 = dr["km74"].ToString();
+            bmk.km81 = dr["km81"].ToString();
+            //bmk.tyf = dr["tyf"].ToString();
+            //bmk.tzf = dr["tzf"].ToString();
+            //bmk.tcf = dr["tcf"].ToString();
+            //bmk.zf = dr["zf"].ToString();
+            //bmk.tot1 = dr["tot1"].ToString();
+            //bmk.tot2 = dr["tot2"].ToString();
+            //bmk.mch = dr["mch"].ToString();
+            //bmk.tzdm = dr["tzdm"].ToString();
+            //bmk.tzmc = dr["tzmc"].ToString();
+            bmk.tcdm = dr["tcdm"].ToString();
+            bmk.tcmc = dr["tcmc"].ToString();
+            bmk.zy11 = dr["zy11"].ToString();
+            bmk.zy12 = dr["zy12"].ToString();
+            bmk.zy13 = dr["zy13"].ToString();
+            bmk.zy21 = dr["zy21"].ToString();
+            bmk.zy22 = dr["zy22"].ToString();
+            bmk.zy23 = dr["zy23"].ToString();
+            bmk.zy31 = dr["zy31"].ToString();
+            bmk.zy32 = dr["zy32"].ToString();
+            bmk.zy33 = dr["zy33"].ToString();
+            bmk.zy41 = dr["zy41"].ToString();
+            bmk.zy42 = dr["zy42"].ToString();
+            bmk.zy43 = dr["zy43"].ToString();
+            bmk.zy51 = dr["zy51"].ToString();
+            bmk.zy52 = dr["zy52"].ToString();
+            bmk.zy53 = dr["zy53"].ToString();
+            bmk.fc = dr["fc"].ToString();
+            bmk.jb = dr["jb"].ToString();
+            bmk.syqk = dr["syqk"].ToString();
+
+            bmk.Save();
+        }
+        this.Succeed("导入完毕!");
     }
 }
