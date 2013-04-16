@@ -25,7 +25,7 @@
 
     班级：
         <asp:DropDownList ID="ddlBj" runat="server" AutoPostBack="True" 
-            onselectedindexchanged="ddlBj_SelectedIndexChanged" Width="50px">
+            onselectedindexchanged="ddlBj_SelectedIndexChanged" Width="80px">
         </asp:DropDownList>
 
         排序
