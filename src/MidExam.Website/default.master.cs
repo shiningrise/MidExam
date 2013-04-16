@@ -54,6 +54,8 @@ public partial class _default : System.Web.UI.MasterPage
             item.ChildItems.Add(CreateMenuItem("批量设置", "~/frmBatchSeting.aspx"));
             item.ChildItems.Add(CreateMenuItem("报名点设置", "~/frmBmdxx.aspx"));
             item.ChildItems.Add(CreateMenuItem("系统管理", "~/frmSystem.aspx"));
+            item.ChildItems.Add(CreateMenuItem("用户管理", "~/User_Index.aspx"));
+
         }
         //if (bmdxx == null)
         //    return;
