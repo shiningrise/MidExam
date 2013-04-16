@@ -69,14 +69,35 @@ public partial class _Default : System.Web.UI.Page
             Roles.CreateRole("Teachers");
         if (!Roles.RoleExists("Students"))
             Roles.CreateRole("Students");
+        if (!Roles.RoleExists("input"))
+            Roles.CreateRole("input");
+
         if (Membership.GetUser("admin") == null)
         {
-            Membership.CreateUser("admin", "admin");
+            Membership.CreateUser("admin", "input");
         }
+        //录入员
+        if (Membership.GetUser("input1") == null)
+        {
+            Membership.CreateUser("input1", "input1");
+        }
+        if (Membership.GetUser("input2") == null)
+        {
+            Membership.CreateUser("input2", "input2");
+        }
+
         if (!Roles.IsUserInRole("admin", "Administrators"))
             Roles.AddUserToRole("admin", "Administrators");
         if (!Roles.IsUserInRole("admin", "Teachers"))
             Roles.AddUserToRole("admin", "Teachers");
+        if (!Roles.IsUserInRole("admin", "input"))
+            Roles.AddUserToRole("admin", "input");
+
+        if (!Roles.IsUserInRole("input1", "input"))
+            Roles.AddUserToRole("input1", "input");
+        if (!Roles.IsUserInRole("input2", "input"))
+            Roles.AddUserToRole("input2", "input");
+
     }
 
     private static void CreateRole(string roleName)
