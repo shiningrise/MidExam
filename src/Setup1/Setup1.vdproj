@@ -11,8 +11,33 @@
 "SccLocalPath" = "8:"
 "SccAuxPath" = "8:"
 "SccProvider" = "8:"
+"BackwardsCompatibleGUIDGeneration" = "8:TRUE"
     "Hierarchy"
     {
+        "Entry"
+        {
+        "MsmKey" = "8:_053B9C6BAEE041448766D5D965CE0E7D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_501AF354FB984A2DA01E54124BADB502"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EE7FDD3786224927874437C3AE7D3E68"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_053B9C6BAEE041448766D5D965CE0E7D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -31,6 +56,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -51,7 +84,7 @@
             {
             "Enabled" = "11:TRUE"
             "PromptEnabled" = "11:TRUE"
-            "PrerequisitesLocation" = "2:1"
+            "PrerequisitesLocation" = "2:2"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
                 "Items"
@@ -79,6 +112,48 @@
     {
         "CustomAction"
         {
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_0759BE59C1B1460DBBAB375C6DE5D2FA"
+            {
+            "Name" = "8:Starter.exe"
+            "Condition" = "8:"
+            "Object" = "8:_053B9C6BAEE041448766D5D965CE0E7D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:1"
+            "Arguments" = "8:\"[ProgramFilesFolder]\\UltiDev\\Web Server\\UWS.RegApp.exe\" /r /AppID=\"[UpgradeCode]\" /aspnet:4 /path:\"[TARGETDIR]\\WebApp\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_4BBD1BBD_75B0_40AF_8877_0CADA53CA651"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_5A60FB38EF5946B09E0A0595F04A6D30"
+            {
+            "Name" = "8:Starter.exe"
+            "Condition" = "8:"
+            "Object" = "8:_053B9C6BAEE041448766D5D965CE0E7D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:3"
+            "Arguments" = "8:\"[ProgramFilesFolder]\\UltiDev\\Web Server\\UWS.RegApp.exe\" /r /AppID=\"[UpgradeCode]\" /path:\"[TARGETDIR]\\WebApp\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_E70FB42D_17E7_4099_8D15_85026751B848"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
+            "{4AA51A2D-7D85-4A59-BA75-B0809FC8B380}:_66A9ABD146C348AEA3C57832679C33B8"
+            {
+            "Name" = "8:Starter.exe"
+            "Condition" = "8:"
+            "Object" = "8:_053B9C6BAEE041448766D5D965CE0E7D"
+            "FileType" = "3:2"
+            "InstallAction" = "3:4"
+            "Arguments" = "8:\"[ProgramFilesFolder]\\UltiDev\\Web Server\\UWS.RegApp.exe\" /r /AppID=\"[UpgradeCode]\" /path:\"[TARGETDIR]\\WebApp\""
+            "EntryPoint" = "8:"
+            "Sequence" = "3:1"
+            "Identifier" = "8:_4FC73B4F_01CE_4775_B16E_3B2E9F954E6E"
+            "InstallerClass" = "11:FALSE"
+            "CustomActionData" = "8:"
+            }
         }
         "DefaultFeature"
         {
@@ -90,10 +165,89 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_E3BE4A52CE8B4C23A773FFD17566B179"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:ANY"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
+                }
             }
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_053B9C6BAEE041448766D5D965CE0E7D"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Starter2, Version=1.0.2571.31782, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_053B9C6BAEE041448766D5D965CE0E7D"
+                    {
+                    "Name" = "8:Starter.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:C:\\Program Files\\UltiDev\\Web Server\\Redist\\Starter.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_71927A1D4AF64BC69987B87CF7FC85FE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_501AF354FB984A2DA01E54124BADB502"
+            {
+            "SourcePath" = "8:..\\checkpower1.vbs"
+            "TargetName" = "8:checkpower1.vbs"
+            "Tag" = "8:"
+            "Folder" = "8:_71927A1D4AF64BC69987B87CF7FC85FE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EE7FDD3786224927874437C3AE7D3E68"
+            {
+            "SourcePath" = "8:..\\checkpower.bat"
+            "TargetName" = "8:checkpower.bat"
+            "Tag" = "8:"
+            "Folder" = "8:_71927A1D4AF64BC69987B87CF7FC85FE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -110,6 +264,17 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_44CD211117BE416FBCF30438BA6A067F"
+                    {
+                    "Name" = "8:WebApp"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_F1793BE6EC0946A7B4B8D81244945EA4"
+                        "Folders"
+                        {
+                        }
+                    }
                 }
             }
             "{1525181F-901A-416C-8A58-119130FE478E}:_8B5FDB53334F46AF95F8644E35901C64"
@@ -119,6 +284,17 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:ProgramMenuFolder"
+                "Folders"
+                {
+                }
+            }
+            "{1525181F-901A-416C-8A58-119130FE478E}:_9DF717C4A5C74F1AB771DF67C1369593"
+            {
+            "Name" = "8:#1922"
+            "AlwaysCreate" = "11:FALSE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Property" = "8:TemplateFolder"
                 "Folders"
                 {
                 }
@@ -137,13 +313,6 @@
         }
         "LaunchCondition"
         {
-            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_4035663F10F94E688776F322CB35BBCF"
-            {
-            "Name" = "8:Condition1"
-            "Condition" = "8:"
-            "Message" = "8:<错误信息>"
-            "InstallUrl" = "8:"
-            }
         }
         "Locator"
         {
@@ -156,24 +325,24 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Setup1"
-        "ProductCode" = "8:{20C1B498-34C1-4027-9B57-FAC143838E95}"
-        "PackageCode" = "8:{A568C3E6-55BF-4D65-944A-76AE1D64CB02}"
+        "ProductName" = "8:分布式中考报名系统"
+        "ProductCode" = "8:{3A9B7783-8E10-4955-ACB7-D06A2C85BE1B}"
+        "PackageCode" = "8:{4CDE8003-2FB7-43A5-9A1A-32D150AEF3D7}"
         "UpgradeCode" = "8:{FE925BAF-8CE6-4B8A-8777-64F5CB3DE68D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
-        "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
-        "Manufacturer" = "8:wz16"
+        "InstallAllUsers" = "11:TRUE"
+        "ProductVersion" = "8:1.0.1"
+        "Manufacturer" = "8:wxy"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:Setup1"
+        "Title" = "8:分布式中考报名系统"
         "Subject" = "8:"
-        "ARPCONTACT" = "8:wz16"
+        "ARPCONTACT" = "8:wxy"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:"
+        "ARPCOMMENTS" = "8:分布式中考报名系统"
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -677,12 +846,12 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_4E3430B6746C4184867F770699C09FFA"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_862BFC25F2F24B0A8CF0E3B362C47D82"
             {
             "SourcePath" = "8:"
             "TargetName" = "8:"
             "Tag" = "8:"
-            "Folder" = "8:_71927A1D4AF64BC69987B87CF7FC85FE"
+            "Folder" = "8:_44CD211117BE416FBCF30438BA6A067F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
