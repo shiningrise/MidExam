@@ -196,7 +196,7 @@ public partial class frmStudentImport : PageBase
             if (bmk == null)
             {
                 bmk = new Bmk();
-                bmk.RecordGuid = Guid.NewGuid();
+                bmk.RecordGuid = Guid.NewGuid().ToString();
                 bmk.bmxh = bmxh;
             }
             bmk.xm = dr["xm"].ToString();

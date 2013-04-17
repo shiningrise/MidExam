@@ -27,7 +27,8 @@ namespace MidExam.DAL.Models
         /// 报名表GUID
         /// </summary>
         [Description("报名表GUID")]
-        public Guid BmkGuid { get; set; }
+        [AllowNull]
+        public string BmkGuid { get; set; }
 
         #endregion
 

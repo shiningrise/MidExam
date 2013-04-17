@@ -74,7 +74,7 @@ public partial class _Default : System.Web.UI.Page
 
         if (Membership.GetUser("admin") == null)
         {
-            Membership.CreateUser("admin", "input");
+            Membership.CreateUser("admin", "admin");
         }
         //录入员
         if (Membership.GetUser("input1") == null)

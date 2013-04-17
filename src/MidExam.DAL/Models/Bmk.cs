@@ -303,24 +303,27 @@ namespace MidExam.DAL
         /// 记录Guid
         /// </summary>
         [Description("记录GUID")]
-        public Guid RecordGuid { get; set; }
+        [AllowNull]
+        public string RecordGuid { get; set; }
         /// <summary>
         /// 当前记录日志GUID
         /// </summary>
-        public Guid CurHistoryGuid { get; set; }
+        [AllowNull]
+        public string CurHistoryGuid { get; set; }
         /// <summary>
         /// 前记录日志GUID
         /// </summary>
-        public Guid PreHistoryGuid { get; set; }
+        [AllowNull]
+        public string PreHistoryGuid { get; set; }
 
         /// <summary>
         /// 最后编辑时间
         /// </summary>
         [Description("最后编辑时间")]
-        public DateTime? LastEditTime { get; set; }
+        public DateTime LastEditTime { get; set; }
 
-        [Description("记录状态")]
-        public DateTime? Status { get; set; }
+        [Description("记录状态"),AllowNull,Length(50)]
+        public string Status { get; set; }
 
         #endregion
 
@@ -504,7 +507,9 @@ namespace MidExam.DAL
         {
             get
             {
-                string strSql = "SELECT count( distinct class ) FROM Bmk";
+                //string strSql = "SELECT count( distinct class ) FROM Bmk";
+                //SELECT Count(1) FROM (SELECT distinct class FROM Bmk)
+                string strSql = "SELECT Count(1) FROM (SELECT distinct class FROM Bmk)";
                 object count = DbEntry.Provider.ExecuteScalar(strSql);
                 if (count != null)
                 {

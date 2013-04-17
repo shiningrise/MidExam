@@ -60,7 +60,7 @@ public partial class stu_Tiyu_Edit : StudentPageBase
             model.xm = this.CurBmk.xm;
             //model.Id = this.ed_Id.GetValue();
             model.bmxxdm = this.ed_bmxxdm.GetValue();
-            model.BmkGuid = this.ed_BmkGuid.GetValue().ToGuid();
+            model.BmkGuid = this.ed_BmkGuid.GetValue();
             model.bmxh = this.ed_bmxh.GetValue();
             model.xm = this.ed_xm.GetValue();
             model.Leibie = this.ed_Leibie.GetValue<TiyuLeibie>();

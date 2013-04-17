@@ -478,18 +478,18 @@ public partial class frmStudent : PageBase
                 ValidateHandler vh = new ValidateHandler(true);
                 if (vh.ValidateObject(this.CurBmk))
                 {
-                    if (this.CurBmk.RecordGuid == Guid.Empty)
+                    if (this.CurBmk.RecordGuid == Guid.Empty.ToString())
                     {
-                        this.CurBmk.RecordGuid = Guid.NewGuid();
+                        this.CurBmk.RecordGuid = Guid.NewGuid().ToString();
                     }
-                    if (this.CurBmk.CurHistoryGuid == Guid.Empty)
+                    if (this.CurBmk.CurHistoryGuid == Guid.Empty.ToString())
                     {
-                        this.CurBmk.CurHistoryGuid = Guid.NewGuid();
+                        this.CurBmk.CurHistoryGuid = Guid.NewGuid().ToString();
                     }
                     else
                     {
                         this.CurBmk.PreHistoryGuid = this.CurBmk.CurHistoryGuid;
-                        this.CurBmk.CurHistoryGuid = Guid.NewGuid();
+                        this.CurBmk.CurHistoryGuid = Guid.NewGuid().ToString();
                     }
                     this.CurBmk.Save();
                     this.Save2File(this.CurBmk);

@@ -7,7 +7,7 @@ namespace DbEntryMembership
 {
     public class DbEntryMembershipUser : DbObjectModel<DbEntryMembershipUser>
     {
-        [Length(256), Index(UNIQUE = true),Description("用户名")]
+        [Length(50), Index(UNIQUE = true),Description("用户名")]
         public string UserName { get; set; }
 
         [Length(128)]
@@ -21,17 +21,17 @@ namespace DbEntryMembership
         [Description("密钥")]
         public string PasswordSalt { get; set; }
 
-        [Length(256)]
+        [Length(50)]
         [AllowNull]
         [Description("Email")]
         public string Email { get; set; }
 
-        [Length(256)]
+        [Length(50)]
         [AllowNull]
         [Description("LoweredEmail")]
         public string LoweredEmail { get; set; }
 
-        [Length(256)]
+        [Length(50)]
         [AllowNull]
         [Description("密码问题")]
         public string PasswordQuestion { get; set; }
@@ -68,7 +68,7 @@ namespace DbEntryMembership
         [Description("密码问题错误开始时间")]
         public DateTime FailedAnswerStart { get; set; }
 
-        [Length(3000)]
+        [Length(50)]
         [AllowNull]
         [Description("备注")]
         public string Comment { get; set; }
