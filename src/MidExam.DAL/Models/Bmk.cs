@@ -303,17 +303,17 @@ namespace MidExam.DAL
         /// 记录Guid
         /// </summary>
         [Description("记录GUID")]
-        [AllowNull]
+        [AllowNull,Length(50)]
         public string RecordGuid { get; set; }
         /// <summary>
         /// 当前记录日志GUID
         /// </summary>
-        [AllowNull]
+        [AllowNull, Length(50)]
         public string CurHistoryGuid { get; set; }
         /// <summary>
         /// 前记录日志GUID
         /// </summary>
-        [AllowNull]
+        [AllowNull, Length(50)]
         public string PreHistoryGuid { get; set; }
 
         /// <summary>
@@ -509,7 +509,7 @@ namespace MidExam.DAL
             {
                 //string strSql = "SELECT count( distinct class ) FROM Bmk";
                 //SELECT Count(1) FROM (SELECT distinct class FROM Bmk)
-                string strSql = "SELECT Count(1) FROM (SELECT distinct class FROM Bmk)";
+                string strSql = "SELECT Count(1) FROM (SELECT distinct class FROM Bmk) as t ";
                 object count = DbEntry.Provider.ExecuteScalar(strSql);
                 if (count != null)
                 {
