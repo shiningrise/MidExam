@@ -45,6 +45,12 @@ namespace MidExam.DAL.Models
         [Description("性别")]
         public string xb { get; set; }
 
+        [Description("组别")]
+        public int? zubie { get; set; }
+
+        [Description("序号")]
+        public int? xuhao { get; set; }
+
         #endregion
 
         #region 表格主要内容

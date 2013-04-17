@@ -155,7 +155,7 @@ public class PageBase : System.Web.UI.Page
     protected void Fail(string msg)
     {
         Alert("操作失败:" + msg, AlertType.Error);
-        //this.MessageBox("操作失败:" + strMsg);
+        this.MessageBox("操作失败:" + msg);
     }
 
     protected void Fail(Leafing.Data.ValidateHandler vh, string strMsg)

@@ -63,6 +63,9 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                }
             }
         }
         "Release"
@@ -327,7 +330,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:分布式中考报名系统"
         "ProductCode" = "8:{3A9B7783-8E10-4955-ACB7-D06A2C85BE1B}"
-        "PackageCode" = "8:{E3C4C496-45F9-4925-A0C6-637C238E9DCC}"
+        "PackageCode" = "8:{DC127437-2B59-4E13-B589-2DEE47C92829}"
         "UpgradeCode" = "8:{FE925BAF-8CE6-4B8A-8777-64F5CB3DE68D}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

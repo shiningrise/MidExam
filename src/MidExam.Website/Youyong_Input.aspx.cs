@@ -99,8 +99,10 @@ public partial class Youyong_Input : PageBase
                             , youyong.bmxh, chengji, youyong.Chengji2));
                     }
                     youyong.Chengji1 = chengji;
+                    
                     youyong.InputDateTime1 = System.DateTime.Now;
-                    this.Succeed(string.Format("1录成功,报名序号{0}成绩{1}分{2}秒", youyong.bmxh, chengji / 60, chengji % 60));
+                    this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
+                        , youyong.bmxh,youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60,Defen(youyong)));
                 }
 
                 if ("input2" == this.User.Identity.Name)
@@ -112,12 +114,14 @@ public partial class Youyong_Input : PageBase
                     }
                     youyong.Chengji2 = chengji;
                     youyong.InputDateTime2 = System.DateTime.Now;
-                    this.Succeed(string.Format("2录成功,报名序号{0}成绩{1}分{2}秒", youyong.bmxh, chengji / 60, chengji % 60));
+                    this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
+                        , youyong.bmxh, youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60, Defen(youyong)));
                 }
                 if (youyong.Chengji1 != null && youyong.Chengji2 != null 
                     && youyong.Chengji1 == youyong.Chengji2)
                 {
                     youyong.Chengji = youyong.Chengji1;
+                    youyong.Fenshu = Defen(youyong);
                     youyong.InputCheck = true;
                 }
                 else
@@ -130,6 +134,23 @@ public partial class Youyong_Input : PageBase
             }
         }
         this.Succeed();
+    }
+
+    private object GetXb(string xb)
+    {
+        if (xb == "1")
+            return "男";
+        else if (xb == "2")
+            return "女";
+        else
+            return "性别有误";
+    }
+
+    private int? Defen(Youyong youyong)
+    {
+        int? fenshu = -1;
+
+        return fenshu;
     }
 
 }
