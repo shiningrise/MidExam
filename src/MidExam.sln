@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wxy.CodeGen", "Wxy.CodeGen\
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup1", "Setup1\Setup1.vdproj", "{BDAC4F48-46D2-4228-A076-F5FE43B8E678}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "WebSetup", "WebSetup1\WebSetup1.vdproj", "{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,17 @@ Global
 		{BDAC4F48-46D2-4228-A076-F5FE43B8E678}.Release|Mixed Platforms.ActiveCfg = Release
 		{BDAC4F48-46D2-4228-A076-F5FE43B8E678}.Release|Mixed Platforms.Build.0 = Release
 		{BDAC4F48-46D2-4228-A076-F5FE43B8E678}.Release|x86.ActiveCfg = Release
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|Any CPU.ActiveCfg = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|Any CPU.Build.0 = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|Mixed Platforms.Build.0 = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|x86.ActiveCfg = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Debug|x86.Build.0 = Debug
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Release|Any CPU.ActiveCfg = Release
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Release|Any CPU.Build.0 = Release
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Release|Mixed Platforms.ActiveCfg = Release
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Release|x86.ActiveCfg = Release
+		{ADBCE7BD-A4F2-4253-A1D0-354A29C3C3B2}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
