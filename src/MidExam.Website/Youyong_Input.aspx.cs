@@ -168,6 +168,8 @@ public partial class Youyong_Input : PageBase
             fenshu = (300 - chengji) / 10 + 1;
             if (fenshu > 10)
                 fenshu = 10;
+            else if (fenshu < 0)
+                fenshu = 0;
         }
         else if (youyong.xb == "2")
         {
@@ -177,6 +179,8 @@ public partial class Youyong_Input : PageBase
             fenshu = (330 - chengji) / 10 + 1;
             if (fenshu > 10)
                 fenshu = 10;
+            else if (fenshu < 0)
+                fenshu = 0;
         }
         
         return fenshu;
