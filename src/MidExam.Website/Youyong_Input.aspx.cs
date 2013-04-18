@@ -61,7 +61,7 @@ public partial class Youyong_Input : PageBase
                 }
                 if (youyong.InputCheck == true)
                 {
-                    this.Fail(string.Format("报名序号{0}的学生成绩{1}已经录入并核对，不再允许录入或修改!", bmxh, youyong.Chengji));
+                    this.Fail(string.Format("报名序号{0}{1}的学生成绩{2}已经录入并核对，不再允许录入或修改!", bmxh,youyong.xm, youyong.Chengji));
                     continue;
                 }
                 var txtChengji = dr.FindControl("Youyong_chengji") as TextBox;
@@ -69,7 +69,7 @@ public partial class Youyong_Input : PageBase
                 var aChengji = strChengji.Split('.');
                 if (aChengji.Length != 2)
                 {
-                    this.Fail(string.Format("报名序号{0}的学生游泳成绩录入格式错误,请以小数点代替分录入,录入时要关闭中文输入法!", bmxh));
+                    this.Fail(string.Format("报名序号{0}{1}的学生游泳成绩录入格式错误,请以小数点代替分录入,录入时要关闭中文输入法!", bmxh, youyong.xm));
                     continue;
                 }
                 int? chengji = null;
@@ -78,21 +78,21 @@ public partial class Youyong_Input : PageBase
                     chengji = int.Parse(aChengji[1]);
                     if (chengji >= 60 || chengji < 0)
                     {
-                        this.Fail(string.Format("报名序号{0}的学生成绩有误,秒不能大于等于60小于0", bmxh));
+                        this.Fail(string.Format("报名序号{0}{1}的学生成绩有误,秒不能大于等于60小于0", bmxh,youyong.xm));
                         continue;
                     }
                     
                     chengji = int.Parse(aChengji[0]) * 60 + int.Parse(aChengji[1]);
                     if (chengji >= 500 || chengji < 100)
                     {
-                        this.Fail(string.Format("报名序号{0}的学生成绩{1}小于100秒或大于500秒", bmxh, chengji));
+                        this.Fail(string.Format("报名序号{0}{1}的学生成绩{2}小于100秒或大于500秒", bmxh, youyong.xm, chengji));
                         continue;
                     }
                 }
                 catch (Exception)
                 {
                     //this.Fail(ex.Message);
-                    this.Fail(string.Format("报名序号{0}的学生游泳成绩录入格式错误,请以小数点代替分录入,录入时要关闭中文输入法!", bmxh));
+                    this.Fail(string.Format("报名序号{0}{1}的学生游泳成绩录入格式错误,请以小数点代替分录入,录入时要关闭中文输入法!", bmxh,youyong.xm));
                     continue;
                 }
 
@@ -100,8 +100,8 @@ public partial class Youyong_Input : PageBase
                 {
                     if (youyong.Chengji2 != null && youyong.Chengji2 != chengji)
                     {
-                        this.Fail(string.Format("报名序号{0}的学生游泳成绩{1}秒与2录的成绩{2}秒不一致，请核对"
-                            , youyong.bmxh, chengji, youyong.Chengji2));
+                        this.Fail(string.Format("报名序号{0}{1}的学生游泳成绩{2}秒与2录的成绩{3}秒不一致，请核对"
+                            , youyong.bmxh,youyong.xm, chengji, youyong.Chengji2));
                     }
                     youyong.Chengji1 = chengji;
                     
@@ -114,8 +114,8 @@ public partial class Youyong_Input : PageBase
                 {
                     if (youyong.Chengji1 != null && youyong.Chengji1 != chengji)
                     {
-                        this.Fail(string.Format("报名序号{0}的学生游泳成绩{1}秒与1录的成绩{2}秒不一致，请核对"
-                            , youyong.bmxh, chengji, youyong.Chengji1));
+                        this.Fail(string.Format("报名序号{0}{1}的学生游泳成绩{2}秒与1录的成绩{3}秒不一致，请核对"
+                            , youyong.bmxh,youyong.xm, chengji, youyong.Chengji1));
                     }
                     youyong.Chengji2 = chengji;
                     youyong.InputDateTime2 = System.DateTime.Now;
