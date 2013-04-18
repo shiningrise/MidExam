@@ -76,13 +76,18 @@ public partial class Youyong_Input : PageBase
                 try
                 {
                     chengji = int.Parse(aChengji[1]);
-                    if (chengji > 59 && chengji < 0)
+                    if (chengji >= 60 || chengji < 0)
                     {
-                        this.Fail("秒不能大于等于60小于0");
+                        this.Fail(string.Format("报名序号{0}的学生成绩有误,秒不能大于等于60小于0", bmxh));
                         continue;
                     }
-
+                    
                     chengji = int.Parse(aChengji[0]) * 60 + int.Parse(aChengji[1]);
+                    if (chengji >= 500 || chengji < 100)
+                    {
+                        this.Fail(string.Format("报名序号{0}的学生成绩{1}小于100秒或大于500秒", bmxh, chengji));
+                        continue;
+                    }
                 }
                 catch (Exception)
                 {
