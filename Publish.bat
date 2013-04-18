@@ -5,6 +5,8 @@ del Bmk.db
 del Bmk.mdb
 cd BmkHistory
 del /q/a/f/s *.*
+cd ..\Dbf
+del /q/a/f/s *.*
 cd ..\Logs
 del /q/a/f/s *.*
 cd ..\..\
