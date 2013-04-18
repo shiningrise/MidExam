@@ -102,7 +102,7 @@ public partial class Youyong_Input : PageBase
                     
                     youyong.InputDateTime1 = System.DateTime.Now;
                     this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
-                        , youyong.bmxh,youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60,Defen(youyong)));
+                        , youyong.bmxh, youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60, Defen(youyong, chengji)));
                 }
 
                 if ("input2" == this.User.Identity.Name)
@@ -115,13 +115,13 @@ public partial class Youyong_Input : PageBase
                     youyong.Chengji2 = chengji;
                     youyong.InputDateTime2 = System.DateTime.Now;
                     this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
-                        , youyong.bmxh, youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60, Defen(youyong)));
+                        , youyong.bmxh, youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60, Defen(youyong, chengji)));
                 }
                 if (youyong.Chengji1 != null && youyong.Chengji2 != null 
                     && youyong.Chengji1 == youyong.Chengji2)
                 {
                     youyong.Chengji = youyong.Chengji1;
-                    youyong.Fenshu = Defen(youyong);
+                    youyong.Fenshu = Defen(youyong, youyong.Chengji);
                     youyong.InputCheck = true;
                 }
                 else
@@ -146,10 +146,34 @@ public partial class Youyong_Input : PageBase
             return "性别有误";
     }
 
-    private int? Defen(Youyong youyong)
+    /// <summary>
+    /// 根据游泳成绩算得分
+    /// </summary>
+    /// <param name="youyong"></param>
+    /// <param name="chengji"></param>
+    /// <returns></returns>
+    private int? Defen(Youyong youyong, int? chengji)
     {
         int? fenshu = -1;
-
+        //男生 210 - 300
+        if (youyong.xb == "1")
+        {
+            if (chengji > 300)
+                fenshu = 0;
+            fenshu = (300 - chengji) / 10 + 1;
+            if (fenshu > 10)
+                fenshu = 10;
+        }
+        else if (youyong.xb == "2")
+        {
+            //女生 240 - 330
+            if (chengji > 330)
+                fenshu = 0;
+            fenshu = (330 - chengji) / 10 + 1;
+            if (fenshu > 10)
+                fenshu = 10;
+        }
+        
         return fenshu;
     }
 
