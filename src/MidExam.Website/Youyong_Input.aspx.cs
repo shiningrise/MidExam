@@ -21,9 +21,12 @@ public partial class Youyong_Input : PageBase
         if (!IsPostBack)
         {
             BindData();
-            this.btnSave.Enabled = "input1,input2".Contains(this.User.Identity.Name);
-            if (this.btnSave.Enabled == false)
-                this.Info("只有input1,input2用户才有权限录入");
+            bool flag = "input1,input2".Contains(this.User.Identity.Name);
+            this.btnSave.Enabled = flag;
+            if (flag == false)
+            {
+                this.Fail("只有input1,input2用户才有权限录入");
+            }
         }
     }
 
@@ -40,7 +43,17 @@ public partial class Youyong_Input : PageBase
 
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        StringBuilder sb = new StringBuilder();
+        if (this.Youyong_Zubie.Text.IsNullOrEmpty())
+        {
+            this.Fail("组别不能为空，如果没有组号请输入-1");
+            return;
+        }
+        int zubie = -1;
+        if (!int.TryParse(this.Youyong_Zubie.Text, out zubie))
+        {
+            this.Fail("组别有误，请核对");
+            return;
+        }
         for (int i = 0; i < this.DataList1.Items.Count; i++)
         {
             var dr = this.DataList1.Items[i];
@@ -104,7 +117,7 @@ public partial class Youyong_Input : PageBase
                             , youyong.bmxh,youyong.xm, chengji, youyong.Chengji2));
                     }
                     youyong.Chengji1 = chengji;
-                    
+                    youyong.zubie = zubie;
                     youyong.InputDateTime1 = System.DateTime.Now;
                     this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
                         , youyong.bmxh, youyong.xm, GetXb(youyong.xb), chengji / 60, chengji % 60, Defen(youyong, chengji)));
@@ -117,6 +130,7 @@ public partial class Youyong_Input : PageBase
                         this.Fail(string.Format("报名序号{0}{1}的学生游泳成绩{2}秒与1录的成绩{3}秒不一致，请核对"
                             , youyong.bmxh,youyong.xm, chengji, youyong.Chengji1));
                     }
+                    youyong.zubie = zubie;
                     youyong.Chengji2 = chengji;
                     youyong.InputDateTime2 = System.DateTime.Now;
                     this.Succeed(string.Format("1录成功,报名序号{0} 姓名{1} 性别{2} 成绩{3}分{4}秒 得分{5}"
@@ -139,6 +153,7 @@ public partial class Youyong_Input : PageBase
             }
         }
         this.Succeed();
+        this.Youyong_Zubie.Text = string.Empty;
     }
 
     private object GetXb(string xb)

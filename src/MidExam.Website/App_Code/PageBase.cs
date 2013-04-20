@@ -151,6 +151,7 @@ public class PageBase : System.Web.UI.Page
     protected void Fail()
     {
         Alert("操作失败.", AlertType.Error);
+        this.MessageBox("操作失败!");
     }
     protected void Fail(string msg)
     {

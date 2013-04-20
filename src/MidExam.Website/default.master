@@ -84,7 +84,7 @@
     <script src="<%= Url("~/Scripts/bootstrap.min.js") %>"" type="text/javascript"></script>   
     <script language="javascript" type="text/javascript">
         $(document).ready(function () {
-            $("[type='submit']").toggleClass('btn');
+    //        $("[type='submit']").toggleClass('btn');
             $("form").toggleClass('form-horizontal');
         });
     </script>
