@@ -94,7 +94,11 @@ public partial class Youyong_Input : PageBase
                         this.Fail(string.Format("报名序号{0}{1}的学生成绩有误,秒不能大于等于60小于0", bmxh,youyong.xm));
                         continue;
                     }
-                    
+                    if (aChengji[1].Length != 2)
+                    {
+                        this.Fail(string.Format("报名序号{0}{1}的学生成绩有误,秒必须是2位", bmxh, youyong.xm));
+                        continue;
+                    }
                     chengji = int.Parse(aChengji[0]) * 60 + int.Parse(aChengji[1]);
                     if (chengji >= 500 || chengji < 100)
                     {
